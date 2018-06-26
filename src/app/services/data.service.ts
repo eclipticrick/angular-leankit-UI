@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class DataService {
 
     return Observable.create(observer => {
       fetch(url)
-        .then(response => response.json()) // or text() or blob() etc.
+        .then(response => response.json())
         .then(data => {
           observer.next(data);
           observer.complete();
