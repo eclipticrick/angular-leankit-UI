@@ -17,7 +17,6 @@
       "dom"
     ],
     "paths": {
-      "@all/*": ["./*"],
       "@components/*": ["src/app/components/*"],
       "@directives/*": ["src/app/directives/*"],
       "@services/*": ["src/app/services/*"],

@@ -19,6 +19,9 @@ import { NothomeComponent } from '@components/pages/nothome/nothome.component';
 import { NavbarComponent } from '@components/parts/navbar/navbar.component';
 import { FooterComponent } from '@components/parts/footer/footer.component';
 
+// services
+import { DataService } from '@services/data.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,7 @@ import { FooterComponent } from '@components/parts/footer/footer.component';
     HttpClientModule,                    // replacement of HttpModule
     MaterialModule                       // material design components
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
