@@ -1,4 +1,4 @@
-// @angular + @angular/material
+// @angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,9 +13,19 @@ import { MaterialModule } from '@modules/material.module';
 import { ROUTER_CONFIG } from './app.router.config';
 import { AppComponent } from './app.component';
 
+// pages & components
+import { HomeComponent } from '@components/pages/home/home.component';
+import { NothomeComponent } from '@components/pages/nothome/nothome.component';
+import { NavbarComponent } from '@components/parts/navbar/navbar.component';
+import { FooterComponent } from '@components/parts/footer/footer.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    NothomeComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,                       // default
@@ -24,7 +34,7 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,                 // for creating forms in typescript
     FormsModule,                         // for automatically associating forms by angular (dependency for @angular/material)
     HttpClientModule,                    // replacement of HttpModule
-    MaterialModule
+    MaterialModule                       // material design components
   ],
   providers: [],
   bootstrap: [AppComponent]

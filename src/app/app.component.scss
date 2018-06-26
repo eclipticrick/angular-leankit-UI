@@ -1,1 +1,27 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* --== routAnimation container ==-- */
+main#routeAnimation{
+  overflow-x: hidden; // prevent Collapsing margins (http://www.w3.org/TR/css3-box/#collapsing-margins)
+  position: relative;
+  padding-bottom: 40px; // prevent box-shadows from being cut-off at he bottom
+  & > *{
+    display: block;
+  }
+}
+
+/* defaults */
+button,
+/deep/ button {
+  outline: none !important;
+}
+.cut-text,
+/deep/ .cut-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.no-select,
+/deep/ .no-select {
+  user-select: none;
+}
