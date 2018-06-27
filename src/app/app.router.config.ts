@@ -1,11 +1,18 @@
 import { Route } from '@angular/router';
-import { AppComponent } from './app.component';
+
+import { HomeComponent} from '@components/pages/home/home.component';
+import { NothomeComponent} from '@components/pages/nothome/nothome.component';
 
 export const ROUTER_CONFIG: Route[] = [
   {
     path: '',
-    component: AppComponent,
+    component: HomeComponent,
     data: { depth: 1 }
+  },
+  {
+    path: 'nothome',
+    component: NothomeComponent,
+    data: { depth: 2 }
   },
   // {
   //   path: '',
