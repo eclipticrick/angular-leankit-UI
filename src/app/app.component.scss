@@ -1,27 +1,12 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
-/* --== routAnimation container ==-- */
-main#routeAnimation{
-  overflow-x: hidden; // prevent Collapsing margins (http://www.w3.org/TR/css3-box/#collapsing-margins)
-  position: relative;
-  padding-bottom: 40px; // prevent box-shadows from being cut-off at he bottom
-  & > *{
-    display: block;
-  }
+@import '../mixins';
+/* awesomeness */
+.brick,
+/deep/ .brick {
+  @include box-shadow(0 2px 43px -4px rgba(0,0,0,.19));
+  @include transition(all .2s ease-out);
 }
-
-/* defaults */
-button,
-/deep/ button {
-  outline: none !important;
-}
-.cut-text,
-/deep/ .cut-text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.no-select,
-/deep/ .no-select {
-  user-select: none;
+.brick:hover,
+/deep/ .brick:hover {
+  @include box-shadow(0 2px 5px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.05));
+  @include transform(translateY(2px));
 }

@@ -7,12 +7,12 @@ import {DataService} from '@services/data.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  data$ = null;
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    const data$ = this.data.getData();
-    data$.subscribe(data => {
+    this.data$ = this.data.getData();
+    this.data$.subscribe(data => {
       console.log('GOT DATA');
       console.log(data);
     });

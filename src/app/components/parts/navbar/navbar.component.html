@@ -1,3 +1,17 @@
-<p>
-  navbar works!
-</p>
+<div [ngClass]="huge ? 'background-sky' : ''" class=""></div>
+
+<mat-toolbar [ngClass]="huge ? 'navbar-opaque' : ''" class="navbar" color="primary">
+  <mat-toolbar-row>
+    <object class="nav-item-margin logo" data="assets/dlo/svg/hu-logo-small-white.svg" type="image/svg+xml"></object>
+    <button class="nav-item-margin" mat-button>Primary</button>
+    <button class="nav-item-margin" mat-button>Primary</button>
+    <button class="nav-item-margin" mat-button>Primary</button>
+    <span class="flex-spacer"></span>
+    <button class="nav-item-padding" mat-icon-button>
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button class="nav-item-margin" mat-icon-button>
+      <mat-icon>verified_user</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+     xmlns="http://www.w3.org/2000/svg"
+     x="0px"
+     y="0px"
+     width="185px"
+     height="159px"
+     viewBox="0 0 185 159"
+     enable-background="new 0 0 185 159"
+     xml:space="preserve">
+     <style type="text/css"><![CDATA[
+        svg .h,
+        svg .u {
+          transition: all .24s;
+        }
+        svg:hover .h {
+          fill: #1A9FD9 !important;
+          transform: rotate(-1deg);
+        }
+        svg:hover .u {
+          fill: #E62F2B !important;
+          transform: rotate(3deg);
+        }
+
+    ]]></style>
+<g>
+  <g>
+    <g>
+      <rect class="h" x="53.517" y="1.94" style="fill:#fff" width="25.946" height="64.848"/>
+      <rect class="h" x="53.517" y="92.731" style="fill:#fff" width="25.946" height="64.855"/>
+    </g>
+    <rect class="h" x="1.638" y="1.94" style="fill:#fff" width="25.947" height="155.647"/>
+  </g>
+  <path class="u" style="fill:#fff" d="M183.241,79.762V1.94h-25.941v77.822c0,7.163-5.829,12.971-12.973,12.971
+    c-7.188,0-12.972-5.809-12.972-12.971V1.94h-25.946l-0.015,77.822c0,21.542,17.403,38.917,38.933,38.917
+    c21.53,0,38.921-17.375,38.921-38.917H183.241z"/>
+</g>
+</svg>
