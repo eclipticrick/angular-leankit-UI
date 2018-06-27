@@ -5,13 +5,13 @@ import { Component, OnInit } from '@angular/core';
   template: `
   <div class="flex-container">
     <button mat-button routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
-      Home
+      Homeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     </button>
     <button mat-button routerLinkActive="active" routerLink="/nothome">
-      NotHome
+      NotHomeeeeeeeeeeeeeeeeee
     </button>
     <button mat-button>
-      Somethingggggggggggggggg
+      Somethinggggggggggggggggggggggggggggggggg
     </button>
   </div>
 

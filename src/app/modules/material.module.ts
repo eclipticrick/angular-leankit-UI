@@ -5,6 +5,7 @@ import {
   MatFormFieldModule,
   MatExpansionModule,
   MatCheckboxModule,
+  MatGridListModule,
   MatTooltipModule,
   MatToolbarModule,
   MatSidenavModule,
@@ -18,13 +19,14 @@ import {
   MatMenuModule,
   MatTabsModule,
   MatIconModule,
-  MatListModule,
+  MatListModule
 } from '@angular/material';
 
 const MatModules = [
 
   // display
   MatExpansionModule,
+  MatGridListModule,
   MatDialogModule,
   MatCardModule,
 
@@ -56,38 +58,3 @@ const MatModules = [
   exports: MatModules
 })
 export class MaterialModule {}
-
-
-
-// MatAutocompleteModule,
-// MatButtonModule,
-// MatButtonToggleModule,
-// MatCardModule,
-// MatCheckboxModule,
-// MatChipsModule,
-// MatDatepickerModule,
-// MatDialogModule,
-// MatDividerModule,
-// MatExpansionModule,
-// MatGridListModule,
-// MatIconModule,
-// MatInputModule,
-// MatListModule,
-// MatMenuModule,
-// MatNativeDateModule,
-// MatPaginatorModule,
-// MatProgressBarModule,
-// MatProgressSpinnerModule,
-// MatRadioModule,
-// MatRippleModule,
-// MatSelectModule,
-// MatSidenavModule,
-// MatSliderModule,
-// MatSlideToggleModule,
-// MatSnackBarModule,
-// MatSortModule,
-// MatStepperModule,
-// MatTableModule,
-// MatTabsModule,
-// MatToolbarModule,
-// MatTooltipModule,
