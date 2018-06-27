@@ -1,36 +1,29 @@
 
-.background-sky {
-  background-color: #00a1e1;
-  background: linear-gradient(145deg, #005f8c, #00a1e1);
-  color: #fff;
-  position: absolute;
-  width: 100%;
-  min-height: 480px;
-  height: 80vh;
-  max-height: 560px;
-  box-sizing: border-box;
-  -webkit-transform: skewY(8deg);
-  transform: skewY(8deg);
-  -webkit-transform-origin: 100%;
-  transform-origin: 100%;
-  margin-top: -50px;
-  z-index: -1;
-}
-.navbar {
+mat-toolbar.navbar {
   position: relative;
+
+  // top-most toolbar (with logo & navigation for desktop)
+  mat-toolbar-row.primary-bar {
+    object.logo {
+      height: 42px;
+      margin-right: 12px;
+    }
+    div.nav-buttons /deep/ button {
+      margin: 0 6px;
+    }
+  }
+
+  // second toolbar (shows up on mobile for navigation)
+  mat-toolbar-row.secondary-bar {
+    padding: 0;
+    height: 36px;
+    div.nav-buttons {
+      width: 100%;
+      /deep/ button {
+        flex: 1;
+      }
+    }
+  }
+
 }
-mat-toolbar-row > .nav-item-margin:first-child {
-  margin: 0 6px 0 0;
-}
-mat-toolbar-row > .nav-item-margin {
-  margin: 0 6px;
-}
-mat-toolbar-row > .nav-item-margin:last-child {
-  margin: 0 0 0 6px;
-}
-.navbar-opaque {
-  background: transparent;
-}
-object.logo {
-  height: 42px;
-}
+

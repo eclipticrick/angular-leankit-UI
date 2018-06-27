@@ -1,0 +1,17 @@
+.background-sky {
+  background-color: #00a1e1;
+  background: linear-gradient(145deg, #005f8c, #00a1e1);
+  color: #fff;
+  position: absolute;
+  width: 100%;
+  min-height: 480px;
+  height: 80vh;
+  max-height: 560px;
+  box-sizing: border-box;
+  -webkit-transform: skewY(8deg);
+  transform: skewY(8deg);
+  -webkit-transform-origin: 100%;
+  transform-origin: 100%;
+  margin-top: -50px;
+  z-index: -1;
+}

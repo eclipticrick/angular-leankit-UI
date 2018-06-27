@@ -15,20 +15,37 @@ main#routeAnimation{
 }
 
 /* defaults */
-button,
-/deep/ button {
+button {
   outline: none !important;
 }
-.cut-text,
-/deep/ .cut-text {
+
+
+/* helpers */
+.cut-text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.no-select,
-/deep/ .no-select {
+.no-select {
   user-select: none;
+}
+.flex-container {
+  display: flex;
 }
 .flex-spacer {
   flex: 1 1 auto;
+}
+.mobile-only {
+  display: none !important;
+}
+.desktop-only {
+  display: initial !important;
+}
+@media (max-width: 767px) {
+  .mobile-only {
+    display: initial !important;
+  }
+  .desktop-only {
+    display: none !important
+  }
 }

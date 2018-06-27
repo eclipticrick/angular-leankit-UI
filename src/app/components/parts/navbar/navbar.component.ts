@@ -6,11 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  huge = false;
   constructor() { }
 
-  ngOnInit() {
-    setTimeout(() => this.huge = true, 5000);
-  }
+  ngOnInit() {}
 
 }

@@ -21,6 +21,7 @@ import { FooterComponent } from '@components/parts/footer/footer.component';
 
 // services
 import { DataService } from '@services/data.service';
+import { NavItemsComponent } from './components/parts/navbar/nav-items/nav-items.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DataService } from '@services/data.service';
     HomeComponent,
     NothomeComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    NavItemsComponent
   ],
   imports: [
     BrowserModule,                       // default
