@@ -7,20 +7,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 // modules
-import { MaterialModule } from '@modules/material.module';
+import { MaterialModule } from './modules/material.module';
 
 // root
 import { ROUTER_CONFIG } from './app.router.config';
 import { AppComponent } from './app.component';
 
 // pages & components
-import { HomeComponent } from '@components/pages/home/home.component';
-import { NothomeComponent } from '@components/pages/nothome/nothome.component';
-import { NavbarComponent } from '@components/parts/navbar/navbar.component';
-import { FooterComponent } from '@components/parts/footer/footer.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { NothomeComponent } from './components/pages/nothome/nothome.component';
+import { NavbarComponent } from './components/parts/navbar/navbar.component';
+import { FooterComponent } from './components/parts/footer/footer.component';
 
 // services
-import { DataService } from '@services/data.service';
+import { DataService } from './services/data.service';
 import { NavItemsComponent } from './components/parts/navbar/nav-items/nav-items.component';
 
 @NgModule({

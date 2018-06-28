@@ -1,6 +1,6 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
-import { routeAnimation } from './app.animations';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { routeAnimation } from './app.animations';
 
 @Component({
   selector: 'app-root',
