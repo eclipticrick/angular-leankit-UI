@@ -1,6 +1,21 @@
 
-<app-navbar></app-navbar>
-<main id="routeAnimation" [@routeAnimation]="getComponentDepth(myOutlet)">
-  <router-outlet #myOutlet="outlet"></router-outlet>
-</main>
-<app-footer></app-footer>
+<mat-card>
+  <h1>Test abc</h1>
+
+  <mat-form-field>
+    <mat-select placeholder="Set theme" (selectionChange)="onThemeChange($event.value)">
+      <mat-option value="theme-hu-light">light</mat-option>
+      <mat-option value="theme-hu-dark">dark</mat-option>
+      <mat-option value="theme-hu-lol">non existing</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</mat-card>
+
+<div id="site-theme">
+  <app-navbar></app-navbar>
+  <main id="routeAnimation" [@routeAnimation]="getComponentDepth(myOutlet)">
+    <router-outlet #myOutlet="outlet"></router-outlet>
+  </main>
+  <app-footer></app-footer>
+</div>
