@@ -41,7 +41,7 @@ import { NavItemsComponent } from './components/parts/navbar/nav-items/nav-items
     HttpClientModule,                    // replacement of HttpModule
     MaterialModule                       // material design components
   ],
-  providers: [DataService],
-  bootstrap: [AppComponent]
+  providers: [ DataService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

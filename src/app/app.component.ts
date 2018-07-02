@@ -1,6 +1,16 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import {
+  AfterContentChecked,
+  Component,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { routeAnimation } from './app.animations';
+import {NavbarComponent} from './components/parts/navbar/navbar.component';
+import {FooterComponent} from './components/parts/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +18,25 @@ import { routeAnimation } from './app.animations';
   styleUrls: ['./app.component.scss'],
   animations: [ routeAnimation ]
 })
-export class AppComponent implements OnInit {
-  theme = 'theme-hu-light';
+export class AppComponent implements OnInit, AfterContentChecked {
+  @ViewChild('navbar') navbarRef: NavbarComponent;
+  @ViewChild('footer') footerRef: FooterComponent;
+  @ViewChild('main') mainBody: ElementRef;
+  minContentHeight;
+  theme = 'hu-light-theme';
   @HostBinding('class') hostClasses: string = this.theme;
 
   constructor(private overlayContainer: OverlayContainer) {
-    this.overlayContainer.getContainerElement().classList.add(this.theme);
-  }
-
-  ngOnInit() {
     this.onThemeChange(this.theme);
   }
 
-  getComponentDepth(outlet) {
-    return outlet.activatedRouteData['depth'];
+  ngOnInit(): void {
+    // set theme class on overlayContainer
+    this.overlayContainer.getContainerElement().classList.add(this.theme);
+  }
+  ngAfterContentChecked(): void {
+    // calculate min-height as soon as all the content has been loaded and checked (footer + navbar etc.)
+    this.calculateMinBodyHeight();
   }
 
   onThemeChange(theme) {
@@ -33,5 +48,15 @@ export class AppComponent implements OnInit {
     overlayContainerClasses.remove(this.theme);
     this.theme = theme;
     overlayContainerClasses.add(this.theme);
+  }
+
+  calculateMinBodyHeight() {
+    const heightNavbar = this.navbarRef.element.nativeElement.querySelector('#navbar').offsetHeight;
+    const heightFooter = this.footerRef.element.nativeElement.querySelector('#footer').offsetHeight;
+    this.minContentHeight = window.innerHeight - heightNavbar - heightFooter;
+  }
+
+  @HostListener('window:resize', ['$event']) onResize() {
+    this.calculateMinBodyHeight();
   }
 }

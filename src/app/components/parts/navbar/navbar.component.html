@@ -1,6 +1,6 @@
 
 
-<mat-toolbar class="navbar" color="primary">
+<mat-toolbar id="navbar" color="primary" [class.scrolled_down]="scrollPosition > 0">
 
   <!-- primary toolbar (with logo & navigation for desktop) -->
   <mat-toolbar-row class="primary-bar">
@@ -12,15 +12,15 @@
 
     <span class="flex-spacer"></span>
 
-    <button mat-icon-button>
-      <mat-icon>delete</mat-icon>
+    <button mat-icon-button (click)="setTheme(false)">
+      <mat-icon>wb_sunny</mat-icon>
     </button>
-    <button mat-icon-button>
-      <mat-icon>verified_user</mat-icon>
+    <mat-slide-toggle (change)="setTheme($event.checked)" [(ngModel)]="isDarkTheme"></mat-slide-toggle>
+    <button mat-icon-button (click)="setTheme(true)">
+      <mat-icon>brightness_2</mat-icon>
     </button>
 
   </mat-toolbar-row>
-
 
   <!-- second toolbar (shows up on mobile for navigation) -->
   <mat-toolbar-row class="secondary-bar mobile-only">
@@ -33,3 +33,5 @@
 
 
 </mat-toolbar>
+
+<div class="navbar-spacing"></div>

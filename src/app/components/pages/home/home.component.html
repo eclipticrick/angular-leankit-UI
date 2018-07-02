@@ -1,42 +1,29 @@
 
-<div class="background-sky"></div>
-<button mat-raised-button color="primary">Primary</button>
-<button mat-raised-button color="accent">Accent</button>
-<button mat-raised-button color="warn">Warn</button>
-<mat-form-field>
-  <mat-select placeholder="Favorite food">
-    <mat-option value="a">
-      a
-    </mat-option>
-    <mat-option value="b">
-      b
-    </mat-option>
-    <mat-option value="c">
-      c
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-
-<mat-card>
-  <h1>Test abc</h1>
-</mat-card>
+<div class="background-sky theme-bg-primary"></div>
 
 <div *ngIf="data$" class="container">
   <div *ngFor="let item of data$ | async" class="row">
     <div class="col-12">
-      <div class="brick"
-           style="
-            font-family: Calibri, sans-serif;
-            border: 1px solid #e8e8e8;
-            margin: 12px;
-            margin-bottom: 50px;
-            border-radius: 20px;
-            background: #f9f9f9;
-            padding: 8px 24px;
-       ">
+      <mat-card style="margin: 25px auto">
         <h4>{{ item.title }} <small style="color: #aaa;margin-left: 16px">id: {{ item.id }} | userId: {{ item.userId }}</small></h4>
         <p>{{ item.body }}</p>
-      </div>
+        <button mat-raised-button style="margin-right: 8px" color="primary">Primary</button>
+        <button mat-raised-button style="margin-right: 8px" color="accent">Accent</button>
+        <button mat-raised-button style="margin-right: 8px" color="warn">Warn</button>
+        <mat-form-field>
+          <mat-select placeholder="Favorite food">
+            <mat-option value="a">
+              a
+            </mat-option>
+            <mat-option value="b">
+              b
+            </mat-option>
+            <mat-option value="c">
+              c
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card>
     </div>
   </div>
 </div>

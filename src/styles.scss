@@ -1,41 +1,39 @@
-//@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+@import 'hu-light-theme';
+@import 'hu-dark-theme';
 
-//@import 'theme-hu-light.scss';
-//@import 'theme-hu-dark.scss';
 @import '~@angular/material/theming';
+
+@mixin custom-material-theme($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  $text: map-get($foreground, text);
+  $card: map-get($background, card);
+
+  // Use mat-color to extract individual colors from a palette as necessary.
+  .theme-bg { background: mat-color($background, background); }
+  .theme-bg-primary { background-color: mat-color($primary) }
+  .theme-fg-primary { color: mat-color($primary) }
+}
 
 @include mat-core();
 
-$light-theme-primary: mat-palette($mat-blue, 600);
-$light-theme-accent: mat-palette($mat-orange, 600);
-$light-theme-warn: mat-palette($mat-red, 600);
+@include angular-material-theme($light-theme);
+@include custom-material-theme($light-theme);
 
-$light-theme: mat-light-theme(
-    $light-theme-primary,
-    $light-theme-accent,
-    $light-theme-warn
-);
-
-
-
-$dark-theme-primary: mat-palette($mat-green, 600);
-$dark-theme-accent: mat-palette($mat-orange, 600);
-$dark-theme-warn: mat-palette($mat-red, 600);
-
-$dark-theme: mat-dark-theme(
-    $dark-theme-primary,
-    $dark-theme-accent,
-    $dark-theme-warn
-);
-
-
-// @include angular-material-theme($light-theme);
-app-root.theme-hu-light {
+app-root.hu-light-theme {
   @include angular-material-theme($light-theme);
+  @include custom-material-theme($light-theme);
 }
-app-root.theme-hu-dark {
+app-root.hu-dark-theme {
   @include angular-material-theme($dark-theme);
+  @include custom-material-theme($dark-theme);
 }
 
 body {

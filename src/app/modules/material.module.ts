@@ -23,7 +23,6 @@ import {
 } from '@angular/material';
 
 const MatModules = [
-
   // display
   MatExpansionModule,
   MatGridListModule,
