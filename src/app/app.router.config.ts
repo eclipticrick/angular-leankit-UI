@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
-import {HomeComponent} from "./components/pages/home/home.component";
-import {NothomeComponent} from "./components/pages/nothome/nothome.component";
+import {HomeComponent} from './components/pages/home/home.component';
+import {NothomeComponent} from './components/pages/nothome/nothome.component';
 
 
 export const ROUTER_CONFIG: Route[] = [

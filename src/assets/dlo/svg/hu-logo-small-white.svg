@@ -15,11 +15,11 @@
           transition: all .24s;
         }
         svg:hover .h {
-          fill: #1A9FD9 !important;
-          transform: rotate(-1deg);
+          /* fill: #1A9FD9 !important; */
+          transform: rotate(-2deg);
         }
         svg:hover .u {
-          fill: #E62F2B !important;
+          /* fill: #E62F2B !important; */
           transform: rotate(3deg);
         }
 
