@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {map} from "rxjs/operators";
 
 // const endpoints = [
 //   '/io/auth/token',
 //   '/io/board',
 //   '/io/board/:id',
 //   '/io/board/:boardId/customfield',
-//   '/io/card/:cardId/attachment',
-//   '/io/card/:cardId/attachment/id/content',
+
 //   '/io/card',
 //   '/io/card/:id',
+//   '/io/card/:cardId/attachment',
+//   '/io/card/:cardId/attachment/id/content',
 //   '/io/card/:cardId/comment',
-//   '/io/template',
-//   '/io/user',
-//   '/io/user/me',
-//   '/io/user/:id',
-//   '/io/user/me/board/recent',
 //   '/io/card/:cardId/tasks',
 //   '/io/card/:cardId/tasks/:id',
+
+//   '/io/template',
+
+//   '/io/user',
+
+//   '/io/user/:id',
+
+//   '/io/user/:id/board/recent', //todo: test
+
 // ];
 
 @Injectable({
@@ -30,11 +36,31 @@ export class LeankitService {
 
   constructor(private http: HttpClient) { }
 
-  getBoards() {
-    return this.get('board');
-  }
+  getTokens() { return this.get('auth/token'); }
+
+  getMetaData() { return this.get('board').pipe(map(data => data['pageMeta'])); }
+
+  getBoards() { return this.get('board').pipe(map(data => data['boards'])); }
+  getBoard(id: number) { return this.get('board/' + id); }
+  getBoardsCustomfield(boardId: number) {  return this.get('board/' + boardId + '/customfield'); }
+
+  getCards() { return this.get('card/'); }
+  getCard(id: number) { return this.get('card/' + id); }
+  getCardAttachments(cardId: number) {  return this.get('card/' + cardId + '/attachment'); }
+  getCardAttachment(cardId: number, attachmentId) {  return this.get('card/' + cardId + '/attachment/' + attachmentId + '/content'); }
+  getCardTasks(cardId: number) {  return this.get('card/' + cardId + '/tasks'); }
+  getCardTask(cardId: number, taskId) {  return this.get('card/' + cardId + '/tasks/' + taskId); }
+  getCardComments(cardId: number) {  return this.get('card/' + cardId + '/comment'); }
+
+  getTemplates() {  return this.get('template'); }
+
+  getUsers() {  return this.get('user'); }
+  getUser(id: number) { return this.get('user/' + id); }
+  getRecentActivityForUser(id: number) { return this.get('user/' + id + '/board/recent'); }
+
 
   private get(path): Observable<any> {
+    console.log(this.alreadyRetrieved);
     if (this.alreadyHasDataFrom(path)) {
       console.log('Data from local storage', path);
       return this.getLocallyStoredDataFrom(path);
@@ -57,7 +83,10 @@ export class LeankitService {
   }
   private getApiDataFrom(path): Observable<any> {
     const obs = this.http.get(this.BASE_URL + path);
-    obs.subscribe(data => this.alreadyRetrieved.push({ path: path, data: data }));
+    const $ = obs.subscribe(data => {
+      this.alreadyRetrieved.push({ path: path, data: data });
+      $.unsubscribe();
+    });
     return obs;
   }
 }
