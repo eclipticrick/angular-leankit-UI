@@ -20,7 +20,7 @@ import { NavbarComponent } from './components/parts/navbar/navbar.component';
 import { FooterComponent } from './components/parts/footer/footer.component';
 
 // services
-import { DataService } from './services/data.service';
+import { LeankitService } from './services/leankit.service';
 import { NavItemsComponent } from './components/parts/navbar/nav-items/nav-items.component';
 
 @NgModule({
@@ -41,7 +41,7 @@ import { NavItemsComponent } from './components/parts/navbar/nav-items/nav-items
     HttpClientModule,                    // replacement of HttpModule
     MaterialModule                       // material design components
   ],
-  providers: [ DataService ],
+  providers: [ LeankitService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
