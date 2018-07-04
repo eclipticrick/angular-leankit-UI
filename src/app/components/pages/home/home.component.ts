@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.data$ = this.leankit.getBoards().pipe(map(data => data['boards']));
-    this.data$.subscribe(data => {
-      console.log(data.boards);
+    this.data$.subscribe(boards => {
+      console.log(boards);
     });
   }
 
