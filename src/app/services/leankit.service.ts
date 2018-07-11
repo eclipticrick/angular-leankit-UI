@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {map} from "rxjs/operators";
+import { map } from 'rxjs/operators';
 
 // const endpoints = [
 //   '/io/auth/token',
@@ -38,9 +38,10 @@ export class LeankitService {
 
   getTokens() { return this.get('auth/token'); }
 
-  getMetaData() { return this.get('board').pipe(map(data => data['pageMeta'])); }
+  // getMetaData() { return this.get('board').pipe(map(data => data['pageMeta'])); }
 
-  getBoards() { return this.get('board').pipe(map(data => data['boards'])); }
+  // getBoards() { return this.get('board').pipe(map(data => data['boards'])); }
+  getBoards() { return this.get('board'); }
   getBoard(id: number) { return this.get('board/' + id); }
   getBoardsCustomfield(boardId: number) {  return this.get('board/' + boardId + '/customfield'); }
 
@@ -60,12 +61,12 @@ export class LeankitService {
 
 
   private get(path): Observable<any> {
-    console.log(this.alreadyRetrieved);
+    // console.log(this.alreadyRetrieved);
     if (this.alreadyHasDataFrom(path)) {
-      console.log('Data from local storage', path);
+      // console.log('Data from local storage', path);
       return this.getLocallyStoredDataFrom(path);
     } else {
-      console.log('Data from api', path);
+      // console.log('Data from api', path);
       return this.getApiDataFrom(path);
     }
   }
@@ -82,11 +83,11 @@ export class LeankitService {
     });
   }
   private getApiDataFrom(path): Observable<any> {
-    const obs = this.http.get(this.BASE_URL + path);
-    const $ = obs.subscribe(data => {
+    const observable = this.http.get(this.BASE_URL + path);
+    const $ = observable.subscribe(data => {
       this.alreadyRetrieved.push({ path: path, data: data });
       $.unsubscribe();
     });
-    return obs;
+    return observable;
   }
 }

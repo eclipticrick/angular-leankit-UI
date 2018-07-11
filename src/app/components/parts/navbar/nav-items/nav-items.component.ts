@@ -3,18 +3,17 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-nav-items',
   template: `
-  <div class="flex-container">
+  <div class="flex">
     <button mat-button routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
-      Homeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+      Dashoard
     </button>
-    <button mat-button routerLinkActive="active" routerLink="/nothome">
-      NotHomeeeeeeeeeeeeeeeeee
+    <button mat-button routerLinkActive="active" routerLink="/backlog">
+      Backlog
     </button>
-    <button mat-button>
-      Somethinggggggggggggggggggggggggggggggggg
+    <button mat-button routerLinkActive="active" routerLink="/doing">
+      Doing
     </button>
   </div>
-
   `
 })
 export class NavItemsComponent implements OnInit {

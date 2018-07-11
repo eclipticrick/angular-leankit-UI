@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
-import {HomeComponent} from './components/pages/home/home.component';
-import {NothomeComponent} from './components/pages/nothome/nothome.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { BacklogComponent } from './components/pages/backlog/backlog.component';
+import { DoingComponent } from './components/pages/doing/doing.component';
 
 
 export const ROUTER_CONFIG: Route[] = [
@@ -10,10 +11,15 @@ export const ROUTER_CONFIG: Route[] = [
     data: { depth: 1 }
   },
   {
-    path: 'nothome',
-    component: NothomeComponent,
+    path: 'backlog',
+    component: BacklogComponent,
     data: { depth: 2 }
   },
+  {
+    path: 'doing',
+    component: DoingComponent,
+    data: { depth: 3 }
+  }
   // {
   //   path: '',
   //   component: HomeComponent,

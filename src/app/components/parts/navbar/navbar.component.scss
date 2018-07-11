@@ -2,7 +2,8 @@ $on-desktop: "(min-width: 768px)";
 $on-mobile: "(max-width: 767px)";
 $on-mobile-small: "(max-width: 599px)";
 
-@import '../../../_variables';
+@import '../../../scss/variables';
+@import '../../../scss/theme';
 
 div.navbar-spacing {
   padding-bottom: 64px;
@@ -32,7 +33,7 @@ mat-toolbar#navbar {
 
       &.active {
         color: #ffffff;
-        font-weight: bold;
+        background: rgba(255,255,255,.2);
       }
     }
   }

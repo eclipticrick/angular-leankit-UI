@@ -15,22 +15,24 @@ import { AppComponent } from './app.component';
 
 // pages & components
 import { HomeComponent } from './components/pages/home/home.component';
-import { NothomeComponent } from './components/pages/nothome/nothome.component';
 import { NavbarComponent } from './components/parts/navbar/navbar.component';
 import { FooterComponent } from './components/parts/footer/footer.component';
 
 // services
 import { LeankitService } from './services/leankit.service';
 import { NavItemsComponent } from './components/parts/navbar/nav-items/nav-items.component';
+import { BacklogComponent } from './components/pages/backlog/backlog.component';
+import { DoingComponent } from './components/pages/doing/doing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NothomeComponent,
     NavbarComponent,
     FooterComponent,
-    NavItemsComponent
+    NavItemsComponent,
+    BacklogComponent,
+    DoingComponent
   ],
   imports: [
     BrowserModule,                       // default

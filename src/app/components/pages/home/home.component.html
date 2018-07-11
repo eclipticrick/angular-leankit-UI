@@ -1,80 +1,188 @@
 
 <div class="background-sky theme-bg-primary"></div>
-
-<div *ngIf="boards$" class="container">
-  <div *ngFor="let board of boards$ | async" class="row">
+<div class="container">
+  <div class="row">
     <div class="col-12">
-      <mat-card style="margin: 25px auto">
-        <h4>Board</h4>
-        <h6>boardRole: {{ board['boardRole'] }}</h6>
-        <h6>boardRoleId: {{ board['boardRoleId'] }}</h6>
-        <h6>description: {{ board['description'] }}</h6>
-        <h6>id: {{ board['id'] }}</h6>
-        <h6>isWelcome: {{ board['isWelcome'] }}</h6>
-        <h6>title: {{ board['title'] }}</h6>
+      <h1 class="fg-white">Team Leren</h1>
+      <mat-card class="no-padding no-select">
+        <div class="padding">
+          <h3 class="no-margin flex flex-align-vertical">
+            <span>De <span class="underline">epics</span> waar op dit moment aan worden gewerkt</span>
+            <span class="flex-spacer"></span>
+            <button class="more" matTooltip="Wat is een epic?" mat-icon-button>
+              <mat-icon>help</mat-icon>
+            </button>
+          </h3>
+        </div>
 
-        <mat-card *ngIf="boardsInfo$[board.id]" style="margin: 6px auto">
-          <h4>Board info</h4>
-          <h6>allowUsersToDeleteCards: {{ (boardsInfo$[board.id] | async)?.allowUsersToDeleteCards }}</h6>
-          <h6>baseWipOnCardSize: {{ (boardsInfo$[board.id] | async)?.baseWipOnCardSize }}</h6>
-          <h6>boardRole: {{ (boardsInfo$[board.id] | async)?.boardRole }}</h6>
-          <h6>cardColorField: {{ (boardsInfo$[board.id] | async)?.cardColorField }}</h6>
-          <h6>classOfServiceEnabled: {{ (boardsInfo$[board.id] | async)?.classOfServiceEnabled }}</h6>
-          <h6>currentExternalCardId: {{ (boardsInfo$[board.id] | async)?.currentExternalCardId }}</h6>
-          <h6>customBoardMoniker: {{ (boardsInfo$[board.id] | async)?.customBoardMoniker }}</h6>
-          <h6>customIconFieldLabel: {{ (boardsInfo$[board.id] | async)?.customIconFieldLabel }}</h6>
-          <h6>defaultCardTypeId: {{ (boardsInfo$[board.id] | async)?.defaultCardTypeId }}</h6>
-          <h6>defaultTaskTypeId: {{ (boardsInfo$[board.id] | async)?.defaultTaskTypeId }}</h6>
-          <h6>description: {{ (boardsInfo$[board.id] | async)?.description }}</h6>
-          <h6>effectiveBoardRole: {{ (boardsInfo$[board.id] | async)?.effectiveBoardRole }}</h6>
-          <h6>excludeCompletedAndArchiveViolations: {{ (boardsInfo$[board.id] | async)?.excludeCompletedAndArchiveViolations }}</h6>
-          <h6>format: {{ (boardsInfo$[board.id] | async)?.format }}</h6>
-          <h6>id: {{ (boardsInfo$[board.id] | async)?.id }}</h6>
-          <h6>isAutoIncrementCardIdEnabled: {{ (boardsInfo$[board.id] | async)?.isAutoIncrementCardIdEnabled }}</h6>
-          <h6>isCardIdEnabled: {{ (boardsInfo$[board.id] | async)?.isCardIdEnabled }}</h6>
-          <h6>isDuplicateCardIdAllowed: {{ (boardsInfo$[board.id] | async)?.isDuplicateCardIdAllowed }}</h6>
-          <h6>isExternalUrlEnabled: {{ (boardsInfo$[board.id] | async)?.isExternalUrlEnabled }}</h6>
-          <h6>isHeaderEnabled: {{ (boardsInfo$[board.id] | async)?.isHeaderEnabled }}</h6>
-          <h6>isHyperlinkEnabled: {{ (boardsInfo$[board.id] | async)?.isHyperlinkEnabled }}</h6>
-          <h6>isPermalinkEnabled: {{ (boardsInfo$[board.id] | async)?.isPermalinkEnabled }}</h6>
-          <h6>isPrefixEnabled: {{ (boardsInfo$[board.id] | async)?.isPrefixEnabled }}</h6>
-          <h6>isPrefixIncludedInHyperlink: {{ (boardsInfo$[board.id] | async)?.isPrefixIncludedInHyperlink }}</h6>
-          <h6>isShared: {{ (boardsInfo$[board.id] | async)?.isShared }}</h6>
-          <h6>isWelcome: {{ (boardsInfo$[board.id] | async)?.isWelcome }}</h6>
-          <h6>layoutChecksum: {{ (boardsInfo$[board.id] | async)?.layoutChecksum }}</h6>
-          <h6>organizationId: {{ (boardsInfo$[board.id] | async)?.organizationId }}</h6>
-          <h6>prefix: {{ (boardsInfo$[board.id] | async)?.prefix }}</h6>
-          <h6>sharedBoardRole: {{ (boardsInfo$[board.id] | async)?.sharedBoardRole }}</h6>
-          <h6>subscriptionId: {{ (boardsInfo$[board.id] | async)?.subscriptionId }}</h6>
-          <h6>title: {{ (boardsInfo$[board.id] | async)?.title }}</h6>
-          <h6>version: {{ (boardsInfo$[board.id] | async)?.version }}</h6>
+        <mat-nav-list class="epics no-padding">
+          <mat-list-item (click)="alert('item')">
+            <h3 matLine>title</h3>
+            <mat-progress-bar matLine matTooltip="xx van de xx taken zijn gedaan" mode="determinate" value="40"></mat-progress-bar>
+            <p matLine>
+              <span>stories </span>
+              <span class="lighter">2</span>
+              <span>, </span>
+              <span>taken </span>
+              <span class="lighter">5</span>
+              <span>, </span>
+              <span>laatste activiteit </span>
+              <span class="lighter">een week geleden</span>
+            </p>
+            <button class="more" matTooltip="Meer informatie over deze epic" mat-icon-button>
+              <mat-icon>info</mat-icon>
+            </button>
+            <div class="avatars desktop-only">
+              <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
+              <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
+              <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
+              <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
+              <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
+            </div>
+          </mat-list-item>
 
-          <mat-card *ngFor="let lane of (boardsInfo$[board.id] | async)?.lanes" style="margin: 3px auto">
-            <h4>Lane</h4>
-            <h6>active: {{ lane.active }}</h6>
-            <h6>activityId: {{ lane.activityId }}</h6>
-            <h6>archiveCardCount: {{ lane.archiveCardCount }}</h6>
-            <h6>cardCount: {{ lane.cardCount }}</h6>
-            <h6>cardLimit: {{ lane.cardLimit }}</h6>
-            <h6>cardSize: {{ lane.cardSize }}</h6>
-            <h6>columns: {{ lane.columns }}</h6>
-            <h6>creationDate: {{ lane.creationDate }}</h6>
-            <h6>description: {{ lane.description }}</h6>
-            <h6>id: {{ lane.id }}</h6>
-            <h6>index: {{ lane.index }}</h6>
-            <h6>isCollapsed: {{ lane.isCollapsed }}</h6>
-            <h6>isConnectionDoneLane: {{ lane.isConnectionDoneLane }}</h6>
-            <h6>isDefaultDropLane: {{ lane.isDefaultDropLane }}</h6>
-            <h6>laneClassType: {{ lane.laneClassType }}</h6>
-            <h6>laneType: {{ lane.laneType }}</h6>
-            <h6>name: {{ lane.name }}</h6>
-            <h6>orientation: {{ lane.orientation }}</h6>
-            <h6>parentLaneId: {{ lane.parentLaneId }}</h6>
-            <h6>subscriptionId: {{ lane.subscriptionId }}</h6>
-            <h6>wipLimit: {{ lane.wipLimit }}</h6>
-          </mat-card>
-        </mat-card>
+          <mat-divider></mat-divider>
+
+          <mat-list-item>Item 2</mat-list-item>
+
+          <mat-divider></mat-divider>
+
+          <mat-list-item>Item 3</mat-list-item>
+
+          <mat-divider></mat-divider>
+
+        </mat-nav-list>
+        <div class="button-container">
+          <button class="more" mat-raised-button color="primary" routerLink="/doing">Weergeef alle epics in doing >></button>
+        </div>
       </mat-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+
+
+<!--
+      <mat-accordion *ngIf="boards$">
+        <mat-expansion-panel *ngFor="let board of (boards$ | async)?.boards">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Board
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ board['title'] }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <h6>boardRole: {{ board['boardRole'] }}</h6>
+          <h6>boardRoleId: {{ board['boardRoleId'] }}</h6>
+          <h6>description: {{ board['description'] }}</h6>
+          <h6>id: {{ board['id'] }}</h6>
+          <h6>isWelcome: {{ board['isWelcome'] }}</h6>
+          <h6>title: {{ board['title'] }}</h6>
+
+          <mat-accordion *ngIf="boardsInfo$[board.id]">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Board info
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <h6>allowUsersToDeleteCards: {{ (boardsInfo$[board.id] | async)?.allowUsersToDeleteCards }}</h6>
+              <h6>baseWipOnCardSize: {{ (boardsInfo$[board.id] | async)?.baseWipOnCardSize }}</h6>
+              <h6>boardRole: {{ (boardsInfo$[board.id] | async)?.boardRole }}</h6>
+              <h6>cardColorField: {{ (boardsInfo$[board.id] | async)?.cardColorField }}</h6>
+              <h6>classOfServiceEnabled: {{ (boardsInfo$[board.id] | async)?.classOfServiceEnabled }}</h6>
+              <h6>currentExternalCardId: {{ (boardsInfo$[board.id] | async)?.currentExternalCardId }}</h6>
+              <h6>customBoardMoniker: {{ (boardsInfo$[board.id] | async)?.customBoardMoniker }}</h6>
+              <h6>customIconFieldLabel: {{ (boardsInfo$[board.id] | async)?.customIconFieldLabel }}</h6>
+              <h6>defaultCardTypeId: {{ (boardsInfo$[board.id] | async)?.defaultCardTypeId }}</h6>
+              <h6>defaultTaskTypeId: {{ (boardsInfo$[board.id] | async)?.defaultTaskTypeId }}</h6>
+              <h6>description: {{ (boardsInfo$[board.id] | async)?.description }}</h6>
+              <h6>effectiveBoardRole: {{ (boardsInfo$[board.id] | async)?.effectiveBoardRole }}</h6>
+              <h6>excludeCompletedAndArchiveViolations: {{ (boardsInfo$[board.id] | async)?.excludeCompletedAndArchiveViolations }}</h6>
+              <h6>format: {{ (boardsInfo$[board.id] | async)?.format }}</h6>
+              <h6>id: {{ (boardsInfo$[board.id] | async)?.id }}</h6>
+              <h6>isAutoIncrementCardIdEnabled: {{ (boardsInfo$[board.id] | async)?.isAutoIncrementCardIdEnabled }}</h6>
+              <h6>isCardIdEnabled: {{ (boardsInfo$[board.id] | async)?.isCardIdEnabled }}</h6>
+              <h6>isDuplicateCardIdAllowed: {{ (boardsInfo$[board.id] | async)?.isDuplicateCardIdAllowed }}</h6>
+              <h6>isExternalUrlEnabled: {{ (boardsInfo$[board.id] | async)?.isExternalUrlEnabled }}</h6>
+              <h6>isHeaderEnabled: {{ (boardsInfo$[board.id] | async)?.isHeaderEnabled }}</h6>
+              <h6>isHyperlinkEnabled: {{ (boardsInfo$[board.id] | async)?.isHyperlinkEnabled }}</h6>
+              <h6>isPermalinkEnabled: {{ (boardsInfo$[board.id] | async)?.isPermalinkEnabled }}</h6>
+              <h6>isPrefixEnabled: {{ (boardsInfo$[board.id] | async)?.isPrefixEnabled }}</h6>
+              <h6>isPrefixIncludedInHyperlink: {{ (boardsInfo$[board.id] | async)?.isPrefixIncludedInHyperlink }}</h6>
+              <h6>isShared: {{ (boardsInfo$[board.id] | async)?.isShared }}</h6>
+              <h6>isWelcome: {{ (boardsInfo$[board.id] | async)?.isWelcome }}</h6>
+              <h6>layoutChecksum: {{ (boardsInfo$[board.id] | async)?.layoutChecksum }}</h6>
+              <h6>organizationId: {{ (boardsInfo$[board.id] | async)?.organizationId }}</h6>
+              <h6>prefix: {{ (boardsInfo$[board.id] | async)?.prefix }}</h6>
+              <h6>sharedBoardRole: {{ (boardsInfo$[board.id] | async)?.sharedBoardRole }}</h6>
+              <h6>subscriptionId: {{ (boardsInfo$[board.id] | async)?.subscriptionId }}</h6>
+              <h6>title: {{ (boardsInfo$[board.id] | async)?.title }}</h6>
+              <h6>version: {{ (boardsInfo$[board.id] | async)?.version }}</h6>
+
+              <mat-accordion>
+                <mat-expansion-panel *ngFor="let lane of (boardsInfo$[board.id] | async)?.lanes">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Lane
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      {{ lane['name'] }}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+
+                  <h6>active: {{ lane.active }}</h6>
+                  <h6>activityId: {{ lane.activityId }}</h6>
+                  <h6>archiveCardCount: {{ lane.archiveCardCount }}</h6>
+                  <h6>cardCount: {{ lane.cardCount }}</h6>
+                  <h6>cardLimit: {{ lane.cardLimit }}</h6>
+                  <h6>cardSize: {{ lane.cardSize }}</h6>
+                  <h6>columns: {{ lane.columns }}</h6>
+                  <h6>creationDate: {{ lane.creationDate }}</h6>
+                  <h6>description: {{ lane.description }}</h6>
+                  <h6>id: {{ lane.id }}</h6>
+                  <h6>index: {{ lane.index }}</h6>
+                  <h6>isCollapsed: {{ lane.isCollapsed }}</h6>
+                  <h6>isConnectionDoneLane: {{ lane.isConnectionDoneLane }}</h6>
+                  <h6>isDefaultDropLane: {{ lane.isDefaultDropLane }}</h6>
+                  <h6>laneClassType: {{ lane.laneClassType }}</h6>
+                  <h6>laneType: {{ lane.laneType }}</h6>
+                  <h6>name: {{ lane.name }}</h6>
+                  <h6>orientation: {{ lane.orientation }}</h6>
+                  <h6>parentLaneId: {{ lane.parentLaneId }}</h6>
+                  <h6>subscriptionId: {{ lane.subscriptionId }}</h6>
+                  <h6>wipLimit: {{ lane.wipLimit }}</h6>
+
+                </mat-expansion-panel>
+              </mat-accordion>
+
+            </mat-expansion-panel>
+          </mat-accordion>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion *ngIf="cards$">
+        <mat-expansion-panel *ngFor="let card of (cards$ | async)?.cards">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Card
+            </mat-panel-title>
+            <mat-panel-description>
+              abc
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <h6></h6>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+-->
+
+
     </div>
   </div>
 </div>

@@ -27,10 +27,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
               "src/hu-light-theme.scss",
               "src/hu-dark-theme.scss",
-              "src/assets/bootstrap/bootstrap-grid.min.css"
+              "src/assets/bootstrap/bootstrap-grid.min.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -79,10 +79,10 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.scss",
               "src/hu-light-theme.scss",
               "src/hu-dark-theme.scss",
-              "src/assets/bootstrap/bootstrap-grid.min.css"
+              "src/assets/bootstrap/bootstrap-grid.min.css",
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [

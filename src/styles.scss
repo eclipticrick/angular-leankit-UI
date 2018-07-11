@@ -1,28 +1,6 @@
+@import "app/scss/helpers";
 
-@import 'hu-light-theme';
-@import 'hu-dark-theme';
-
-@import '~@angular/material/theming';
-
-@mixin custom-material-theme($theme) {
-  // Extract whichever individual palettes you need from the theme.
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $warn: map-get($theme, warn);
-
-  $background: map-get($theme, background);
-  $foreground: map-get($theme, foreground);
-
-  $text: map-get($foreground, text);
-  $card: map-get($background, card);
-
-  // Use mat-color to extract individual colors from a palette as necessary.
-  .theme-bg { background: mat-color($background, background); }
-  .theme-bg-primary { background-color: mat-color($primary) }
-  .theme-fg-primary { color: mat-color($primary) }
-}
-
-@include mat-core();
+@import "app/scss/theme";
 
 @include angular-material-theme($light-theme);
 @include custom-material-theme($light-theme);
@@ -44,45 +22,10 @@ body {
 /* --== routAnimation container ==-- */
 main#routeAnimation{
   overflow-x: hidden; // prevent Collapsing margins (http://www.w3.org/TR/css3-box/#collapsing-margins)
+  overflow-y: hidden; // prevent Scrollbar from showing when screen-height is too small
   position: relative;
   padding-bottom: 40px; // prevent box-shadows from being cut-off at he bottom
   & > *{
     display: block;
-  }
-}
-
-/* defaults */
-button {
-  outline: none !important;
-}
-
-
-/* helpers */
-.cut-text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.no-select {
-  user-select: none;
-}
-.flex-container {
-  display: flex;
-}
-.flex-spacer {
-  flex: 1 1 auto;
-}
-.mobile-only {
-  display: none !important;
-}
-.desktop-only {
-  display: initial !important;
-}
-@media (max-width: 767px) {
-  .mobile-only {
-    display: initial !important;
-  }
-  .desktop-only {
-    display: none !important
   }
 }

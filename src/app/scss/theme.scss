@@ -1,0 +1,39 @@
+@import '../../hu-light-theme';
+@import '../../hu-dark-theme';
+
+@import '~@angular/material/theming';
+
+@mixin custom-material-theme($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  $theme-background: map-get($theme, background);
+  $theme-foreground: map-get($theme, foreground);
+
+  $color-background: map-get($theme-background, background);
+  $color-card: map-get($theme-background, card);
+  $color-text: map-get($theme-foreground, text);
+
+  $color-primary: mat-color($primary);
+  $color-accent: mat-color($accent);
+  $color-warn: mat-color($warn);
+
+  // Use mat-color to extract individual colors from a palette as necessary.
+  .theme-bg { background: $color-background; }
+  .theme-card-bg { background: $color-card; }
+
+  .theme-fg { color: $color-text; }
+
+  .theme-bg-primary { background-color: $color-primary }
+  .theme-fg-primary { color: $color-primary }
+
+  .theme-bg-accent { background-color: $color-accent }
+  .theme-fg-accent { color: $color-accent }
+
+  .theme-bg-warn { background-color: $color-warn }
+  .theme-fg-warn { color: $color-warn }
+}
+
+@include mat-core();
