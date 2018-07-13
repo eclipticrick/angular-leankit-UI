@@ -3,59 +3,65 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1 class="fg-white">Team Leren</h1>
-      <mat-card class="no-padding no-select">
-        <div class="padding">
-          <h3 class="no-margin flex flex-align-vertical">
-            <span>De <span class="underline">epics</span> waar op dit moment aan worden gewerkt</span>
-            <span class="flex-spacer"></span>
-            <button class="more" matTooltip="Wat is een epic?" mat-icon-button>
-              <mat-icon>help</mat-icon>
-            </button>
-          </h3>
-        </div>
 
-        <mat-nav-list class="epics no-padding">
-          <mat-list-item (click)="alert('item')">
-            <h3 matLine>title</h3>
-            <mat-progress-bar matLine matTooltip="xx van de xx taken zijn gedaan" mode="determinate" value="40"></mat-progress-bar>
-            <p matLine>
-              <span>stories </span>
-              <span class="lighter">2</span>
-              <span>, </span>
-              <span>taken </span>
-              <span class="lighter">5</span>
-              <span>, </span>
-              <span>laatste activiteit </span>
-              <span class="lighter">een week geleden</span>
-            </p>
-            <button class="more" matTooltip="Meer informatie over deze epic" mat-icon-button>
-              <mat-icon>info</mat-icon>
-            </button>
-            <div class="avatars desktop-only">
-              <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
-              <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
-              <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
-              <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
-              <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
+      <div *ngIf="data.data$">
+        <div *ngFor="let board of (data.data$ | async)?.$boards; let i = index"> <!-- *ngFor="let board of (data.boards$ | async)?.boards; -->
+          <h1 [class]="!i ? 'fg-white': 'theme-fg'">{{ board.$config.displayName }}</h1>
+          <mat-card class="no-padding no-select">
+            <div class="padding">
+              <h3 class="no-margin flex flex-align-vertical">
+                <span>De <span class="underline">epics</span> waar op dit moment aan worden gewerkt door {{ board.$config.displayName }}</span>
+                <span class="flex-spacer"></span>
+                <button class="more" matTooltip="Wat is een epic?" mat-icon-button>
+                  <mat-icon>help</mat-icon>
+                </button>
+              </h3>
             </div>
-          </mat-list-item>
 
-          <mat-divider></mat-divider>
+            <mat-nav-list class="epics no-padding">
+              <mat-list-item (click)="alert('item')" > <!-- *ngFor="let epics of (data.cards$[board.id] | async)" -->
+                <h3 matLine>title</h3>
+                <mat-progress-bar matLine matTooltip="xx van de xx taken zijn gedaan" mode="determinate" value="40"></mat-progress-bar>
+                <p matLine>
+                  <span>stories </span>
+                  <span class="lighter">2</span>
+                  <span>, </span>
+                  <span>taken </span>
+                  <span class="lighter">5</span>
+                  <span>, </span>
+                  <span>laatste activiteit </span>
+                  <span class="lighter">een week geleden</span>
+                </p>
+                <button class="more" matTooltip="Meer informatie over deze epic" mat-icon-button>
+                  <mat-icon>info</mat-icon>
+                </button>
+                <div class="avatars desktop-only">
+                  <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
+                  <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
+                  <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
+                  <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
+                  <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
+                </div>
+              </mat-list-item>
 
-          <mat-list-item>Item 2</mat-list-item>
+              <mat-divider></mat-divider>
 
-          <mat-divider></mat-divider>
+              <mat-list-item>Item 2</mat-list-item>
 
-          <mat-list-item>Item 3</mat-list-item>
+              <mat-divider></mat-divider>
 
-          <mat-divider></mat-divider>
+              <mat-list-item>Item 3</mat-list-item>
 
-        </mat-nav-list>
-        <div class="button-container">
-          <button class="more" mat-raised-button color="primary" routerLink="/doing">Weergeef alle epics in doing >></button>
+              <mat-divider></mat-divider>
+
+            </mat-nav-list>
+            <div class="button-container">
+              <button class="more" mat-raised-button color="primary" routerLink="/doing">Weergeef alle epics in doing >></button>
+            </div>
+          </mat-card>
         </div>
-      </mat-card>
+      </div>
+
     </div>
   </div>
   <div class="row">

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LeankitService } from '../../../services/leankit.service';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,21 @@ import { LeankitService } from '../../../services/leankit.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  constructor(private leankit: LeankitService) { }
-
+  constructor(private leankit: LeankitService, public data: DataService) { }
+  dataSubscription$;
   ngOnInit() {
+    this.data.getData();
+    this.dataSubscription$ = this.data.data$.subscribe(data => {
+      console.log(data);
+    });
+    // this.printInfo();
+  }
+
+  alert(str) {
+    alert(str);
+  }
+
+  printInfo() {
     this.leankit.getBoards().subscribe(boards => {
       console.log('boards', boards);
       this.leankit.getBoard(boards['boards'][0].id).subscribe(boardInfo => {
@@ -50,11 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  alert(str) {
-    alert(str);
-  }
-
   ngOnDestroy() {
-
+    if (this.dataSubscription$) this.dataSubscription$.unsubscribe();
   }
 }

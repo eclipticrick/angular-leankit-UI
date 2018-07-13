@@ -17,12 +17,13 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { NavbarComponent } from './components/parts/navbar/navbar.component';
 import { FooterComponent } from './components/parts/footer/footer.component';
-
-// services
-import { LeankitService } from './services/leankit.service';
 import { NavItemsComponent } from './components/parts/navbar/nav-items/nav-items.component';
 import { BacklogComponent } from './components/pages/backlog/backlog.component';
 import { DoingComponent } from './components/pages/doing/doing.component';
+
+// services
+import { LeankitService } from './services/leankit.service';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { DoingComponent } from './components/pages/doing/doing.component';
     HttpClientModule,                    // replacement of HttpModule
     MaterialModule                       // material design components
   ],
-  providers: [ LeankitService ],
+  providers: [ LeankitService, DataService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

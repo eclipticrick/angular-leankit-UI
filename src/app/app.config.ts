@@ -17,32 +17,28 @@ export const APP_CONFIG = {
 
   // specify the NOT-FOUND and NO-DATA messages for the application
   messages: {
-    nofFound: {
+    notFound: {
       board: 'Het bord met het id {id} is niet gevonden', // unused
       card: 'De kaart met het id {id} is niet gevonden', // unused
     },
     emptyData: {
       cards: 'Er zijn geen kaarten om weer te geven', // unused
-      card: {
-        details: {
-          title: 'Naamloze kaart', // unused
-          description: 'Er is geen omschrijving bij deze kaart', // unused
-          tags: 'Er zijn geen tags aan deze kaart toegewezen', // unused
-          childCards: 'Deze kaart heeft geen onderliggende kaarten', // unused
-          parentCards: 'Deze kaart is niet toegewezen aan een andere kaart' // unused
-        },
-        tasks: 'Er zijn geen taken toegewezen aan deze kaart', // unused
-        comments: 'Er is geen commentaar op deze kaart', // unused
-        history: 'Er is geen geschiedenis om weer te geven', // unused
-        users: 'Er zijn geen gebruikers toegewezen aan deze kaart' // unused
-      }
+      cardTitle: 'Naamloze kaart', // unused
+      cardDescription: 'Er is geen omschrijving bij deze kaart', // unused
+      cardTags: 'Er zijn geen tags aan deze kaart toegewezen', // unused
+      cardChildCards: 'Deze kaart heeft geen onderliggende kaarten', // unused
+      cardParentCards: 'Deze kaart is niet toegewezen aan een andere kaart', // unused
+      cardTasks: 'Er zijn geen taken toegewezen aan deze kaart', // unused
+      cardComments: 'Er is geen commentaar op deze kaart', // unused
+      cardHistory: 'Er is geen geschiedenis om weer te geven', // unused
+      cardUsers: 'Er zijn geen gebruikers toegewezen aan deze kaart' // unused
     }
   },
 
   // specify which boards and their columns of cards should be shown in the APP
   boards: [
     {
-      board: 685758525,
+      boardId: 685758525,
       displayName: 'Tjeam Testingzz',
       epicCardType: 685909861,
       excludedCardTypes: [ 688910018 ],
@@ -68,7 +64,7 @@ export const APP_CONFIG = {
       ]
     },
     {
-      board: 685758526,
+      boardId: 685758526,
       displayName: 'Tjeam Netflix',
       epicCardType: 685909868,
       excludedCardTypes: [],

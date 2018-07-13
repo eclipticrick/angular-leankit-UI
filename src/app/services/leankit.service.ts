@@ -41,11 +41,17 @@ export class LeankitService {
   // getMetaData() { return this.get('board').pipe(map(data => data['pageMeta'])); }
 
   // getBoards() { return this.get('board').pipe(map(data => data['boards'])); }
-  getBoards() { return this.get('board'); }
+  getBoards() {
+    return this.get('board').pipe(map(boardsWithMetaData => boardsWithMetaData['boards']));
+    // boards['pageMeta']
+  }
   getBoard(id: number) { return this.get('board/' + id); }
   getBoardsCustomfield(boardId: number) {  return this.get('board/' + boardId + '/customfield'); }
 
-  getCards() { return this.get('card/'); }
+  getCards() {
+    return this.get('card/').pipe(map(cardsWithMetaData => cardsWithMetaData['cards']));
+    // cards['pageMeta'];
+  }
   getCard(id: number) { return this.get('card/' + id); }
   getCardAttachments(cardId: number) {  return this.get('card/' + cardId + '/attachment'); }
   getCardAttachment(cardId: number, attachmentId) {  return this.get('card/' + cardId + '/attachment/' + attachmentId + '/content'); }
