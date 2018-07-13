@@ -94,9 +94,7 @@ export class DataService {
                   let excludedCard = false;
 
                   // if the card does not belong to that board, exclude it
-                  if (boardConfig['boardId'].toString() === card['board']['id']) {
-                    excludedCard = true;
-                  }
+                  if (boardConfig['boardId'] !== Number(card['board']['id'])) excludedCard = true;
 
                   // foreach cardType that should be excluded
                   boardConfig['excludedCardTypes'].forEach(exludedCardType => {
@@ -105,25 +103,27 @@ export class DataService {
                     if (Number(card['type']['id']) === exludedCardType) excludedCard = true;
                   });
 
+                  // console.log(card, excludedCard)
+
                   // check if the lane is excluded, if so, exclude the card
                   if (!this.isLaneIncluded(i, card['lane']['id'].toString())) excludedCard = true;
 
                   if (excludedCard) return;
+
                   if (boardConfig['epicCardType'] === Number(card.type.id)) card['$isEpic'] = true;
                   if (!excludedCard) cardsToAdd.push(card);
 
                 });
 
                 // put the data in local storage
-                this.localStorage['$boards'][i]['$cards'] = {};
-                this.localStorage['$boards'][i]['$cards']['$cards'] = cardsToAdd;
+                this.localStorage['$boards'][i]['$cards'] = cardsToAdd;
+
               });
             });
           }
         }
         resolve();
       } else throw new Error('You must specify at least one valid board in \'app.config.ts\' (make sure the board ID is correct)');
-
     });
   }
 
@@ -137,8 +137,8 @@ export class DataService {
     // after.. check if the lane is included of not
     for (const link in this.localStorage['$boards'][boardIndex]['$includedLanes']) {
       if (this.localStorage['$boards'][boardIndex]['$includedLanes'].hasOwnProperty(link)) {
-        for (const includedLane of link) {
-          if (includedLane === laneId) return true;
+        for (const includedLane of this.localStorage['$boards'][boardIndex]['$includedLanes'][link]) {
+          if (includedLane === Number(laneId)) return true;
         }
       }
     }
