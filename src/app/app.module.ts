@@ -25,6 +25,11 @@ import { DoingComponent } from './components/pages/doing/doing.component';
 import { LeankitService } from './services/leankit.service';
 import { DataService } from './services/data.service';
 
+// pipes
+import { FilterPipe } from './pipes/filter.pipe';
+import { FilterOnKeyPipe } from './pipes/filter-on-key.pipe';
+import { FilterCardsFromLanePipe } from './pipes/filter-cards-from-lane.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +38,10 @@ import { DataService } from './services/data.service';
     FooterComponent,
     NavItemsComponent,
     BacklogComponent,
-    DoingComponent
+    DoingComponent,
+    FilterPipe,
+    FilterOnKeyPipe,
+    FilterCardsFromLanePipe
   ],
   imports: [
     BrowserModule,                       // default

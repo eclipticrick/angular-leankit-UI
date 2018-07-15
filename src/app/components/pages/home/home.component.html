@@ -4,10 +4,16 @@
   <div class="row">
     <div class="col-12">
 
-      <div *ngIf="data.data$">
-        <div *ngFor="let board of (data.data$ | async)?.$boards; let i = index"> <!-- *ngFor="let board of (data.boards$ | async)?.boards; -->
+
+      <div *ngFor="let board of boards$ | async">
+        <h1>{{board.id}}</h1>
+      </div>
+
+
+      <!--<div *ngIf="data.data$; else loading">
+        <div *ngFor="let board of (data.data$ | async)?.$boards; let boardIndex = index">
           <h1 [class]="!i ? 'fg-white': 'theme-fg'">{{ board.$config.displayName }}</h1>
-          <mat-card class="no-padding no-select">
+          <mat-card class="no-select">
             <div class="padding">
               <h3 class="no-margin flex flex-align-vertical">
                 <span>De <span class="underline">epics</span> waar op dit moment aan worden gewerkt door {{ board.$config.displayName }}</span>
@@ -17,50 +23,46 @@
                 </button>
               </h3>
             </div>
+            <div *ngIf="board.$cards; else loading">
+              <mat-nav-list class="epics no-padding" *ngIf="board.$cards.length; else loading">
+                <mat-list-item *ngFor="let epic of (board.$cards | filterCardsFromLane:boardIndex:'doing' | async) | filterKey:'$isEpic':true | slice:0:5; let j = index"
+                               (click)="alert('item ' + epic.id)"
+                               matTooltip="xx van de xx taken zijn gedaan"
+                               matTooltipShowDelay="1000">
+                  <h3 matLine>{{epic.title}}</h3>
+                  <mat-progress-bar matLine mode="determinate" value="40" color="accent"></mat-progress-bar>
+                  <p matLine>
+                  <span>
+                    <span>stories </span><span class="lighter">2</span>
+                  </span>
+                    <span *ngIf="epic.$tasks">
+                    <span>, </span><span>taken </span><span class="lighter">{{ epic.$tasks.length }}</span>
+                  </span>
+                    <span>
+                    <span>, </span><span>laatste activiteit </span><span class="lighter">een week geleden</span>
+                  </span>
+                  </p>
+                  <div *ngIf="epic.assignedUsers; else loading" class="avatars desktop-only">
+                    <img *ngFor="let user of epic.assignedUsers | slice:0:5"
+                         [matTooltip]="user.fullName"
+                         [src]="user.avatar"
+                         (click)="$event.stopPropagation(); alert('person' + user.id)">
+                  </div>
+                  <button class="more" matTooltip="Meer informatie over deze epic" mat-icon-button>
+                    <mat-icon>info</mat-icon>
+                  </button>
+                  <mat-divider></mat-divider>
+                </mat-list-item>
 
-            <mat-nav-list class="epics no-padding">
-              <mat-list-item (click)="alert('item')" > <!-- *ngFor="let epics of (data.cards$[board.id] | async)" -->
-                <h3 matLine>title</h3>
-                <mat-progress-bar matLine matTooltip="xx van de xx taken zijn gedaan" mode="determinate" value="40"></mat-progress-bar>
-                <p matLine>
-                  <span>stories </span>
-                  <span class="lighter">2</span>
-                  <span>, </span>
-                  <span>taken </span>
-                  <span class="lighter">5</span>
-                  <span>, </span>
-                  <span>laatste activiteit </span>
-                  <span class="lighter">een week geleden</span>
-                </p>
-                <button class="more" matTooltip="Meer informatie over deze epic" mat-icon-button>
-                  <mat-icon>info</mat-icon>
-                </button>
-                <div class="avatars desktop-only">
-                  <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
-                  <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
-                  <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
-                  <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
-                  <img matTooltip="Name" src="http://via.placeholder.com/250x250" (click)="$event.stopPropagation(); alert('person')">
-                </div>
-              </mat-list-item>
+              </mat-nav-list>
+            </div>
 
-              <mat-divider></mat-divider>
-
-              <mat-list-item>Item 2</mat-list-item>
-
-              <mat-divider></mat-divider>
-
-              <mat-list-item>Item 3</mat-list-item>
-
-              <mat-divider></mat-divider>
-
-            </mat-nav-list>
             <div class="button-container">
               <button class="more" mat-raised-button color="primary" routerLink="/doing">Weergeef alle epics in doing >></button>
             </div>
           </mat-card>
         </div>
-      </div>
+      </div>-->
 
     </div>
   </div>
@@ -188,7 +190,12 @@
       </mat-accordion>
 -->
 
-
+      <h3></h3>
     </div>
   </div>
 </div>
+
+
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>

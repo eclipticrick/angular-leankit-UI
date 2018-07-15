@@ -16,44 +16,59 @@
   z-index: 0;
 }
 
-mat-nav-list.epics {
-  > mat-list-item /deep/ div.mat-list-item-content {
-    padding: 24px;
-    .mat-list-text {
-      h3 {
-        font-size: 20px;
-      }
-      mat-progress-bar {
-        margin: 6px auto;
-      }
-      p {
-        span {
-          font-weight: 500;
+
+mat-card {
+  min-height: 300px;
+  padding: 0;
+  padding-bottom: 84px;
+
+  mat-nav-list.epics {
+    > mat-list-item /deep/ div.mat-list-item-content {
+      padding: 24px;
+      .mat-list-text {
+        h3 {
+          font-size: 20px;
         }
-        span.lighter {
-          font-weight: 100;
-          opacity: .7;
+        mat-progress-bar {
+          margin: 6px auto;
+        }
+        p {
+          margin-bottom: 4px;
+          span {
+            font-weight: 500;
+          }
+          span.lighter {
+            font-weight: 100;
+            opacity: .7;
+          }
         }
       }
-    }
-    button.more {
-      margin: auto 6px auto 12px;
-    }
-    div.avatars {
-      height: 24px;
-      white-space: nowrap;
-      img {
-        margin: 2px;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
+      div.avatars {
+        height: 24px;
+        white-space: nowrap;
+        width: 142px;
+        margin: auto 0 auto 12px;
+        img {
+          margin: 2px;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+        }
+      }
+      button.more {
+        margin-left: 6px;
       }
     }
   }
-}
-mat-card > .button-container {
-  text-align: right;
-  button.more {
-    margin: 24px;
+
+  > .button-container {
+    position: absolute;
+    text-align: right;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    button.more {
+      margin: 24px;
+    }
   }
 }
