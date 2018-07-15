@@ -58,6 +58,14 @@ export class LeankitService {
   }
 
   getCards(): Promise<any> {
+
+    // let url = 'card';
+    // for (let i = 0; i < arguments.length; i++) {
+    //   let symbol = '&';
+    //   if (!i) symbol = '?';
+    //   url += symbol + arguments[i]['parameter'] + '=' + arguments[i]['value'];
+    // }
+
     return this.get('card')
       .then(x => x['pageMeta'])
       .then(metaData => {

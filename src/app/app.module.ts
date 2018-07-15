@@ -29,6 +29,9 @@ import { DataService } from './services/data.service';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FilterOnKeyPipe } from './pipes/filter-on-key.pipe';
 import { FilterCardsFromLanePipe } from './pipes/filter-cards-from-lane.pipe';
+import { CardListComponent } from './components/parts/card-list/card-list.component';
+import { CardComponent } from './components/parts/card/card.component';
+import { LoadingComponent } from './components/parts/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +42,12 @@ import { FilterCardsFromLanePipe } from './pipes/filter-cards-from-lane.pipe';
     NavItemsComponent,
     BacklogComponent,
     DoingComponent,
+    CardListComponent,
     FilterPipe,
     FilterOnKeyPipe,
-    FilterCardsFromLanePipe
+    FilterCardsFromLanePipe,
+    CardComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,                       // default

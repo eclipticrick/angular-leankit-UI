@@ -45,19 +45,19 @@ export const APP_CONFIG = {
       excludedCardTypes: [ 688910018 ],
       excludedCards: [],
       includedLanes: {
-        backlog: [ 685920266, 689096982 ],
-        doing: [ 685920274, 685920275, 685920276 ]
+        backlog: [ 685920268, 689096981, 689096982, 689096983, 689159513, 689159514 ],
+        doing: [ 685920274, 689096977, 689096978, 689096985, 689096986 ]
       }
     },
 
     // boardId:
     '685758526': {
       displayName: 'Tjeam Netflix', // unused
-      epicCardType: 685909868,
+      epicCardType: 685909865,
       excludedCardTypes: [],
       excludedCards: [],
       includedLanes: {
-        backlog: [ 685920277, 685934939 ],
+        backlog: [ 685920277, 685934939, 685920279 ],
         doing: [ 685934936, 685934944 ]
       }
     }

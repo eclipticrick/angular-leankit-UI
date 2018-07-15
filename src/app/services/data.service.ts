@@ -4,8 +4,20 @@ import { BehaviorSubject, Observable, ReplaySubject, Subject, combineLatest } fr
 import { LeankitService } from './leankit.service';
 import { CardType } from '../enums/CardType.enum';
 import { Lane } from '../enums/Lane.enum';
+import {a} from '@angular/core/src/render3';
 
+class AsyncArray /*extends Array*/ {
+  data;
+  constructor(arr) {
+    this.data = arr; // In place of Array subclassing
+  }
 
+  filterAsync(predicate) {
+    const data = Array.from(this.data);
+    return Promise.all(data.map((element, index) => predicate(element, index, data)))
+      .then(result => data.filter((element, index) => result[index]));
+  }
+}
 
 
 @Injectable({
@@ -18,22 +30,88 @@ export class DataService {
 
   constructor(private leankit: LeankitService) { }
 
-  getBoards() {
+  getBoards(): Promise<any> {
     return this.leankit.getBoards()
       .then(boards => this.filterBoardsOnSpecifiedInConfig(boards));
   }
 
-  getBoardInfo(boardId: number) {
+  getBoardInfo(boardId: number): Promise<any> {
     return this.leankit.getBoard(boardId);
   }
 
-  getCards(boardId: number, lane: Lane, type?: CardType) {
+  getCards(boardId: number, lane: Lane, type?: CardType): Promise<any> {
     boardId = Number(boardId);
     return this.leankit.getCards()
       .then(cards => this.filterCardsOnBoard(boardId, cards))
       .then(cards => this.filterCardsOnExcluded(boardId, cards))
       .then(cards => this.filterCardsOnType(boardId, cards, type))
       .then(cards => this.filterCardsOnLane(boardId, cards, lane));
+  }
+
+  getCardInfo(cardId: number): Promise<any> {
+    return this.leankit.getCard(cardId);
+  }
+
+  getCardTasks(cardId: number, isDone: boolean = null): Promise<any> {
+    return this.leankit.getCardTasks(cardId)
+      .then(tasks => {
+        if (isDone === null) return tasks;
+        else return tasks.filter(task => task.isDone === isDone);
+      });
+  }
+
+  getCardTaskInfo(cardId: number, taskId: number): Promise<any> {
+    return this.leankit.getCardTask(cardId, taskId);
+  }
+
+  isRootCard(cardId: number): Promise<boolean> {
+    return this.leankit.getCard(cardId).then(cardInfo => !cardInfo.parentCards.length);
+  }
+
+  // todo: fix performance
+  getChildCards(cardId: number): Promise<any> {
+    cardId = Number(cardId);
+    return new Promise<any>(resolve => {
+      this.leankit.getCards().then(cards => {
+        const childCards = [];
+        cards.forEach(card => {
+          this.leankit.getCard(card.id)
+            .then(cardInfo => {
+              cardInfo.parentCards.forEach(parentCard => {
+                if (Number(parentCard.cardId) === cardId) childCards.push(card);
+              });
+            });
+        });
+        resolve(childCards);
+      });
+    });
+
+    // return this.leankit.getCards()
+    //   .then(cards => {
+    //     const cardsAsync = new AsyncArray(cards);
+    //     return cardsAsync.filterAsync(card => {
+    //       return this.leankit.getCard(card.id)
+    //         .then(cardInfo => {
+    //           for (let i = 0; i < cardInfo.parentCards.length; i++) {
+    //             if (cardInfo.parentCards[i] === cardId) {
+    //               return true;
+    //             }
+    //           }
+    //           return false;
+    //         });
+    //     });
+    //   });
+    // return this.leankit.getCards()
+    //   .then(cards => {
+    //     cards.filter(card => {
+    //       for (let i = 0; i < card.parentCards.length; i++) {
+    //         if (card.parentCards[i] === cardId) {
+    //           return true;
+    //         }
+    //       }
+    //       return false;
+    //     });
+    //   });
   }
 
   private filterBoardsOnSpecifiedInConfig(boards: any[]) {

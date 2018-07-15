@@ -1,0 +1,28 @@
+<mat-list-item *ngIf="layout === 'row'"
+               (click)="alert('item ' + card.id)"
+               matTooltip="xx van de xx taken zijn gedaan"
+               matTooltipShowDelay="1000">
+  <h3 matLine>{{card.title}}</h3>
+  <mat-progress-bar matLine mode="determinate" value="40" color="accent"></mat-progress-bar>
+  <p matLine>
+    <span>
+      <span>stories </span><span class="lighter">2</span>
+    </span>
+    <span *ngIf="tasks">
+      <span>, </span><span>taken </span><span class="lighter">{{ tasks.length }}</span>
+    </span>
+    <span>
+      <span>, </span><span>laatste activiteit </span><span class="lighter">een week geleden</span>
+    </span>
+  </p>
+  <div *ngIf="card.assignedUsers" class="avatars desktop-only">
+    <img *ngFor="let user of card.assignedUsers | slice:0:5"
+         [matTooltip]="user.fullName"
+         [src]="user.avatar"
+         (click)="$event.stopPropagation(); alert('person' + user.id)">
+  </div>
+  <button class="more" matTooltip="Meer informatie over deze epic" mat-icon-button>
+    <mat-icon>info</mat-icon>
+  </button>
+  <mat-divider></mat-divider>
+</mat-list-item>

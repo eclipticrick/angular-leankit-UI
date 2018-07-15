@@ -1,0 +1,7 @@
+
+<ng-template #loadingCards>
+  <app-loading></app-loading>
+</ng-template>
+<mat-nav-list *ngIf="cards | async; else loadingCards" class="epics no-padding">
+  <app-card *ngFor="let card of cards | async" [card]="card" [layout]="layout"></app-card>
+</mat-nav-list>

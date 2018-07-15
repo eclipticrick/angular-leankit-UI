@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {
+  MatProgressSpinnerModule,
   MatSlideToggleModule,
   MatProgressBarModule,
   MatFormFieldModule,
@@ -46,6 +47,7 @@ const MatModules = [
   MatListModule,
 
   // extras
+  MatProgressSpinnerModule,
   MatProgressBarModule,
   MatTooltipModule,
   MatChipsModule,

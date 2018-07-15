@@ -10,31 +10,47 @@ import { Lane } from '../../../enums/Lane.enum';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  boards$ = null;
+  boards;
 
   constructor(private leankit: LeankitService, private data: DataService) { }
 
   ngOnInit() {
-    this.boards$ = this.data.getBoards();
-    this.boards$.then(boards => {
+    this.boards = this.data.getBoards();
+    // this.printDataInfo();
+    // this.printLeankitInfo();
+  }
+
+  printDataInfo() {
+    this.data.getBoards().then(boards => {
       console.log('boards', boards);
-      boards.forEach(board => {
-        console.log('board', board);
-        this.data.getCards(board.id, Lane.all, CardType.all)
-          .then(cards => {
-            console.log('cards', board.id, Lane.all, CardType.all, cards);
+      console.log('board', boards[1]);
+      this.data.getCards(boards[1].id, Lane.all, CardType.epic)
+        .then(cards => {
+          cards.forEach(card => {
+            this.data.getCardInfo(card.id)
+              .then(cardInfo => {
+                console.log('cardInfo', cardInfo);
+              });
+            this.data.getCardTasks(card.id)
+              .then(tasks => {
+                console.log('getCardTasks(', card.id, ')', tasks);
+                tasks.forEach(task => {
+                  this.data.getCardTaskInfo(card.id, task.id)
+                    .then(taskInfo => {
+                      console.log('getCardTaskInfo(', card.id, ', ', task.id, ')', taskInfo);
+                    });
+                });
+
+              });
+            this.data.getChildCards(card.id)
+              .then(childCards => {
+                console.log('getChildCards(', card.id, ')', childCards);
+              });
           });
-      });
+        });
     });
-
-    // this.printInfo();
   }
-
-  alert(str) {
-    alert(str);
-  }
-
-  printInfo() {
+  printLeankitInfo() {
     let boardInfoCount = 0;
     this.leankit.getBoards().then(boards => {
       console.log('boards', boards);
