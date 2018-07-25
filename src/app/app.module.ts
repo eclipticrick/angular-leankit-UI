@@ -32,6 +32,7 @@ import { FilterCardsFromLanePipe } from './pipes/filter-cards-from-lane.pipe';
 import { CardListComponent } from './components/parts/card-list/card-list.component';
 import { CardComponent } from './components/parts/card/card.component';
 import { LoadingComponent } from './components/parts/loading/loading.component';
+import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { LoadingComponent } from './components/parts/loading/loading.component';
     FilterOnKeyPipe,
     FilterCardsFromLanePipe,
     CardComponent,
-    LoadingComponent
+    LoadingComponent,
+    BeautifyDatePipe
   ],
   imports: [
     BrowserModule,                       // default

@@ -1,4 +1,9 @@
 
 <mat-progress-bar *ngIf="type === 'bar'" [color]="color" [mode]="mode"></mat-progress-bar>
 
-<mat-spinner *ngIf="type === 'spinner'" [color]="color"></mat-spinner>
+<mat-spinner *ngIf="type === 'spinner'"
+             [color]="color"
+             [diameter]="diameter"
+             [style.display]="inline ? 'inline-block' : 'block'"
+             [style.vertical-align]="verticalAlign"
+></mat-spinner>

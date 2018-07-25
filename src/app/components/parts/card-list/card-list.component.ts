@@ -19,21 +19,21 @@ export class CardListComponent implements OnInit {
 
   ngOnInit() {
     if (!this.layout) this.layout = 'row';
-    console.log(
-      'boardId',
-      this.boardId,
-      'type',
-      this.type,
-      'lane',
-      this.lane,
-      'layout',
-      this.layout,
-    );
-    this.cards = this.data.getCards(this.boardId, this.lane ? this.lane : Lane.all, this.type ? this.type : CardType.all)
-      .then(x => {
-        console.log(x);
-        return x;
-      });
+    // console.log(
+    //   'boardId',
+    //   this.boardId,
+    //   'type',
+    //   this.type,
+    //   'lane',
+    //   this.lane,
+    //   'layout',
+    //   this.layout,
+    // );
+    this.cards = this.data.getCards(this.boardId, this.lane ? this.lane : Lane.all, this.type ? this.type : CardType.all);
+      // .then(x => {
+      //   // console.log(x);
+      //   return x;
+      // });
   }
 
 }

@@ -3,12 +3,15 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
+
+
       <ng-template #loadingBoards>
         <app-loading></app-loading>
       </ng-template>
+
       <div *ngIf="boards | async; else loadingBoards">
-        <div *ngFor="let board of boards | async">
-          <h1 [class]="!i ? 'fg-white': 'theme-fg'">{{ board.title }}</h1>
+        <div *ngFor="let board of boards | async; let boardsLoopIndex = index">
+          <h1 [class]="!boardsLoopIndex ? 'fg-white': 'theme-fg'">{{ board.title }}</h1>
 
           <mat-card class="no-select">
             <div class="padding">

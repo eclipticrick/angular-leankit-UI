@@ -1,18 +1,26 @@
 <mat-list-item *ngIf="layout === 'row'"
                (click)="alert('item ' + card.id)"
-               matTooltip="xx van de xx taken zijn gedaan"
-               matTooltipShowDelay="1000">
+               [matTooltip]="
+               (tasks | async) ? tasksIsDoneCount + ' van de ' + (tasks | async)?.length +' taken zijn gedaan' : 'loading...'"
+               [matTooltipShowDelay]="1000">
   <h3 matLine>{{card.title}}</h3>
-  <mat-progress-bar matLine mode="determinate" value="40" color="accent"></mat-progress-bar>
+  <mat-progress-bar matLine mode="determinate" [value]="40" color="accent"></mat-progress-bar>
   <p matLine>
     <span>
-      <span>stories </span><span class="lighter">2</span>
-    </span>
-    <span *ngIf="tasks">
-      <span>, </span><span>taken </span><span class="lighter">{{ tasks.length }}</span>
+      <span>stories </span>
+      <span *ngIf="(childCards | async) && (allChildCards | async); else loadingSmall" class="lighter">
+        {{(childCards | async)?.length }} ({{(allChildCards | async)?.length }})
+      </span>
     </span>
     <span>
-      <span>, </span><span>laatste activiteit </span><span class="lighter">een week geleden</span>
+      <span>, </span>
+      <span>taken </span>
+      <span *ngIf="tasks | async; else loadingSmall" class="lighter">{{(tasks | async)?.length }}</span>
+    </span>
+    <span>
+      <span>, </span>
+      <span>laatste activiteit </span>
+      <span class="lighter">{{ lastActivity | beautifyDate }}</span>
     </span>
   </p>
   <div *ngIf="card.assignedUsers" class="avatars desktop-only">
@@ -26,3 +34,7 @@
   </button>
   <mat-divider></mat-divider>
 </mat-list-item>
+
+<ng-template #loadingSmall>
+  <app-loading type="spinner" [diameter]="14" [inline]="true" [verticalAlign]="'middle'"></app-loading>
+</ng-template>
