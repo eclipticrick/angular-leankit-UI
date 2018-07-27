@@ -1,6 +1,7 @@
 @import "../../../scss/helpers";
 
 .background-sky {
+  @include box-shadow(0 -26px 26px -26px rgba(0,0,0,.24) inset);
   color: #fff;
   position: absolute;
   width: 100%;
@@ -14,9 +15,20 @@
   transform-origin: 100%;
   margin-top: -50px;
   z-index: 0;
+  overflow: hidden;
+  > img.svg {
+    position: absolute;
+    transform: skewY(-8deg);
+    &.right {
+      bottom: -40px;
+      right: 8px;
+    }
+    &.left {
+      bottom: -150px;
+      left: 8px;
+    }
+  }
 }
-
-
 mat-card {
   min-height: 300px;
   padding: 0;

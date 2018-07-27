@@ -1,18 +1,28 @@
 <mat-list-item *ngIf="layout === 'row'"
                (click)="alert('item ' + card.id)"
-               [matTooltip]="
-               (tasks | async) ? tasksIsDoneCount + ' van de ' + (tasks | async)?.length +' taken zijn gedaan' : 'loading...'"
+               [matTooltip]="tooltipCard"
                [matTooltipShowDelay]="1000">
   <h3 matLine>{{card.title}}</h3>
-  <mat-progress-bar matLine mode="determinate" [value]="40" color="accent"></mat-progress-bar>
+  <mat-progress-bar
+    matLine
+    mode="determinate"
+    [value]="progress"
+    color="accent"
+    [matTooltip]="tooltipProgress"></mat-progress-bar>
   <p matLine>
-    <span>
+    <span [matTooltip]="tooltipStories">
       <span>stories </span>
       <span *ngIf="(childCards | async) && (allChildCards | async); else loadingSmall" class="lighter">
-        {{(childCards | async)?.length }} ({{(allChildCards | async)?.length }})
+        {{ (childCards | async)?.length }}
+        {{ (childCards | async)?.length !== (allChildCards | async)?.length ? '(' + (allChildCards | async)?.length + ')' : '' }}
       </span>
     </span>
     <span>
+      <mat-icon *ngIf="(childCards | async) && (allChildCards | async) && (childCards | async)?.length !== (allChildCards | async)?.length"
+                class="help-small"
+                [matTooltip]="tooltipStoriesHelp">help</mat-icon>
+      </span>
+    <span [matTooltip]="tooltipTasks">
       <span>, </span>
       <span>taken </span>
       <span *ngIf="tasks | async; else loadingSmall" class="lighter">{{(tasks | async)?.length }}</span>
@@ -20,7 +30,7 @@
     <span>
       <span>, </span>
       <span>laatste activiteit </span>
-      <span class="lighter">{{ lastActivity | beautifyDate }}</span>
+      <span class="lighter" *ngIf="lastActivity; else loadingSmall">{{ lastActivity | beautifyDate }}</span>
     </span>
   </p>
   <div *ngIf="card.assignedUsers" class="avatars desktop-only">
@@ -29,7 +39,7 @@
          [src]="user.avatar"
          (click)="$event.stopPropagation(); alert('person' + user.id)">
   </div>
-  <button class="more" matTooltip="Meer informatie over deze epic" mat-icon-button>
+  <button class="more" [matTooltip]="tooltipCardInfo" mat-icon-button>
     <mat-icon>info</mat-icon>
   </button>
   <mat-divider></mat-divider>
