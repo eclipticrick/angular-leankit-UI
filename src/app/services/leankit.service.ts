@@ -11,12 +11,7 @@ export class LeankitService {
   constructor(private http: HttpClient) { }
 
   getBoards(): Promise<any> {
-    return this.get('board')
-      .then(data => data['pageMeta'])
-      .then(metaData => {
-        return this.get('board?limit=' + (metaData.totalRecords > 0 ? metaData.totalRecords : 1))
-          .then(data => data['boards']);
-      });
+    return this.getList('board', 'boards');
   }
 
   getBoard(id: number): Promise<any> {
@@ -24,12 +19,7 @@ export class LeankitService {
   }
 
   getCards(): Promise<any> {
-    return this.get('card')
-      .then(data => data['pageMeta'])
-      .then(metaData => {
-        return this.get('card?limit=' + (metaData.totalRecords > 0 ? metaData.totalRecords : 1))
-          .then(data => data['cards']);
-      });
+    return this.getList('card', 'cards');
   }
 
   getChildCardsCount(cardId: number): Promise<any> {
@@ -38,21 +28,11 @@ export class LeankitService {
   }
 
   getChildCards(cardId: number): Promise<any> {
-    return this.get('card/' + cardId + '/connection/children')
-      .then(data => data['pageMeta'])
-      .then(metaData => {
-        return this.get('card/' + cardId + '/connection/children?limit=' + (metaData.totalRecords > 0 ? metaData.totalRecords : 1))
-          .then(data => data['cards']);
-      });
+    return this.getList('card/' + cardId + '/connection/children', 'cards');
   }
 
   getParentCards(cardId: number): Promise<any> {
-    return this.get('card/' + cardId + '/connection/parents')
-      .then(data => data['pageMeta'])
-      .then(metaData => {
-        return this.get('card/' + cardId + '/connection/parents?limit=' + (metaData.totalRecords > 0 ? metaData.totalRecords : 1))
-          .then(data => data['cards']);
-      });
+    return this.getList('card/' + cardId + '/connection/parents', 'cards');
   }
 
   getCard(id: number): Promise<any> {
@@ -60,12 +40,7 @@ export class LeankitService {
   }
 
   getCardTasks(cardId: number): Promise<any> {
-    return this.get('card/' + cardId + '/tasks')
-      .then(data => data['pageMeta'])
-      .then(metaData => {
-        return this.get('card/' + cardId + '/tasks?limit=' + (metaData.totalRecords > 0 ? metaData.totalRecords : 1))
-          .then(data => data['cards']);
-      });
+    return this.getList('card/' + cardId + '/tasks', 'cards');
   }
 
   getCardTask(cardId: number, taskId): Promise<any> {
@@ -81,12 +56,7 @@ export class LeankitService {
   }
 
   getUsers(): Promise<any> {
-    return this.get('user')
-      .then(data => data['pageMeta'])
-      .then(metaData => {
-        return this.get('user?limit=' + (metaData.totalRecords > 0 ? metaData.totalRecords : 1))
-          .then(data => data['users']);
-      });
+    return this.getList('user', 'users');
   }
 
   getUser(id: number): Promise<any> {
@@ -97,6 +67,61 @@ export class LeankitService {
     return this.get('user/' + id + '/board/recent');
   }
 
+  /**
+   * To get a list from the API, multiple requests are needed.
+   * This function checks the metaData to see how many requests need to be executed
+   * & gets all the data for a specific path. (e.g. '/io/card')
+   *
+   *
+   * @param path                  (e.g. 'card',
+   *                                this will get data from /io/card)
+   *
+   * @param listName              (e.g. 'cards',
+   *                                this will get the cards data object from the endpoint
+   *                                example data object: { metaData: [...], cards: [...] } )
+   *
+   * @returns {Promise<any[]>}    (returns a (promise of the) full list   WITHOUT   the metaData)
+   */
+  getList(path, listName): Promise<any> {
+
+    // console.log('getList', path, listName)
+
+    return this.get(path)
+      .then(data => data['pageMeta'])
+      .then(metaData => {
+        let limit;
+        let offset;
+
+        const promises = [];
+
+        if (metaData.totalRecords > 500) {
+          for (let requestNr = 1; requestNr <= Math.floor(metaData.totalRecords / 500) + 1; requestNr++) {
+            if (requestNr * 500 > metaData.totalRecords) {
+              limit = metaData.totalRecords % 500 ? metaData.totalRecords % 500 : 1;
+            } else limit = 500;
+
+            offset = (requestNr - 1) * 500;
+
+            promises.push(
+              this.get(path + '?limit=' + limit + '&offset=' + offset)
+                .then(data => data[listName])
+            );
+          }
+        } else {
+          limit = metaData.totalRecords ? metaData.totalRecords : 1;
+          promises.push(
+            this.get(path + '?limit=' + limit)
+              .then(data => data[listName])
+          );
+        }
+        return Promise.all(promises)
+          .then(lists => {
+            const fullList = [];
+            lists.forEach(list => fullList.push(...list));
+            return fullList;
+          });
+      });
+  }
 
   private get(path): Promise<any> {
     if (this.alreadyHasDataFrom(path)) {

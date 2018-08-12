@@ -39,27 +39,42 @@ export const APP_CONFIG = {
   boards: {
 
     // boardId:
-    '685758525': {
-      displayName: 'Tjeam Testingzz', // unused
-      epicCardType: 685909861,
-      excludedCardTypes: [ 688910018 ],
+    '656398449': {
+      displayName: 'Tjeam Exp',                            // unused                   todo: remove
+      epicCardTypes: [ 656511283, 679850713 ],
+      excludedCardTypes: [ 666699707 ],                    // temp: mendix excluded    todo: remove comment
       excludedCards: [],
       includedLanes: {
-        backlog: [ 685920268, 689096981, 689096982, 689096983, 689159513, 689159514 ],
-        doing: [ 685920274, 689096977, 689096978, 689096985, 689096986 ]
-      }
-    },
-
-    // boardId:
-    '685758526': {
-      displayName: 'Tjeam Netflix', // unused
-      epicCardType: 685909865,
-      excludedCardTypes: [],
-      excludedCards: [],
-      includedLanes: {
-        backlog: [ 685920277, 685934939, 685920279 ],
-        doing: [ 685934936, 685934944 ]
+        backlog: [
+          656585578,
+          656585579,
+          656638600,
+          692248681,
+          656585580,
+          656585581,
+          656585582,
+          692238518,
+          663564621,
+          663564620,
+          663564619,
+          663564618
+        ],
+        doing: [ 656585589, 657394416, 657394415 ]
       }
     }
+
+    // ,
+
+    // // boardId:
+    // '685758526': {
+    //   displayName: 'Tjeam Netflix', // unused
+    //   epicCardType: 685909865,
+    //   excludedCardTypes: [],
+    //   excludedCards: [],
+    //   includedLanes: {
+    //     backlog: [ 685920277, 685934939, 685920279 ],
+    //     doing: [ 685934936, 685934944 ]
+    //   }
+    // }
   }
 };

@@ -4,6 +4,7 @@
                [matTooltipShowDelay]="1000">
   <h3 matLine>{{card.title}}</h3>
   <mat-progress-bar
+    *ngIf="progress !== null"
     matLine
     mode="determinate"
     [value]="progress"

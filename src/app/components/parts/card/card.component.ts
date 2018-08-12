@@ -46,11 +46,11 @@ export class CardComponent implements OnInit {
       this.childCards,
       this.allChildCards
     ])
-      .then(_ => this.setTooltipCard())
-      .then(_ => this.setTooltipStories())
-      .then(_ => this.setTooltipTasks())
-      .then(_ => this.calculateProgress())
-      .then(_ => this.setTooltipProgress());
+      .then(() => this.setTooltipStories())
+      .then(() => this.setTooltipTasks())
+      .then(() => this.calculateProgress())
+      .then(() => this.setTooltipProgress())
+      .then(() => this.setTooltipCard());
   }
 
   private setTaskIsDoneCount(allTasks: any[]) {
@@ -81,9 +81,15 @@ export class CardComponent implements OnInit {
 
   private setTooltipCard() {
     this.allChildCards.then(allChildCards => {
-      this.tooltipCard = this.cardsIsDoneCount ?
-        this.cardsIsDoneCount + ' van de ' + allChildCards.length + ' stories zijn afgerond'
-        : 'Er zijn nog geen stories afgerond van deze epic';
+      if (this.progress === null) {
+        this.tooltipCard = 'Er zijn geen onderliggende stories';
+      } else if (this.cardsIsDoneCount && this.cardsIsDoneCount === allChildCards.length) {
+        this.tooltipCard = 'Alle onderliggende stories zijn afgerond';
+      } else if (this.cardsIsDoneCount) {
+        this.tooltipCard = this.cardsIsDoneCount + ' van de ' + allChildCards.length + ' stories zijn afgerond';
+      } else {
+        this.tooltipCard = 'Er zijn nog geen stories afgerond';
+      }
     });
   }
 
@@ -112,11 +118,12 @@ export class CardComponent implements OnInit {
   private calculateProgress() {
     const total = this.cardsCount + this.tasksCount;
     const amountDone = this.cardsIsDoneCount + this.tasksIsDoneCount;
-    this.progress = (amountDone / total) * 100;
+    if (!isNaN(amountDone / total)) this.progress = (amountDone / total) * 100;
+    else this.progress = null;
   }
 
   private setTooltipProgress() {
-    this.tooltipProgress = Math.floor(this.progress * 10) / 10 + '% van de taken & stories gedaan';
+    this.tooltipProgress = Math.floor(this.progress) + '% van de taken & stories zijn gedaan';
   }
 
   alert(str) {

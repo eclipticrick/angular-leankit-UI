@@ -102,9 +102,9 @@ export class DataService {
 
   private filterCardsOnType(boardId: number, cards: any[], type?: CardType) {
     if (type === CardType.epic) {
-      return cards.filter(card => APP_CONFIG.boards[boardId].epicCardType === Number(card.type.id));
+      return cards.filter(card => APP_CONFIG.boards[boardId].epicCardTypes.includes(Number(card.type.id)));
     } else if (type === CardType.nonEpic) {
-      return cards.filter(card => APP_CONFIG.boards[boardId].epicCardType !== Number(card.type.id));
+      return cards.filter(card => !APP_CONFIG.boards[boardId].epicCardTypes.includes(Number(card.type.id)));
     } else if (type === CardType.all) {
       return cards;
     }
