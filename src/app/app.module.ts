@@ -33,6 +33,8 @@ import { CardListComponent } from './components/parts/card-list/card-list.compon
 import { CardComponent } from './components/parts/card/card.component';
 import { LoadingComponent } from './components/parts/loading/loading.component';
 import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
+import {TeamService} from './services/team.service';
+import { TeamSelectorComponent } from './components/parts/team-selector/team-selector.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
     FilterCardsFromLanePipe,
     CardComponent,
     LoadingComponent,
-    BeautifyDatePipe
+    BeautifyDatePipe,
+    TeamSelectorComponent
   ],
   imports: [
     BrowserModule,                       // default
@@ -60,7 +63,7 @@ import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
     HttpClientModule,                    // replacement of HttpModule
     MaterialModule                       // material design components
   ],
-  providers: [ LeankitService, DataService ],
+  providers: [ LeankitService, DataService, TeamService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

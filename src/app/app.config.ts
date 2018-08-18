@@ -40,7 +40,7 @@ export const APP_CONFIG = {
 
     // boardId:
     '656398449': {
-      displayName: 'Tjeam Exp',                            // unused                   todo: remove
+      displayName: 'Tjeam Exp',
       epicCardTypes: [ 656511283, 679850713 ],
       excludedCardTypes: [ 666699707 ],                    // temp: mendix excluded    todo: remove comment
       excludedCards: [],
@@ -61,20 +61,28 @@ export const APP_CONFIG = {
         ],
         doing: [ 656585589, 657394416, 657394415 ]
       }
+    },
+    '663196440': {
+      displayName: 'Tjeam Leerplanner',
+      epicCardTypes: [ 663292245, 678980828 ],
+      excludedCardTypes: [],
+      excludedCards: [],
+      includedLanes: {
+        backlog: [
+          690107618,
+          690107615,
+          690202469,
+          690107616,
+          690107619,
+          690107620,
+          690107621,
+          690107622,
+          663437831,
+          676971659,
+          676971660
+        ],
+        doing: [ 663437832, 663437834, 663437835 ]
+      }
     }
-
-    // ,
-
-    // // boardId:
-    // '685758526': {
-    //   displayName: 'Tjeam Netflix', // unused
-    //   epicCardType: 685909865,
-    //   excludedCardTypes: [],
-    //   excludedCards: [],
-    //   includedLanes: {
-    //     backlog: [ 685920277, 685934939, 685920279 ],
-    //     doing: [ 685934936, 685934944 ]
-    //   }
-    // }
   }
 };

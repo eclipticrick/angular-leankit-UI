@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { LeankitService } from '../../../services/leankit.service';
 import { DataService } from '../../../services/data.service';
 import { CardType } from '../../../enums/CardType.enum';
 import { Lane } from '../../../enums/Lane.enum';
+import {TeamService} from '../../../services/team.service';
 
 @Component({
   selector: 'app-home',
@@ -10,13 +10,18 @@ import { Lane } from '../../../enums/Lane.enum';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  config = this.data.getConfig();
   boards;
 
-  constructor(private leankit: LeankitService, private data: DataService) { }
+  constructor(private data: DataService, private teamSvc: TeamService) { }
 
   ngOnInit() {
-    this.boards = this.data.getBoards();
-    // this.printDataInfo();
+    this.getBoardsAndFilterOnSelectedTeams();
+  }
+
+  getBoardsAndFilterOnSelectedTeams () {
+    this.boards = this.data.getBoards()
+      .then(boards => boards.filter(board => this.teamSvc.getSelectedTeams().includes(board.id)));
   }
 
   /**

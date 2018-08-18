@@ -29,7 +29,16 @@
     }
   }
 }
-mat-card {
+
+mat-card.team-selector {
+  display: inline-block;
+  padding: 6px 48px;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 3px 24px 3px 24px;
+}
+
+mat-card.epics {
   min-height: 300px;
   padding: 0;
   padding-bottom: 84px;
