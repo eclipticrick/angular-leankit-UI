@@ -35,6 +35,8 @@ import { LoadingComponent } from './components/parts/loading/loading.component';
 import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
 import {TeamService} from './services/team.service';
 import { TeamSelectorComponent } from './components/parts/team-selector/team-selector.component';
+import { HeaderComponent } from './components/parts/header/header.component';
+import { CardListWithContainerComponent } from './components/parts/card-list-with-container/card-list-with-container.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { TeamSelectorComponent } from './components/parts/team-selector/team-sel
     CardComponent,
     LoadingComponent,
     BeautifyDatePipe,
-    TeamSelectorComponent
+    TeamSelectorComponent,
+    HeaderComponent,
+    CardListWithContainerComponent
   ],
   imports: [
     BrowserModule,                       // default

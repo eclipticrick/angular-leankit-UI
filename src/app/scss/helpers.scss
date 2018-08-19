@@ -88,7 +88,22 @@ h1, h2, h3, h4, h4, h6 {
   color: #ffffff
 }
 
-/* icons */
-.help-small {
+/* for HTML parts that are used in multiple places */
+span.help {
+  cursor: pointer;
+  text-decoration: underline;
+}
 
+/* for (background) images placement */
+img.svg {
+  position: absolute;
+  transform: skewY(-8deg);
+  &.right {
+    bottom: -40px;
+    right: 8px;
+  }
+  &.left {
+    bottom: -150px;
+    left: 8px;
+  }
 }

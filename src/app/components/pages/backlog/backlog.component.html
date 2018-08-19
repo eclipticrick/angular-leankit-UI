@@ -1,4 +1,33 @@
-<p>
-  backlog works!
-</p>
-<app-team-selector [multiple]="false"></app-team-selector>
+
+<app-header (teamChanged)="onTeamChange()" page="backlog"></app-header>
+
+<img class="svg left" src="assets/dlo/svg/man-geel.svg">
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+
+
+        <div *ngIf="board | async as boardObj">
+          <h2 class="theme-fg text-center">{{ config.boards[boardObj.id].displayName }}</h2>
+          <app-card-list-with-container [board]="boardObj"
+                                        [type]="'epic'"
+                                        [lane]="'backlog'"
+                                        [limitAmount]="20">
+            <!-- [page]="1" -->
+          </app-card-list-with-container>
+
+          <app-card-list-with-container [board]="boardObj"
+                                        [type]="'nonEpic'"
+                                        [lane]="'backlog'"
+                                        [limitAmount]="20">
+            <!-- [page]="1" -->
+          </app-card-list-with-container>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

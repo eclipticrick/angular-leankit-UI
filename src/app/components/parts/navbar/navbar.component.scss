@@ -1,7 +1,4 @@
-$on-desktop: "(min-width: 768px)";
-$on-mobile: "(max-width: 767px)";
-$on-mobile-small: "(max-width: 599px)";
-
+@import '../../../scss/mixins';
 @import '../../../scss/variables';
 @import '../../../scss/theme';
 
@@ -21,7 +18,7 @@ mat-toolbar#navbar {
   transition: box-shadow .24s;
 
   &.scrolled_down {
-    box-shadow: $angular-card-box-shadow;
+    @include box-shadow($angular-card-box-shadow);
   }
 
   // styling for all toolbars (mobile & desktop)

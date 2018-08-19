@@ -1,7 +1,7 @@
 @import "../../../scss/helpers";
 
 .background-sky {
-  @include box-shadow(0 -26px 26px -26px rgba(0,0,0,.24) inset);
+  @include box-shadow(0 -26px 26px -26px rgba(0, 0, 0, .24) inset);
   color: #fff;
   position: absolute;
   width: 100%;
@@ -17,16 +17,7 @@
   z-index: 0;
   overflow: hidden;
   > img.svg {
-    position: absolute;
     transform: skewY(-8deg);
-    &.right {
-      bottom: -40px;
-      right: 8px;
-    }
-    &.left {
-      bottom: -150px;
-      left: 8px;
-    }
   }
 }
 
@@ -38,20 +29,3 @@ mat-card.team-selector {
   border-radius: 3px 24px 3px 24px;
 }
 
-mat-card.epics {
-  min-height: 300px;
-  padding: 0;
-  padding-bottom: 84px;
-
-
-  > .button-container {
-    position: absolute;
-    text-align: right;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    button.more {
-      margin: 24px;
-    }
-  }
-}

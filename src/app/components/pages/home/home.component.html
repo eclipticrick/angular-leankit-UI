@@ -24,7 +24,7 @@
           <div class="col-12 text-center">
             <h3 class="fg-white">Ik ben geïnteresseerd in de voortgang van de volgende teams</h3>
             <mat-card class="team-selector">
-              <app-team-selector [multiple]="true" (selectionChanged)="getBoardsAndFilterOnSelectedTeams()"></app-team-selector>
+              <app-team-selector (selectionChanged)="onTeamsChange()"></app-team-selector>
             </mat-card>
           </div>
         </div>
@@ -33,27 +33,11 @@
           <div *ngFor="let board of boards | async; let boardsLoopIndex = index">
 
             <h1 [class]="!boardsLoopIndex ? 'fg-white': 'theme-fg'">{{ config.boards[board.id].displayName }}</h1>
-            <mat-card class="epics no-select">
-              <div class="padding">
-                <h3 class="no-margin flex flex-align-vertical">
-                  <span>De <span class="underline">epics</span> waar op dit moment aan worden gewerkt door {{ board.title }}</span>
-                  <span class="flex-spacer"></span>
-                  <button class="more" matTooltip="Wat is een epic?" mat-icon-button>
-                    <mat-icon>help</mat-icon>
-                  </button>
-                </h3>
-              </div>
-              <app-card-list
-                [boardId]="board.id"
-                [layout]="'row'"
-                [type]="'epic'"
-                [lane]="'all'"
-                [limitAmount]="5">
-              </app-card-list>
-              <div class="button-container">
-                <button class="more" mat-raised-button color="primary" routerLink="/doing">Weergeef alle epics <span class="desktop-only">van <span style="font-weight: bold">{{ config.boards[board.id].displayName }}</span></span> in doing >></button>
-              </div>
-            </mat-card>
+            <app-card-list-with-container [board]="board"
+                                          [type]="'epic'"
+                                          [lane]="'doing'"
+                                          [limitAmount]="5">
+            </app-card-list-with-container>
 
           </div>
         </div>

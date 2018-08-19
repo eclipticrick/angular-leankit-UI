@@ -1,7 +1,7 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {CardType} from '../../../enums/CardType.enum';
-import {Lane} from '../../../enums/Lane.enum';
-import {DataService} from '../../../services/data.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { CardType } from '../../../enums/CardType.enum';
+import { Lane } from '../../../enums/Lane.enum';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-card-list',

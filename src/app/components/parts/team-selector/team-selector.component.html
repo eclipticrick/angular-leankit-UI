@@ -1,5 +1,5 @@
 <mat-form-field *ngIf="multiple; else singular">
-  <mat-label>Teams</mat-label>
+  <mat-label *ngIf="placeholder">Teams</mat-label>
   <mat-select [(ngModel)]="selectedTeams"
               (ngModelChange)="onTeamChanges()"
               multiple>
@@ -11,7 +11,7 @@
 
 <ng-template #singular>
   <mat-form-field>
-    <mat-label>Teams</mat-label>
+    <mat-label *ngIf="placeholder">Teams</mat-label>
     <mat-select [(ngModel)]="selectedTeamId"
                 (ngModelChange)="onTeamChanges()">
       <mat-option *ngFor="let boardKey of teams" [value]="boardKey">

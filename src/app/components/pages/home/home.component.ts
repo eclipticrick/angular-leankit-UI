@@ -16,10 +16,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private data: DataService, private teamSvc: TeamService) { }
 
   ngOnInit() {
-    this.getBoardsAndFilterOnSelectedTeams();
+    this.getSelectedBoards();
   }
 
-  getBoardsAndFilterOnSelectedTeams () {
+  onTeamsChange() {
+    this.getSelectedBoards();
+  }
+
+  getSelectedBoards () {
     this.boards = this.data.getBoards()
       .then(boards => boards.filter(board => this.teamSvc.getSelectedTeams().includes(board.id)));
   }
