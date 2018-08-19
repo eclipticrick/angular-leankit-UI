@@ -1,0 +1,38 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+@import '../../../scss/helpers';
+
+div.header {
+  > div.container-fluid:nth-of-type(1) {
+    div.col-header {
+      margin: 12px 0 -20px;
+      h1 {
+        font-size: 68px;
+        margin: 6px 0;
+        @media #{$on-mobile} {
+          font-size: 40px;
+        }
+        @media #{$on-mobile-small} {
+          font-size: 28px;
+        }
+      }
+      mat-card {
+        h4 {
+          font-weight: 100;
+          display: inline-block;
+          margin: 12px 12px 0 0;
+        }
+        display: inline-block;
+        padding: 0 24px;
+        app-team-selector {
+          display: inline-block;
+
+        }
+      }
+    }
+  }
+  > div.container-fluid:nth-of-type(2) {
+    @include box-shadow(0 0 0 3000px rgba(255,255,255,.2) inset, $angular-card-box-shadow);
+    height: 32px;
+  }
+}

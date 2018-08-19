@@ -1,0 +1,17 @@
+@import "../../../scss/helpers";
+mat-card.compact {
+  min-height: 300px;
+  padding: 0;
+  padding-bottom: 84px;
+  margin-bottom: 24px;
+  > .button-container {
+    position: absolute;
+    text-align: right;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    button.more {
+      margin: 24px;
+    }
+  }
+}

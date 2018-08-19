@@ -1,0 +1,20 @@
+
+<div class="header">
+  <div class="container-fluid theme-bg-primary">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center col-header">
+          <h1 class="fg-white text-left">{{ title }}</h1>
+          <mat-card>
+            <h4>U bekijkt de <span class="help" matTooltip="Wat is een Story?">stories</span> in de <span class="help" [matTooltip]="tooltipMessage">{{ title }} lane</span> voor</h4>
+            <app-team-selector
+              [multiple]="false"
+              [placeholder]="false"
+              (selectionChanged)="onTeamChange()"></app-team-selector>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid theme-bg-primary"></div>
+</div>
