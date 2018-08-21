@@ -1,10 +1,40 @@
+<mat-card class="compact no-select">
+  <div class="padding">
+    <h3 class="no-margin flex flex-align-vertical">
+      <span>
+        <span *ngIf="type === 'epic'">De <span class="help theme-fg-accent" [matTooltip]="'Wat is een ' + type + '?'" (click)="openDialog()">{{ type }}</span> kaarten</span>
+        <span *ngIf="type === 'nonEpic'">De andere kaarten</span>
+        <span *ngIf="type === 'all'">Alle kaarten</span>
 
-<ng-template #loadingCards>
-  <app-loading></app-loading>
-</ng-template>
-<mat-nav-list *ngIf="cards | async; else loadingCards" class="epics no-padding">
-  <div *ngIf="!(cards | async)?.length" class="text-center">
-    Er zijn nog geen {{ type  ? type : '' }} kaarten {{ lane ? 'in de ' + lane + ' lane' : ''}}
+        {{ lane ? 'in de ' : ''}}
+        <span *ngIf="lane" class="help theme-fg-accent" [matTooltip]="'Wat betekent ' + lane + '?'" (click)="openDialog()">{{ lane }}</span>
+        {{ lane ? ' lane' : ''}}
+
+        van
+
+        <span class="team theme-fg-temp">{{ config.boards[board.id].displayName }}</span>
+      </span>
+      <span class="flex-spacer"></span>
+    </h3>
   </div>
-  <app-card *ngFor="let card of (cards | async | slice:0:limitAmount)" [card]="card" [layout]="layout"></app-card>
-</mat-nav-list>
+
+  <ng-template #loadingCards>
+    <app-loading></app-loading>
+  </ng-template>
+  <mat-nav-list *ngIf="cards | async; else loadingCards" class="no-padding">
+    <div *ngIf="!(cards | async)?.length" class="text-center">
+      Er zijn nog geen {{ type  ? type : '' }} kaarten {{ lane ? 'in de ' + lane + ' lane' : ''}}
+    </div>
+    <app-card *ngFor="let card of (cards | async | slice:cardsOffset:cardsLimit)" [card]="card" [layout]="'row'"></app-card>
+  </mat-nav-list>
+
+  <div class="button-container">
+    <button *ngIf="!pages" class="more" mat-raised-button color="primary" (click)="navigateToPageAndSelectTeam(lane, board.id)">Weergeef alle epics <span class="desktop-only">van <span style="font-weight: bold">{{ config.boards[board.id].displayName }}</span></span> in doing >></button>
+    <mat-paginator *ngIf="pages"
+                   [length]="(cards | async)?.length"
+                   [pageSize]="4"
+                   [pageSizeOptions]="[4, 8, 16]"
+                   (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+</mat-card>
