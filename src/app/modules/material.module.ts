@@ -20,7 +20,8 @@ import {
   MatMenuModule,
   MatTabsModule,
   MatIconModule,
-  MatListModule
+  MatListModule,
+  MatPaginatorModule
 } from '@angular/material';
 
 const MatModules = [
@@ -49,6 +50,7 @@ const MatModules = [
   // extras
   MatProgressSpinnerModule,
   MatProgressBarModule,
+  MatPaginatorModule,
   MatTooltipModule,
   MatChipsModule,
   MatIconModule,

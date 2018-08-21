@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
   <div class="flex">
     <button mat-button routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
-      Dashoard
+      Dashboard
     </button>
     <button mat-button routerLinkActive="active" routerLink="/backlog">
       Backlog

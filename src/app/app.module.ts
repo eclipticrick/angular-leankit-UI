@@ -29,14 +29,15 @@ import { DataService } from './services/data.service';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FilterOnKeyPipe } from './pipes/filter-on-key.pipe';
 import { FilterCardsFromLanePipe } from './pipes/filter-cards-from-lane.pipe';
-import { CardListComponent } from './components/parts/card-list/card-list.component';
 import { CardComponent } from './components/parts/card/card.component';
 import { LoadingComponent } from './components/parts/loading/loading.component';
 import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
 import {TeamService} from './services/team.service';
 import { TeamSelectorComponent } from './components/parts/team-selector/team-selector.component';
 import { HeaderComponent } from './components/parts/header/header.component';
-import { CardListWithContainerComponent } from './components/parts/card-list-with-container/card-list-with-container.component';
+import { CardListComponent } from './components/parts/card-list/card-list.component';
+import { PageNotFoundComponent } from './components/pages/page-not-found/page-not-found.component';
+import { DialogComponent } from './components/parts/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,6 @@ import { CardListWithContainerComponent } from './components/parts/card-list-wit
     NavItemsComponent,
     BacklogComponent,
     DoingComponent,
-    CardListComponent,
     FilterPipe,
     FilterOnKeyPipe,
     FilterCardsFromLanePipe,
@@ -56,7 +56,9 @@ import { CardListWithContainerComponent } from './components/parts/card-list-wit
     BeautifyDatePipe,
     TeamSelectorComponent,
     HeaderComponent,
-    CardListWithContainerComponent
+    CardListComponent,
+    PageNotFoundComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,                       // default
@@ -68,6 +70,7 @@ import { CardListWithContainerComponent } from './components/parts/card-list-wit
     MaterialModule                       // material design components
   ],
   providers: [ LeankitService, DataService, TeamService ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  entryComponents: [ DialogComponent ]
 })
 export class AppModule { }

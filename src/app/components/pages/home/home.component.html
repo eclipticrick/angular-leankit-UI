@@ -35,8 +35,7 @@
             <h1 [class]="!boardsLoopIndex ? 'fg-white': 'theme-fg'">{{ config.boards[board.id].displayName }}</h1>
             <app-card-list-with-container [board]="board"
                                           [type]="'epic'"
-                                          [lane]="'doing'"
-                                          [limitAmount]="5">
+                                          [lane]="'doing'">
             </app-card-list-with-container>
 
           </div>
