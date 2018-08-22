@@ -2,12 +2,12 @@
   <div class="padding">
     <h3 class="no-margin flex flex-align-vertical">
       <span>
-        <span *ngIf="type === 'epic'">De <span class="help theme-fg-accent" [matTooltip]="'Wat is een ' + type + '?'" (click)="openDialog()">{{ type }}</span> kaarten</span>
+        <span *ngIf="type === 'epic'">De <span class="help theme-fg-accent" [matTooltip]="'Wat is een ' + type + '?'" (click)="dialog.showDialog('help', { questionType: type })">{{ type }}</span> kaarten</span>
         <span *ngIf="type === 'nonEpic'">De andere kaarten</span>
         <span *ngIf="type === 'all'">Alle kaarten</span>
 
         {{ lane ? 'in de ' : ''}}
-        <span *ngIf="lane" class="help theme-fg-accent" [matTooltip]="'Wat betekent ' + lane + '?'" (click)="openDialog()">{{ lane }}</span>
+        <span *ngIf="lane" class="help theme-fg-accent" [matTooltip]="'Wat betekent ' + lane + '?'" (click)="dialog.showDialog('help', { questionType: lane })">{{ lane }}</span>
         {{ lane ? ' lane' : ''}}
 
         van

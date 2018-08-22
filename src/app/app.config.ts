@@ -12,6 +12,11 @@ export const APP_CONFIG = {
       key: 'doing',
       question: 'Waar staat doing voor?',
       answer: 'Waar op dit moment aan gewerkt word.'
+    },
+    {
+      key: 'backlog',
+      question: 'Waar staat backlog voor?',
+      answer: 'Voor onzin.'
     }
   ],
 

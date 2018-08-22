@@ -4,8 +4,7 @@ import { Lane } from '../../../enums/Lane.enum';
 import { DataService } from '../../../services/data.service';
 import { Router } from '@angular/router';
 import { TeamService } from '../../../services/team.service';
-import {MatDialog, MatDialogConfig} from '@angular/material';
-import {DialogComponent} from '../dialog/dialog.component';
+import { DialogService } from '../../../services/dialog.service';
 
 @Component({
   selector: 'app-card-list-with-container',
@@ -22,7 +21,7 @@ export class CardListComponent implements OnInit {
   cardsLimit;
   cardsOffset;
 
-  constructor(private data: DataService, private teamSvc: TeamService, private router: Router, private dialog: MatDialog) { }
+  constructor(private data: DataService, private teamSvc: TeamService, private router: Router, public dialog: DialogService) { }
 
   ngOnInit() {
     this.cardsLimit = 4;
@@ -45,12 +44,4 @@ export class CardListComponent implements OnInit {
     this.cardsLimit = pageEvent.pageSize * (pageEvent.pageIndex + 1);
   }
 
-  openDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { title: 'some title' };
-    const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(value => {
-      console.log(`Dialog sent: ${value}`);
-    });
-  }
 }

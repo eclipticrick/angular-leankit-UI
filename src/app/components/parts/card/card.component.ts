@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../../../services/data.service';
+import {DialogService} from '../../../services/dialog.service';
 
 @Component({
   selector: 'app-card',
@@ -29,7 +30,7 @@ export class CardComponent implements OnInit {
   tooltipStories = 'Loading...';
   tooltipTasks = 'Loading...';
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, public dialog: DialogService) { }
 
   ngOnInit() {
     this.tasks = this.data.getAllTasksFromCardAndAllChildCards(this.card.id)
@@ -124,10 +125,6 @@ export class CardComponent implements OnInit {
 
   private setTooltipProgress() {
     this.tooltipProgress = Math.floor(this.progress) + '% van de taken & stories zijn gedaan';
-  }
-
-  alert(str) {
-    alert(str);
   }
 
 }

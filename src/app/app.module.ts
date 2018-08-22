@@ -38,6 +38,10 @@ import { HeaderComponent } from './components/parts/header/header.component';
 import { CardListComponent } from './components/parts/card-list/card-list.component';
 import { PageNotFoundComponent } from './components/pages/page-not-found/page-not-found.component';
 import { DialogComponent } from './components/parts/dialog/dialog.component';
+import { DialogContentHelpComponent } from './components/parts/dialog/dialog-content-help/dialog-content-help.component';
+import { DialogContentCardComponent } from './components/parts/dialog/dialog-content-card/dialog-content-card.component';
+import { DialogContentPersonComponent } from './components/parts/dialog/dialog-content-person/dialog-content-person.component';
+import { DialogContentContactComponent } from './components/parts/dialog/dialog-content-contact/dialog-content-contact.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,11 @@ import { DialogComponent } from './components/parts/dialog/dialog.component';
     HeaderComponent,
     CardListComponent,
     PageNotFoundComponent,
-    DialogComponent
+    DialogComponent,
+    DialogContentHelpComponent,
+    DialogContentCardComponent,
+    DialogContentPersonComponent,
+    DialogContentContactComponent
   ],
   imports: [
     BrowserModule,                       // default
