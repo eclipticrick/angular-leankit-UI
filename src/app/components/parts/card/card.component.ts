@@ -19,7 +19,7 @@ export class CardComponent implements OnInit {
   tasksIsDoneCount: number;
   cardsCount: number;
   cardsIsDoneCount: number;
-  progress = 0;
+  progress = null;
 
   lastActivity: Date;
 

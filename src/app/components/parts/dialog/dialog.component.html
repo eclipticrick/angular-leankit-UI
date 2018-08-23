@@ -18,10 +18,10 @@
     <div *ngIf="data.dialogType === 'person'">
       <app-dialog-content-person [data]="data"></app-dialog-content-person>
     </div>
-    <div *ngIf="data.dialogType === 'contact'">
+    <div *ngIf="data.dialogType === 'contact'"> <!-- || data.dialogType === 'card' -->
 
       <!-- contact form -->
-      <app-team-selector [multiple]="false"></app-team-selector>
+      <app-team-selector [multiple]="false" [placeholder]="'Selecteer welk team u wilt contacteren'"></app-team-selector>
       <mat-form-field>
         <input matInput placeholder="Jou email (om een reactie te kunnen ontvangen)" [formControl]="emailCtrl" required>
         <mat-error *ngIf="emailCtrl.invalid">{{ getContactFormErrorMessage(emailCtrl) }}</mat-error>
@@ -54,7 +54,7 @@
               color="primary"
               [disabled]="!contactForm.valid">
         Versturen
-      </button>
+      </button> <!-- || data.dialogType === 'card' -->
     </div>
     <!-- /contact form submit button-->
 

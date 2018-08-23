@@ -11,14 +11,12 @@
               <span class="help"
                     matTooltip="Wat is een Story?"
                     (click)="dialog.showDialog('help', { questionType: 'story' })">
-                stories
-              </span>
+                stories</span>
               in de
               <span class="help"
                     [matTooltip]="tooltipMessage"
                     (click)="dialog.showDialog('help', { questionType: title.toLowerCase() })">
-                {{ title }} lane
-              </span>
+                {{ title }} lane</span>
               voor
             </h4>
             <app-team-selector

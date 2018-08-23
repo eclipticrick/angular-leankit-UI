@@ -29,6 +29,8 @@ mat-toolbar#navbar {
       text-overflow: ellipsis;
       border-radius: 18px;
 
+      @include transition(box-shadow .24s ease, background .24s ease);
+
       &.active {
         color: #ffffff;
         background: rgba(255,255,255,.24);
@@ -57,10 +59,11 @@ mat-toolbar#navbar {
   // second toolbar (shows up on mobile for navigation)
   mat-toolbar-row.secondary-bar {
     padding: 0;
-    height: 36px;
+    height: 42px;
 
     div.nav-buttons {
       width: 100%;
+      padding-bottom: 4px;
       /deep/ button {
         margin: auto 4px;
         flex: 1;

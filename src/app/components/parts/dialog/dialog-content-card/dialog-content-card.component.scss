@@ -1,0 +1,30 @@
+@import '../../../../scss/mixins';
+@import '../../../../scss/variables';
+@import '../../../../scss/theme';
+
+.content-container {
+  margin: -24px;
+}
+
+mat-tab-group.mat-tab-group {
+  /deep/ {
+    mat-tab-header.mat-tab-header {
+      border-bottom: 0;
+      @include box-shadow($angular-card-box-shadow);
+      .mat-tab-label-container > .mat-tab-list > .mat-tab-labels > .mat-tab-label {
+        flex: 1;
+        mat-icon {
+          margin-right: 6px;
+        }
+      }
+    }
+    mat-tab-body.mat-tab-body {
+      .mat-tab-body-content {
+        padding: 24px;
+      }
+    }
+  }
+}
+.mat-tab-label {
+  flex: 1
+}

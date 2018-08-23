@@ -14,15 +14,20 @@ app-root.hu-light-theme {
 app-root.hu-dark-theme {
   @include angular-material-theme($dark-theme);
   @include custom-material-theme($dark-theme);
+
+  // color of active text in the dropdown menu's   (default (blue-800) color is too dark for a dark background)
+  .mat-primary, .mat-accent, .mat-warn {
+    .mat-pseudo-checkbox-checked,
+    .mat-pseudo-checkbox-indeterminate,
+    .mat-option.mat-selected:not(.mat-option-disabled) {
+      color: #f9f9f9
+    }
+  }
 }
 
 /** TEMP */
-.cdk-overlay-container.hu-dark-theme .mat-primary .mat-pseudo-checkbox-checked, .cdk-overlay-container.hu-dark-theme .mat-primary .mat-pseudo-checkbox-indeterminate, app-root.hu-dark-theme .mat-primary .mat-pseudo-checkbox-checked, app-root.hu-dark-theme .mat-primary .mat-pseudo-checkbox-indeterminate {
-  background: red;
-}
-.cdk-overlay-container.hu-dark-theme .mat-primary .mat-option.mat-selected:not(.mat-option-disabled), app-root.hu-dark-theme .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
-  color: red
-}
+
+
 /** /TEMP */
 
 body {
