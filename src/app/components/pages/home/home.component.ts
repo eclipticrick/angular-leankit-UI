@@ -10,10 +10,10 @@ import {TeamService} from '../../../services/team.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  config = this.data.getConfig();
+  config = this.dataSvc.getConfig();
   boards;
 
-  constructor(private data: DataService, private teamSvc: TeamService) { }
+  constructor(private dataSvc: DataService, private teamSvc: TeamService) { }
 
   ngOnInit() {
     this.getSelectedBoards();
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getSelectedBoards () {
-    this.boards = this.data.getBoards()
+    this.boards = this.dataSvc.getBoards()
       .then(boards => boards.filter(board => this.teamSvc.getSelectedTeams().includes(board.id)));
   }
 
@@ -32,28 +32,28 @@ export class HomeComponent implements OnInit, OnDestroy {
    * TEMP
    */
   printDataInfo() {
-    this.data.getBoards().then(boards => {
+    this.dataSvc.getBoards().then(boards => {
       console.log('boards', boards);
       console.log('board', boards[1]);
-      this.data.getCards(boards[1].id, Lane.all, CardType.all)
+      this.dataSvc.getCards(boards[1].id, Lane.all, CardType.all)
         .then(cards => {
           console.log('cards', cards);
-          this.data.getCardInfo(cards[0].id)
+          this.dataSvc.getCardInfo(cards[0].id)
             .then(cardInfo => {
               console.log('cardInfo', cardInfo);
             });
-          this.data.getCardTasks(cards[0].id)
+          this.dataSvc.getCardTasks(cards[0].id)
             .then(tasks => {
               console.log('getCardTasks(', cards[0].id, ')', tasks);
               tasks.forEach(task => {
-                this.data.getCardTaskInfo(cards[0].id, task.id)
+                this.dataSvc.getCardTaskInfo(cards[0].id, task.id)
                   .then(taskInfo => {
                     console.log('getCardTaskInfo(', cards[0].id, ', ', task.id, ')', taskInfo);
                   });
               });
 
             });
-          this.data.getChildCards(cards[0].id)
+          this.dataSvc.getChildCards(cards[0].id)
             .then(childCards => {
               console.log('getChildCards(', cards[0].id, ')', childCards);
             });

@@ -8,16 +8,16 @@ import {TeamService} from '../../../services/team.service';
   styleUrls: ['./doing.component.scss']
 })
 export class DoingComponent implements OnInit {
-  config = this.data.getConfig();
+  config = this.dataSvc.getConfig();
   board;
 
-  constructor(private data: DataService, private teamSvc: TeamService) { }
+  constructor(private dataSvc: DataService, private teamSvc: TeamService) { }
 
   ngOnInit() {
     this.getSelectedBoard();
   }
   getSelectedBoard() {
-    this.board = this.data.getBoards()
+    this.board = this.dataSvc.getBoards()
       .then(boards => boards.filter(board => this.teamSvc.getSelectedTeam() === board.id)[0]);
   }
   onTeamChange() {

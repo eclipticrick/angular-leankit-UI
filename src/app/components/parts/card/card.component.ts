@@ -30,15 +30,15 @@ export class CardComponent implements OnInit {
   tooltipStories = 'Loading...';
   tooltipTasks = 'Loading...';
 
-  constructor(private data: DataService, public dialog: DialogService) { }
+  constructor(private dataSvc: DataService, public dialog: DialogService) { }
 
   ngOnInit() {
-    this.tasks = this.data.getAllTasksFromCardAndAllChildCards(this.card.id)
+    this.tasks = this.dataSvc.getAllTasksFromCardAndAllChildCards(this.card.id)
       .then(tasks => this.setTaskIsDoneCount(tasks));
 
-    this.childCards = this.data.getChildCards(this.card.id);
+    this.childCards = this.dataSvc.getChildCards(this.card.id);
 
-    this.allChildCards = this.data.getAllChildCards(this.card.id)
+    this.allChildCards = this.dataSvc.getAllChildCards(this.card.id)
       .then(allChildCards => this.setLastActivity(allChildCards))
       .then(allChildCards => this.setCardIsDoneCount(allChildCards));
 

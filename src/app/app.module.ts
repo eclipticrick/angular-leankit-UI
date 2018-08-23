@@ -37,9 +37,6 @@ import { DataService } from './services/data.service';
 import { TeamService } from './services/team.service';
 
 // pipes
-import { FilterPipe } from './pipes/filter.pipe';
-import { FilterOnKeyPipe } from './pipes/filter-on-key.pipe';
-import { FilterCardsFromLanePipe } from './pipes/filter-cards-from-lane.pipe';
 import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
 
 
@@ -52,9 +49,6 @@ import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
     NavItemsComponent,
     BacklogComponent,
     DoingComponent,
-    FilterPipe,
-    FilterOnKeyPipe,
-    FilterCardsFromLanePipe,
     CardComponent,
     LoadingComponent,
     BeautifyDatePipe,

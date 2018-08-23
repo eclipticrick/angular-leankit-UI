@@ -11,13 +11,14 @@ export class TeamSelectorComponent implements OnInit {
   @Input() multiple?: boolean;
   @Input() placeholder?: string;
   @Output() selectionChanged: EventEmitter<any> = new EventEmitter();
-  config = this.data.getConfig();
+
+  config = this.dataSvc.getConfig();
 
   teams;
   selectedTeams;
   selectedTeamId;
 
-  constructor(private data: DataService, public teamSvc: TeamService) {
+  constructor(private dataSvc: DataService, public teamSvc: TeamService) {
     if (typeof this.multiple === 'undefined') this.multiple = true;
     this.teams = this.teamSvc.getPossibleTeams();
     this.selectedTeams = this.teamSvc.getSelectedTeams();

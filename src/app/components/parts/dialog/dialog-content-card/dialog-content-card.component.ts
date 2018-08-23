@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {DataService} from '../../../../services/data.service';
 
 @Component({
   selector: 'app-dialog-content-card',
@@ -6,9 +7,10 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./dialog-content-card.component.scss']
 })
 export class DialogContentCardComponent implements OnInit {
+  config = this.dataSvc.getConfig();
   @Input() data: any;
 
-  constructor() { }
+  constructor(private dataSvc: DataService) { }
 
   ngOnInit() {
     // this.data.id;

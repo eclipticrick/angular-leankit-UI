@@ -12,7 +12,7 @@ import { DialogService } from '../../../services/dialog.service';
   styleUrls: ['./card-list.component.scss']
 })
 export class CardListComponent implements OnInit {
-  config = this.data.getConfig();
+  config = this.dataSvc.getConfig();
   @Input() board;
   @Input() type?: CardType;
   @Input() lane?: Lane;
@@ -21,7 +21,7 @@ export class CardListComponent implements OnInit {
   cardsLimit;
   cardsOffset;
 
-  constructor(private data: DataService, private teamSvc: TeamService, private router: Router, public dialog: DialogService) { }
+  constructor(private dataSvc: DataService, private teamSvc: TeamService, private router: Router, public dialog: DialogService) { }
 
   ngOnInit() {
     this.cardsLimit = 4;
@@ -29,7 +29,7 @@ export class CardListComponent implements OnInit {
 
     if (!this.pages) this.pages = false;
 
-    this.cards = this.data.getCards(this.board.id, this.lane ? this.lane : Lane.all, this.type ? this.type : CardType.all);
+    this.cards = this.dataSvc.getCards(this.board.id, this.lane ? this.lane : Lane.all, this.type ? this.type : CardType.all);
     this.cards.then(x => console.log(x));
   }
 
