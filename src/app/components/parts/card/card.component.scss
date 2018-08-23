@@ -1,8 +1,10 @@
+@import '../../../scss/theme';
+
 mat-list-item /deep/ div.mat-list-item-content {
   padding: 24px;
   .mat-list-text {
     h3 {
-      font-size: 20px;
+      font-size: 17px;
     }
     mat-progress-bar {
       margin: 6px auto;

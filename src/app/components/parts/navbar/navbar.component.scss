@@ -1,5 +1,3 @@
-@import '../../../scss/mixins';
-@import '../../../scss/variables';
 @import '../../../scss/theme';
 
 div.navbar-spacing {
@@ -15,7 +13,7 @@ mat-toolbar#navbar {
   position: fixed;
   z-index: 1;
 
-  transition: box-shadow .24s;
+  @include transition(box-shadow .24s);
 
   &.scrolled_down {
     @include box-shadow($angular-card-box-shadow);

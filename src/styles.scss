@@ -1,5 +1,3 @@
-@import "app/scss/helpers";
-
 @import "app/scss/theme";
 
 @include angular-material-theme($light-theme);
@@ -24,11 +22,6 @@ app-root.hu-dark-theme {
     }
   }
 }
-
-/** TEMP */
-
-
-/** /TEMP */
 
 body {
   background: #f8f8f8;
