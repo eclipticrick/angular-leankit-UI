@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Dialog } from '../enums/Dialog.enum';
 import { DialogComponent } from '../components/parts/dialog/dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
@@ -11,18 +10,13 @@ export class DialogService {
   constructor(private dialog: MatDialog) { }
 
   showDialog(dialogType: string, data: any) {
-    const dialogData = {
+    this.openDialog({
       dialogType: dialogType,
-      ...data,
-      closeButtonText: 'Sluiten'
-    };
-    if (dialogType === Dialog.help) dialogData.closeButtonText = 'Ik snap het!';
-    if (dialogType === Dialog.contact) dialogData.closeButtonText = 'Annuleren!';
-
-    this.openDialog(dialogData);
+      ...data
+    });
   }
 
-  openDialog(dialogData: any) {
+  private openDialog(dialogData: any) {
     const dialogConfig = new MatDialogConfig();
     if (dialogData) dialogConfig.data = dialogData;
     return this.dialog.open(DialogComponent, dialogConfig);

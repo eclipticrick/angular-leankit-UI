@@ -1,4 +1,5 @@
-import {Component, ElementRef, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+import { DialogService } from '../../../services/dialog.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ export class NavbarComponent implements OnInit {
   isDarkTheme = false;
   scrollPosition = 0;
 
-  constructor(public element: ElementRef) { }
+  constructor(public element: ElementRef, public dialog: DialogService) { }
 
   ngOnInit() {}
 

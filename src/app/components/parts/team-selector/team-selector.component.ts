@@ -9,7 +9,7 @@ import { DataService } from '../../../services/data.service';
 })
 export class TeamSelectorComponent implements OnInit {
   @Input() multiple?: boolean;
-  @Input() placeholder?: boolean;
+  @Input() placeholder?: string;
   @Output() selectionChanged: EventEmitter<any> = new EventEmitter();
   config = this.data.getConfig();
 
@@ -19,7 +19,6 @@ export class TeamSelectorComponent implements OnInit {
 
   constructor(private data: DataService, public teamSvc: TeamService) {
     if (typeof this.multiple === 'undefined') this.multiple = true;
-    if (typeof this.placeholder === 'undefined') this.placeholder = true;
     this.teams = this.teamSvc.getPossibleTeams();
     this.selectedTeams = this.teamSvc.getSelectedTeams();
     this.selectedTeamId = this.teamSvc.getSelectedTeam();

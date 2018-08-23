@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DataService } from '../../../services/data.service';
-import { TeamService } from '../../../services/team.service';
-import {Lane} from '../../../enums/Lane.enum';
+import { Lane } from '../../../enums/Lane.enum';
+import { DialogService } from '../../../services/dialog.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +13,7 @@ export class HeaderComponent implements OnInit {
   title = '';
   tooltipMessage = '';
 
-  constructor() {}
+  constructor(public dialog: DialogService) {}
 
   ngOnInit() {
     if (this.page === Lane.doing) {

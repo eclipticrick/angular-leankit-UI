@@ -1,0 +1,39 @@
+/deep/ mat-dialog-container.mat-dialog-container {
+  padding: 0;
+  overflow: hidden;
+  width: 800px;
+  max-width: 100%;
+  border-radius: 3px;
+  > app-dialog > form > * {
+    margin: 0;
+    padding: 24px;
+  }
+  h2.mat-dialog-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    span.icon-and-title {
+      display: flex;
+      align-items: center;
+      mat-icon {
+        margin-right: 16px;
+      }
+    }
+    mat-icon.close {
+      cursor: pointer;
+    }
+  }
+  mat-dialog-content.mat-dialog-content {
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  mat-dialog-actions.mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    button {
+
+    }
+  }
+}

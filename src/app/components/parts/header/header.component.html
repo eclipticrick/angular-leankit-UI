@@ -6,10 +6,23 @@
         <div class="col-12 text-center col-header">
           <h1 class="fg-white text-left">{{ title }}</h1>
           <mat-card>
-            <h4>U bekijkt de <span class="help" matTooltip="Wat is een Story?">stories</span> in de <span class="help" [matTooltip]="tooltipMessage">{{ title }} lane</span> voor</h4>
+            <h4>
+              U bekijkt de
+              <span class="help"
+                    matTooltip="Wat is een Story?"
+                    (click)="dialog.showDialog('help', { questionType: 'story' })">
+                stories
+              </span>
+              in de
+              <span class="help"
+                    [matTooltip]="tooltipMessage"
+                    (click)="dialog.showDialog('help', { questionType: title.toLowerCase() })">
+                {{ title }} lane
+              </span>
+              voor
+            </h4>
             <app-team-selector
               [multiple]="false"
-              [placeholder]="false"
               (selectionChanged)="onTeamChange()"></app-team-selector>
           </mat-card>
         </div>

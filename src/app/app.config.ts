@@ -2,23 +2,24 @@
 export const APP_CONFIG = {
 
   // specify the questions and answers to be shown on the homepage (and in some of the 'help' pop-ups)
-  questions: [
-    {
-      key: 'epic',
+  questions: {
+    'epic' : {
       question: 'Wat is een EPIC?',
       answer: 'Een samenhangend geheel van user stories wat als geheel waarde oplevert voor de business.'
     },
-    {
-      key: 'doing',
+    'story' : {
+      question: 'Wat is een Story?',
+      answer: 'Goeie vraag.'
+    },
+    'doing' : {
       question: 'Waar staat doing voor?',
       answer: 'Waar op dit moment aan gewerkt word.'
     },
-    {
-      key: 'backlog',
+    'backlog' : {
       question: 'Waar staat backlog voor?',
       answer: 'Voor onzin.'
     }
-  ],
+  },
 
   // // specify the NOT-FOUND and NO-DATA messages for the application
   // messages: {

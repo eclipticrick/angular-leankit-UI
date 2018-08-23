@@ -10,8 +10,8 @@
 </ng-template>
 
 <div class="background-sky theme-bg-primary">
-  <img class="svg right" src="assets/dlo/svg/man-rood.svg">
-  <img class="svg left" src="assets/dlo/svg/man-geel.svg">
+  <img class="desktop-only svg right" src="assets/dlo/svg/man-rood.svg">
+  <img class="desktop-only svg left" src="assets/dlo/svg/man-geel.svg">
 </div>
 
 <div class="container">
@@ -24,7 +24,7 @@
           <div class="col-12 text-center">
             <h3 class="fg-white">Ik ben geïnteresseerd in de voortgang van de volgende teams</h3>
             <mat-card class="team-selector">
-              <app-team-selector (selectionChanged)="onTeamsChange()"></app-team-selector>
+              <app-team-selector [placeholder]="'Teams'" (selectionChanged)="onTeamsChange()"></app-team-selector>
             </mat-card>
           </div>
         </div>

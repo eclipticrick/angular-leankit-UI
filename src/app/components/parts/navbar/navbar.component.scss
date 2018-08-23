@@ -27,10 +27,12 @@ mat-toolbar#navbar {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      border-radius: 18px;
 
       &.active {
         color: #ffffff;
-        background: rgba(255,255,255,.2);
+        background: rgba(255,255,255,.24);
+        @include box-shadow($angular-card-box-shadow);
       }
     }
   }
@@ -45,6 +47,11 @@ mat-toolbar#navbar {
       max-width: 168px; // for 3 menu items
       // todo: calculate somhow?
     }
+    button.mat-icon-button.contact {
+      @include box-shadow($angular-card-box-shadow);
+      background: rgba(255, 255, 255, .24);
+      margin-right: 6px;
+    }
   }
 
   // second toolbar (shows up on mobile for navigation)
@@ -52,12 +59,19 @@ mat-toolbar#navbar {
     padding: 0;
     height: 36px;
 
-
-
     div.nav-buttons {
       width: 100%;
       /deep/ button {
+        margin: auto 4px;
         flex: 1;
+        &:first-child {
+          border-radius: 0 18px 18px 0;
+          margin: auto 4px auto 0;
+        }
+        &:last-child {
+          border-radius: 18px 0 0 18px;
+          margin: auto 0 auto 4px;
+        }
       }
     }
   }

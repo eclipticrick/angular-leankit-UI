@@ -1,5 +1,4 @@
 
-
 <mat-toolbar id="navbar" color="primary" [class.scrolled_down]="scrollPosition > 0">
 
   <!-- primary toolbar (with logo & navigation for desktop) -->
@@ -12,10 +11,19 @@
 
     <span class="flex-spacer"></span>
 
+    <button mat-icon-button
+            class="contact"
+            (click)="dialog.showDialog('contact', { temp: 'temp' })"
+            matTooltip="Contacteer ons">
+      <mat-icon>mail</mat-icon>
+    </button>
+
     <button mat-icon-button (click)="setTheme(false)">
       <mat-icon>wb_sunny</mat-icon>
     </button>
-    <mat-slide-toggle (change)="setTheme($event.checked)" [(ngModel)]="isDarkTheme"></mat-slide-toggle>
+    <mat-slide-toggle (change)="setTheme($event.checked)"
+                      [(ngModel)]="isDarkTheme"
+                      [matTooltip]="'Schakel om naar een ' + (isDarkTheme ? 'licht' : 'donker') + ' thema'"></mat-slide-toggle>
     <button mat-icon-button (click)="setTheme(true)">
       <mat-icon>brightness_2</mat-icon>
     </button>

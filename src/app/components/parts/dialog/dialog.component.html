@@ -1,21 +1,63 @@
-<h2 mat-dialog-title>{{ title }}</h2>
 
-<mat-dialog-content>
-  <div *ngIf="data.dialogType === 'help'">
-    <app-dialog-content-help [data]="data"></app-dialog-content-help>
-  </div>
-  <div *ngIf="data.dialogType === 'card'">
-    <app-dialog-content-card [data]="data"></app-dialog-content-card>
-  </div>
-  <div *ngIf="data.dialogType === 'person'">
-    <app-dialog-content-person [data]="data"></app-dialog-content-person>
-  </div>
-  <div *ngIf="data.dialogType === 'contact'">
-    <app-dialog-content-contact [data]="data"></app-dialog-content-contact>
-  </div>
-</mat-dialog-content>
+<form (ngSubmit)="onContactFormSubmit()" [formGroup]="contactForm">
 
-<mat-dialog-actions>
-  <button mat-raised-button (click)="close()">{{ data.closeButtonText }}</button>
-  <button mat-raised-button color="primary" (click)="submit()" *ngIf="data.dialogType === 'contact'">Save</button>
-</mat-dialog-actions>
+  <h2 mat-dialog-title class="theme-bg-primary">
+  <span class="icon-and-title fg-white">
+    <mat-icon *ngIf="icon" class="fg-white">{{ icon }}</mat-icon> {{ title }}
+  </span>
+    <mat-icon class="close fg-white" (click)="close()">close</mat-icon>
+  </h2>
+
+  <mat-dialog-content>
+    <div *ngIf="data.dialogType === 'help'">
+      <app-dialog-content-help [data]="data"></app-dialog-content-help>
+    </div>
+    <div *ngIf="data.dialogType === 'card'">
+      <app-dialog-content-card [data]="data"></app-dialog-content-card>
+    </div>
+    <div *ngIf="data.dialogType === 'person'">
+      <app-dialog-content-person [data]="data"></app-dialog-content-person>
+    </div>
+    <div *ngIf="data.dialogType === 'contact'">
+
+      <!-- contact form -->
+      <app-team-selector [multiple]="false"></app-team-selector>
+      <mat-form-field>
+        <input matInput placeholder="Jou email (om een reactie te kunnen ontvangen)" [formControl]="emailCtrl" required>
+        <mat-error *ngIf="emailCtrl.invalid">{{ getContactFormErrorMessage(emailCtrl) }}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Betreft" [formControl]="subjectCtrl" required>
+        <mat-error *ngIf="subjectCtrl.invalid">{{ getContactFormErrorMessage(subjectCtrl) }}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Bericht" [formControl]="messageCtrl"></textarea>
+        <mat-error *ngIf="messageCtrl.invalid">{{ getContactFormErrorMessage(messageCtrl) }}</mat-error>
+      </mat-form-field>
+      <!-- /contact form -->
+
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions cdkFocusRegionstart>
+    <button mat-button
+            (click)="close()"
+            type="button">
+      {{ closeButtonText }}
+    </button>
+
+    <!-- contact form submit button-->
+    <div class="tooltip-wrapper" [matTooltip]="!contactForm.valid ? 'Het contactformulier is nog niet volledig ingevuld!' : null">
+      <button mat-button
+              *ngIf="data.dialogType === 'contact'"
+              type="submit"
+              color="primary"
+              [disabled]="!contactForm.valid">
+        Versturen
+      </button>
+    </div>
+    <!-- /contact form submit button-->
+
+  </mat-dialog-actions>
+
+</form>

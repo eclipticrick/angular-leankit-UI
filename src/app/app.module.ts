@@ -20,19 +20,8 @@ import { FooterComponent } from './components/parts/footer/footer.component';
 import { NavItemsComponent } from './components/parts/navbar/nav-items/nav-items.component';
 import { BacklogComponent } from './components/pages/backlog/backlog.component';
 import { DoingComponent } from './components/pages/doing/doing.component';
-
-// services
-import { LeankitService } from './services/leankit.service';
-import { DataService } from './services/data.service';
-
-// pipes
-import { FilterPipe } from './pipes/filter.pipe';
-import { FilterOnKeyPipe } from './pipes/filter-on-key.pipe';
-import { FilterCardsFromLanePipe } from './pipes/filter-cards-from-lane.pipe';
 import { CardComponent } from './components/parts/card/card.component';
 import { LoadingComponent } from './components/parts/loading/loading.component';
-import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
-import {TeamService} from './services/team.service';
 import { TeamSelectorComponent } from './components/parts/team-selector/team-selector.component';
 import { HeaderComponent } from './components/parts/header/header.component';
 import { CardListComponent } from './components/parts/card-list/card-list.component';
@@ -41,7 +30,18 @@ import { DialogComponent } from './components/parts/dialog/dialog.component';
 import { DialogContentHelpComponent } from './components/parts/dialog/dialog-content-help/dialog-content-help.component';
 import { DialogContentCardComponent } from './components/parts/dialog/dialog-content-card/dialog-content-card.component';
 import { DialogContentPersonComponent } from './components/parts/dialog/dialog-content-person/dialog-content-person.component';
-import { DialogContentContactComponent } from './components/parts/dialog/dialog-content-contact/dialog-content-contact.component';
+
+// services
+import { LeankitService } from './services/leankit.service';
+import { DataService } from './services/data.service';
+import { TeamService } from './services/team.service';
+
+// pipes
+import { FilterPipe } from './pipes/filter.pipe';
+import { FilterOnKeyPipe } from './pipes/filter-on-key.pipe';
+import { FilterCardsFromLanePipe } from './pipes/filter-cards-from-lane.pipe';
+import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
+
 
 @NgModule({
   declarations: [
@@ -65,8 +65,7 @@ import { DialogContentContactComponent } from './components/parts/dialog/dialog-
     DialogComponent,
     DialogContentHelpComponent,
     DialogContentCardComponent,
-    DialogContentPersonComponent,
-    DialogContentContactComponent
+    DialogContentPersonComponent
   ],
   imports: [
     BrowserModule,                       // default
