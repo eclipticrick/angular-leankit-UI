@@ -35,6 +35,8 @@
   mat-dialog-actions.mat-dialog-actions {
     display: flex;
     justify-content: flex-end;
+    position: relative;
+    @include box-shadow($angular-card-box-shadow);
     button {
 
     }
