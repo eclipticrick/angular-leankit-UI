@@ -1,6 +1,6 @@
 <mat-card class="compact no-select">
   <div class="padding">
-    <h3 class="no-margin flex flex-align-vertical">
+    <h3 class="no-margin flex align-items-center">
       <span>
         <span *ngIf="type === 'epic'">De <span class="help theme-fg-accent" [matTooltip]="'Wat is een ' + type + '?'" (click)="dialog.showDialog('help', { questionType: type })">{{ type }}</span> kaarten</span>
         <span *ngIf="type === 'nonEpic'">De andere kaarten</span>
@@ -21,6 +21,7 @@
   <ng-template #loadingCards>
     <app-loading></app-loading>
   </ng-template>
+
   <mat-nav-list *ngIf="cards | async; else loadingCards" class="no-padding">
     <div *ngIf="!(cards | async)?.length" class="text-center">
       Er zijn nog geen {{ type  ? type : '' }} kaarten {{ lane ? 'in de ' + lane + ' lane' : ''}}

@@ -5,9 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class BeautifyDatePipe implements PipeTransform {
 
-  transform(date: Date, args?: any): any {
+  transform(
+    date: any, // Date or string that can be converted to Date
+    args?: any
+  ): any {
 
-    if (typeof date === 'undefined') return 'Loading...';
+    if (typeof date === 'undefined' || date === null) return 'Loading...';
+    if (typeof date === 'string') date = new Date(date);
 
     const DateDiff = {
       isSameDay: (d1, d2) => (

@@ -11,3 +11,8 @@
   -webkit-transform: $transform;
   transform: $transform;
 }
+
+@mixin position-sticky() {
+  position: -webkit-sticky;
+  position: sticky;
+}

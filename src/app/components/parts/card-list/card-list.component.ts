@@ -30,7 +30,6 @@ export class CardListComponent implements OnInit {
     if (!this.pages) this.pages = false;
 
     this.cards = this.dataSvc.getCards(this.board.id, this.lane ? this.lane : Lane.all, this.type ? this.type : CardType.all);
-    this.cards.then(x => console.log(x));
   }
 
   navigateToPageAndSelectTeam(page: string, boardId: string) {

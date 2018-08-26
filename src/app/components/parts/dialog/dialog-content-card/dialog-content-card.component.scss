@@ -2,27 +2,109 @@
 
 .content-container {
   margin: -24px;
-}
-
-mat-tab-group.mat-tab-group {
-  /deep/ {
-    mat-tab-header.mat-tab-header {
-      border-bottom: 0;
-      @include box-shadow($angular-card-box-shadow);
-      .mat-tab-label-container > .mat-tab-list > .mat-tab-labels > .mat-tab-label {
-        flex: 1;
-        mat-icon {
-          margin-right: 6px;
+  mat-tab-group.mat-tab-group {
+    /deep/ {
+      mat-tab-header.mat-tab-header {
+        user-select: none;
+        border-bottom: 0;
+        @include position-sticky();
+        top: -24px;
+        z-index: 99999;
+        @include box-shadow($angular-card-box-shadow);
+        .mat-tab-label-container > .mat-tab-list > .mat-tab-labels > .mat-tab-label {
+          flex: 1;
+          mat-icon {
+            margin-right: 6px;
+          }
         }
       }
-    }
-    mat-tab-body.mat-tab-body {
-      .mat-tab-body-content {
-        padding: 24px;
+      mat-tab-body.mat-tab-body {
+        .mat-tab-body-content {
+          padding: 24px;
+          mat-slide-toggle.mat-slide-toggle.with-icon-next-to-it {
+            max-width: calc(100% - 40px); // todo: figure out a way to fit the slider & icon without using this calc()ulation
+          }
+
+          button.contact-button {
+            width: 100%;
+            margin-top: 12px;
+          }
+
+          mat-divider.with-margin {
+            margin: 16px auto;
+          }
+          span.info {
+            display: block;
+            margin-bottom: 12px;
+            overflow: hidden;
+            position: relative;
+
+            button.show-more {
+              position: absolute;
+              width: 100%;
+              bottom: 0;
+              display: none;
+            }
+            &.collapsed {
+              max-height: 36px;
+              > button.show-more {
+                display: block;
+              }
+            }
+            > span {
+              display: block;
+              span.faded {
+                opacity: .7;
+              }
+            }
+            > span:first-child {
+              opacity: .7;
+              font-size: 13px;
+              margin-bottom: 3px;
+              user-select: none;
+            }
+            > span:last-child {
+              display: flex;
+              align-items: center;
+              &.description {
+                display: block;
+                align-items: unset;
+                > *:first-child {
+                  margin-top: 0;
+                }
+              }
+              > span {
+                margin-right: 4px;
+                &:last-child {
+                  margin-right: 0;
+                }
+              }
+              > span.color {
+                margin: 1px 8px 3px 2px;
+                display: inline-block;
+                border-radius: 50%;
+                width: 17px;
+                height: 17px;
+                box-shadow: $angular-card-box-shadow, 0 0 0 3px rgba(255, 255, 255, .4) inset;
+              }
+              > span.person {
+                margin: 1px 8px 3px 2px;
+                display: inline-block;
+                border-radius: 50%;
+                width: 24px;
+                height: 24px;
+                overflow: hidden;
+                box-shadow: $angular-card-box-shadow, 0 0 0 3px rgba(255, 255, 255, .4) inset;
+                > img {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
 }
-.mat-tab-label {
-  flex: 1
-}
+
+

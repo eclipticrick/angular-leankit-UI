@@ -41,6 +41,10 @@ export class DataService {
     return this.leankit.getCard(cardId).then(cardInfo => !cardInfo.parentCards.length);
   }
 
+  getParentCards(cardId: number): Promise<any> {
+    return this.leankit.getParentCards(cardId);
+  }
+
   getChildCards(cardId: number): Promise<any> {
     return this.leankit.getChildCards(cardId);
   }

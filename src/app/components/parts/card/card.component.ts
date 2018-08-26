@@ -9,6 +9,16 @@ import {DialogService} from '../../../services/dialog.service';
 })
 export class CardComponent implements OnInit {
   @Input() layout: string;
+
+  /**
+   * This component expect a FULL card
+   *
+   * meaning: when you get a card list from the leankit API (  dataSvc.getCards(boardId)  )
+   *          you get a list of cards   without   all the information
+   *          you then have to get the card info to get the FULL card object
+   *          this is done by calling the (  dataService.getCardInfo(cardId)  )
+   *          the card returned from this can be used as input for this component
+   * */
   @Input() card: any;
 
   tasks: Promise<any>;

@@ -22,7 +22,8 @@
   $color-accent: mat-color($accent);
   $color-warn: mat-color($warn);
 
-  // Use mat-color to extract individual colors from a palette as necessary.
+  // white on light theme, black on dark theme
+  mat-tab-group.mat-tab-group.theme-bg-on-tabs > mat-tab-header.mat-tab-header,
   .theme-bg { background: $color-background; }
   .theme-card-bg { background: $color-card; }
 

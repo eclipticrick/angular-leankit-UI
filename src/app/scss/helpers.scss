@@ -39,7 +39,10 @@ h1, h2, h3, h4, h4, h6, p {
 .flex {
   display: flex;
 }
-.flex.flex-align-vertical {
+.flex.space-between {
+  justify-content: space-between;
+}
+.flex.align-items-center {
   align-items: center;
 }
 .flex-spacer {
