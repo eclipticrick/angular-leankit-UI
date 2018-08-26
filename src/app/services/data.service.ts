@@ -75,8 +75,9 @@ export class DataService {
   }
 
   getAllTasksFromCardAndAllChildCards(cardId: number): Promise<any> {
+    const promises = [];
+    promises.push(this.getCardTasks(cardId));
     return this.getAllChildCards(cardId).then(cards => {
-      const promises = [];
       cards.forEach(card => {
         promises.push(this.getCardTasks(card.id));
       });

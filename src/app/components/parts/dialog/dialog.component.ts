@@ -55,6 +55,7 @@ export class DialogComponent {
     } else if (data.dialogType === 'contact') {
       this.title = 'Contact';
       this.closeButtonText = 'Annuleren';
+      if (data.team) team.setSelectedTeam(data.team);
       if (data.email) contactSvc.email = data.email;
       if (data.subject) contactSvc.subject = data.subject;
       if (data.message) contactSvc.message = data.message;
@@ -65,10 +66,11 @@ export class DialogComponent {
     this.dialogRef.close();
   }
 
-  onContactFormSubmit() {
-    // todo: email messge here!
+  onContactFormSubmit($event) {
+    // todo: email message here!
 
-    console.log('submitted!', this.contactForm);
+    console.log('submitted!', this.contactForm, $event);
+    console.log('submitted!', this.contactForm.controls);
     console.log('|-- teamsBoardId:', this.team.getSelectedTeam());
     console.log('|-- email (from):', this.contactForm.controls.email.value);
     console.log('|-- subject:', this.contactForm.controls.subject.value);

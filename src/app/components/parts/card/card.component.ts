@@ -21,6 +21,8 @@ export class CardComponent implements OnInit {
    * */
   @Input() card: any;
 
+  @Input() extraInfo?: any;
+
   tasks: Promise<any>;
   childCards: Promise<any>;
   allChildCards: Promise<any>;

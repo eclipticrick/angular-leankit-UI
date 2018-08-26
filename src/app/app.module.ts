@@ -35,10 +35,11 @@ import { DialogContentPersonComponent } from './components/parts/dialog/dialog-c
 import { LeankitService } from './services/leankit.service';
 import { DataService } from './services/data.service';
 import { TeamService } from './services/team.service';
+import { ContactService } from './services/contact.service';
 
 // pipes
 import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
-import {ContactService} from './services/contact.service';
+import { FilterOnKeyIsValuePipe } from './pipes/filter-on-key-is-value.pipe';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import {ContactService} from './services/contact.service';
     DialogComponent,
     DialogContentHelpComponent,
     DialogContentCardComponent,
-    DialogContentPersonComponent
+    DialogContentPersonComponent,
+    FilterOnKeyIsValuePipe
   ],
   imports: [
     BrowserModule,                       // default

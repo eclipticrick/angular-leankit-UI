@@ -18,26 +18,32 @@
           }
         }
       }
+
       mat-tab-body.mat-tab-body {
         .mat-tab-body-content {
           padding: 24px;
+
           mat-slide-toggle.mat-slide-toggle.with-icon-next-to-it {
             max-width: calc(100% - 40px); // todo: figure out a way to fit the slider & icon without using this calc()ulation
           }
+          mat-divider.with-margin {
+            margin: 16px auto;
+          }
 
+          /**
+           * TAB 1
+           */
           button.contact-button {
             width: 100%;
             margin-top: 12px;
           }
 
-          mat-divider.with-margin {
-            margin: 16px auto;
-          }
+
           span.info {
+            position: relative;
             display: block;
             margin-bottom: 12px;
             overflow: hidden;
-            position: relative;
 
             button.show-more {
               position: absolute;
@@ -80,8 +86,8 @@
                 }
               }
               > span.color {
-                margin: 1px 8px 3px 2px;
                 display: inline-block;
+                margin: 1px 8px 3px 2px;
                 border-radius: 50%;
                 width: 17px;
                 height: 17px;
@@ -96,8 +102,8 @@
                 }
               }
               span.person {
-                margin: 1px 8px 3px 2px;
                 display: inline-block;
+                margin: 1px 8px 3px 2px;
                 border-radius: 50%;
                 width: 24px;
                 height: 24px;
@@ -110,8 +116,35 @@
               }
             }
           }
+
+
+          /**
+           * TAB 2
+           */
+          mat-list.mat-list {
+            h3.mat-subheader { }
+            mat-list-item.mat-list-item {
+              height: 40px;
+              mat-icon.mat-icon {
+                width: 18px;
+                height: 18px;
+                font-size: 18px;
+                padding: 0;
+                user-select: none;
+              }
+              h4.mat-line {
+                font-size: 13px;
+              }
+              p.mat-line {
+                font-size: 11px;
+                opacity: .7;
+              }
+            }
+          }
+
         }
       }
+
     }
   }
 }

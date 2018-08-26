@@ -1,5 +1,5 @@
 
-<form (ngSubmit)="onContactFormSubmit()" [formGroup]="contactForm">
+<form [formGroup]="contactForm">
 
   <h2 mat-dialog-title class="theme-bg-primary">
   <span class="icon-and-title fg-white">
@@ -53,7 +53,8 @@
               *ngIf="data.dialogType === 'contact'"
               type="submit"
               color="primary"
-              [disabled]="!contactForm.valid">
+              [disabled]="!contactForm.valid"
+              (click)="onContactFormSubmit()">
         Versturen
       </button> <!-- || data.dialogType === 'card' -->
     </div>

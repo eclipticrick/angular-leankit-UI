@@ -13,13 +13,13 @@
         <div class="row">
           <div class="col-12" *ngIf="(card | async)?.title">
             <span class="info">
-              <span>Story titel</span>
+              <span>Story</span>
               <span>{{ (card | async)?.title }}</span>
             </span>
           </div>
           <div class="col-12" *ngIf="(card | async)?.description">
             <span class="info" [class.collapsed]="descriptionCollapsed" #descriptionElement>
-              <span>Story Omschrijving</span>
+              <span>Omschrijving</span>
               <span class="description" [innerHTML]="(card | async)?.description"></span> <!-- todo: sanitize -->
               <button *ngIf="descriptionCollapsed" mat-flat-button type="button" class="show-more" (click)="expandDescription()">Weergeef omschrijving</button>
             </span>
@@ -32,32 +32,33 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-12 col-md-6" *ngIf="(card | async)?.type">
+        <div class="row" *ngIf="data.info">
+          <div class="col-12 col-md-6">
             <span class="info">
-              <span>Soort story</span>
-              <span>
-                <span class="color" [style.background-color]="(card | async)?.color"></span> <!-- todo: sanitize color value -->
-                <span>[todo] epic</span>
-                <span class="faded">({{ (card | async)?.type?.title }})</span>
-              </span>
-            </span>
-          </div>
-          <div class="col-12 col-md-6" *ngIf="(card | async)?.lane">
-            <span class="info">
-              <span>Story Categorie</span>
-              <span>
-                <span>[todo] backlog</span>
-                <span class="faded">({{ (card | async)?.lane?.laneClassType }})</span>
-              </span>
+              <span>Categorie</span>
+              <span>{{ data.info.lane ? data.info.lane : (card | async)?.lane ? (card | async)?.lane?.laneClassType : 'unknown' }}</span>
             </span>
           </div>
           <div class="col-12 col-md-6" *ngIf="(card | async)?.board">
             <span class="info">
               <span>Deze story maakt deel uit van het volgende bord</span>
               <span>
-                <span>{{ boardId ? config.boards[boardId].displayName : 'Loading...' }}</span>
-                <span class="faded">({{ (card | async)?.board?.title }})</span>
+                <span [matTooltip]="boardId ? config.boards[boardId].displayName : 'Loading...'">{{ (card | async)?.board?.title }}</span>
+              </span>
+            </span>
+          </div>
+          <div class="col-12 col-md-6">
+            <span class="info">
+              <span>Is deze story een epic?</span>
+              <span>{{ data.info.type === 'epic' ? 'Ja' : 'Nee' }}</span>
+            </span>
+          </div>
+          <div class="col-12 col-md-6" *ngIf="(card | async)?.type">
+            <span class="info">
+              <span>Soort story</span>
+              <span>
+                <span class="color" [style.background-color]="(card | async)?.color"></span> <!-- todo: sanitize color value -->
+                <span>{{ (card | async)?.type?.title }}</span>
               </span>
             </span>
           </div>
@@ -85,7 +86,7 @@
           <div class="col-12">
             <mat-card class="no-padding">
               <mat-nav-list class="no-padding">
-                <app-card *ngFor="let card of parentCards | async" [card]="card" [layout]="'row'"></app-card>
+                <app-card *ngFor="let card of parentCards | async" [card]="card" [extraInfo]="{ lane: data.info.lane, type: data.info.type }" [layout]="'row'"></app-card>
               </mat-nav-list>
             </mat-card>
           </div>
@@ -191,7 +192,7 @@
                     class="contact-button"
                     color="primary"
                     type="button"
-                    (click)="dialog.showDialog('contact', { subject: 'Betreft story: ' + cardData.title })">
+                    (click)="dialog.showDialog('contact', { team: boardId, subject: 'Betreft story: ' + cardData.title })">
               <mat-icon>mail</mat-icon> Neem contact op over deze story
             </button>
           </div>
@@ -201,7 +202,7 @@
                     class="contact-button"
                     color="accent"
                     type="button"
-                    (click)="dialog.showDialog('contact', { subject: 'Aanmelding review' })">
+                    (click)="dialog.showDialog('contact', { team: boardId, subject: 'Aanmelding review' })">
               <mat-icon>supervisor_account</mat-icon> Meld je aan voor de volgende review
             </button>
           </div>
@@ -222,69 +223,43 @@
           <div class="col-12">
 
             <div class="flex space-between align-items-center">
-              <mat-slide-toggle class="with-icon-next-to-it">Weergeef ook de taken van de onderliggende stories</mat-slide-toggle>
+              <mat-slide-toggle class="with-icon-next-to-it" #taskToggle>Weergeef ook de taken van de onderliggende stories</mat-slide-toggle>
               <button type="button" mat-icon-button matTooltip="Wat word er bedoeld met onderliggende stories?">
                 <mat-icon>help</mat-icon>
               </button>
             </div>
 
           </div>
-          <div class="col-12">
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+          <div class="col-12" *ngIf="(taskToggle.checked ? (allTasksFromCardAndAllChildCards | async) : (tasks | async)) as taskList">
+            <div *ngIf="taskList; else loading">
+              <span *ngIf="!taskList.length">
+                Er zijn geen taken voor deze story
+                <span *ngIf="taskToggle.checked"> en de onderliggende stories</span>
+              </span>
 
+              <mat-divider *ngIf="taskList.length" class="with-margin"></mat-divider>
+
+              <mat-list>
+
+                <h3 *ngIf="(taskList | filterOnKeyIsValue:'isDone':true).length" mat-subheader>Voltooide taken</h3>
+                <mat-list-item *ngFor="let task of (taskList | filterOnKeyIsValue:'isDone':true)">
+                  <mat-icon mat-list-icon>check_box</mat-icon>
+                  <h4 mat-line>{{ task.title }}</h4>
+                  <p mat-line>laatste activiteit: {{ task.updatedOn | beautifyDate }}</p>
+                </mat-list-item>
+
+                <mat-divider *ngIf="(taskList | filterOnKeyIsValue:'isDone':true).length && (taskList | filterOnKeyIsValue:'isDone':false).length" class="with-margin"></mat-divider>
+
+                <h3 mat-subheader>Onvoltooide taken</h3>
+                <mat-list-item *ngFor="let task of (taskList | filterOnKeyIsValue:'isDone':false)">
+                  <mat-icon mat-list-icon>check_box_outline_blank</mat-icon>
+                  <h4 mat-line>{{ task.title }}</h4>
+                  <p mat-line>laatste activiteit: {{ task.updatedOn | beautifyDate }}</p>
+                </mat-list-item>
+
+              </mat-list>
+
+            </div>
           </div>
         </div>
       </div>

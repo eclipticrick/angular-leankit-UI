@@ -2,12 +2,17 @@
   <div class="padding">
     <h3 class="no-margin flex align-items-center">
       <span>
-        <span *ngIf="type === 'epic'">De <span class="help theme-fg-accent" [matTooltip]="'Wat is een ' + type + '?'" (click)="dialog.showDialog('help', { questionType: type })">{{ type }}</span> kaarten</span>
+        <span *ngIf="type === 'epic'">
+          De <span class="help theme-fg-accent" [matTooltip]="'Wat is een ' + type + '?'" (click)="dialog.showDialog('help', { questionType: type })">{{ type }}</span> kaarten
+        </span>
         <span *ngIf="type === 'nonEpic'">De andere kaarten</span>
         <span *ngIf="type === 'all'">Alle kaarten</span>
 
         {{ lane ? 'in de ' : ''}}
-        <span *ngIf="lane" class="help theme-fg-accent" [matTooltip]="'Wat betekent ' + lane + '?'" (click)="dialog.showDialog('help', { questionType: lane })">{{ lane }}</span>
+        <span *ngIf="lane"
+              class="help theme-fg-accent"
+              [matTooltip]="'Wat betekent ' + lane + '?'"
+              (click)="dialog.showDialog('help', { questionType: lane })">{{ lane }}</span>
         {{ lane ? ' lane' : ''}}
 
         van
@@ -26,11 +31,17 @@
     <div *ngIf="!(cards | async)?.length" class="text-center">
       Er zijn nog geen {{ type  ? type : '' }} kaarten {{ lane ? 'in de ' + lane + ' lane' : ''}}
     </div>
-    <app-card *ngFor="let card of (cards | async | slice:cardsOffset:cardsLimit)" [card]="card" [layout]="'row'"></app-card>
+    <app-card *ngFor="let card of (cards | async | slice:cardsOffset:cardsLimit)" [card]="card" [layout]="'row'" [extraInfo]="{ lane: lane, type: type }"></app-card>
   </mat-nav-list>
 
   <div class="button-container">
-    <button *ngIf="!pages" class="more" mat-raised-button color="primary" (click)="navigateToPageAndSelectTeam(lane, board.id)">Weergeef alle epics <span class="desktop-only">van <span style="font-weight: bold">{{ config.boards[board.id].displayName }}</span></span> in doing >></button>
+    <button *ngIf="!pages"
+            class="more"
+            mat-raised-button
+            color="primary"
+            (click)="navigateToPageAndSelectTeam(lane, board.id)">
+      Weergeef alle epics <span class="desktop-only">van <span style="font-weight: bold">{{ config.boards[board.id].displayName }}</span></span> in doing >>
+    </button>
     <mat-paginator *ngIf="pages"
                    [length]="(cards | async)?.length"
                    [pageSize]="4"
