@@ -100,7 +100,7 @@
         <div class="row">
           <div class="col-12 col-md-6" *ngIf="(card | async)?.createdBy">
             <span class="info">
-              <span>Gemaakt door</span>
+              <span>Aangemaakt door</span>
               <span>
                 <span class="person">
                   <img [src]="(card | async)?.createdBy?.avatar">
@@ -111,7 +111,7 @@
           </div>
           <div class="col-12 col-md-6">
             <span class="info">
-              <span>Gemaakt</span>
+              <span>Aangemaakt</span>
               <span>{{ (card | async)?.createdOn | beautifyDate }}</span>
             </span>
           </div>
@@ -157,9 +157,24 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="(card | async)?.assignedUsers">
           <div class="col-12">
-            gekoppelde gebruikers
+            <span class="info" [style.margin-bottom]="(card | async)?.assignedUsers.length ? 'auto' : '0'">
+              <span *ngIf="!(card | async)?.assignedUsers.length">
+                Er zijn nog geen medewerkers toegewezen aan deze story
+              </span>
+              <span *ngIf="(card | async)?.assignedUsers.length">
+                Hieronder staan de gebruikers die zijn toegewezen aan deze story
+              </span>
+              <span class="person-container">
+                <span *ngFor="let person of (card | async)?.assignedUsers">
+                  <span class="person">
+                    <img [src]="person.avatar">
+                  </span>
+                  <span>{{ person.fullName }}</span>
+                </span>
+              </span>
+            </span>
           </div>
         </div>
 
@@ -169,16 +184,24 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="(card | async) as cardData">
 
           <div class="col-12 col-md-6">
-            <button mat-stroked-button class="contact-button" color="primary" type="button">
+            <button mat-raised-button
+                    class="contact-button"
+                    color="primary"
+                    type="button"
+                    (click)="dialog.showDialog('contact', { subject: 'Betreft story: ' + cardData.title })">
               <mat-icon>mail</mat-icon> Neem contact op over deze story
             </button>
           </div>
 
           <div class="col-12 col-md-6">
-            <button mat-stroked-button class="contact-button" color="accent" type="button">
+            <button mat-raised-button
+                    class="contact-button"
+                    color="accent"
+                    type="button"
+                    (click)="dialog.showDialog('contact', { subject: 'Aanmelding review' })">
               <mat-icon>supervisor_account</mat-icon> Meld je aan voor de volgende review
             </button>
           </div>

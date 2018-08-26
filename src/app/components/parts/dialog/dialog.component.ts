@@ -1,8 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { APP_CONFIG } from '../../../app.config';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {TeamService} from '../../../services/team.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { TeamService } from '../../../services/team.service';
+import { ContactService } from '../../../services/contact.service';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-dialog',
@@ -15,16 +17,20 @@ export class DialogComponent {
   icon;
 
   contactForm: FormGroup;
+  // email;
   emailCtrl = new FormControl('', [ Validators.required, Validators.email ]);
+  // subject;
   subjectCtrl = new FormControl('', [ Validators.required ]);
+  // message;
   messageCtrl = new FormControl('', [ Validators.required ]);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    public contactSvc: ContactService,
+    public dataSvc: DataService,
     public dialogRef: MatDialogRef<DialogComponent>,
     private formBuilder: FormBuilder,
     private team: TeamService) {
-
     this.contactForm = formBuilder.group({
       email: this.emailCtrl,
       subject: this.subjectCtrl,
@@ -41,16 +47,17 @@ export class DialogComponent {
 
     } else if (data.dialogType === 'card') {
       this.icon = 'info';
-      // data.id;
+      this.dataSvc.getCardInfo(data.id).then(card => this.title = card.title);
 
     } else if (data.dialogType === 'person') {
       this.icon = 'info';
-      // data.id;
 
     } else if (data.dialogType === 'contact') {
       this.title = 'Contact';
       this.closeButtonText = 'Annuleren';
-
+      if (data.email) contactSvc.email = data.email;
+      if (data.subject) contactSvc.subject = data.subject;
+      if (data.message) contactSvc.message = data.message;
     }
   }
 

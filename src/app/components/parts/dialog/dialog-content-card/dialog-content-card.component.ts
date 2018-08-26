@@ -1,5 +1,6 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../../../../services/data.service';
+import { DialogService } from '../../../../services/dialog.service';
 
 @Component({
   selector: 'app-dialog-content-card',
@@ -23,7 +24,7 @@ export class DialogContentCardComponent implements OnInit {
 
   descriptionCollapsed = true;
 
-  constructor(private dataSvc: DataService) { }
+  constructor(private dataSvc: DataService, public dialog: DialogService) { }
 
   ngOnInit() {
     this.cardId = Number(this.data.id);

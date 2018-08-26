@@ -9,7 +9,7 @@ export class DialogService {
 
   constructor(private dialog: MatDialog) { }
 
-  showDialog(dialogType: string, data: any) {
+  showDialog(dialogType: string, data?: any) {
     this.openDialog({
       dialogType: dialogType,
       ...data
@@ -21,4 +21,5 @@ export class DialogService {
     if (dialogData) dialogConfig.data = dialogData;
     return this.dialog.open(DialogComponent, dialogConfig);
   }
+
 }

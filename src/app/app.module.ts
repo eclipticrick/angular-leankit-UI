@@ -38,6 +38,7 @@ import { TeamService } from './services/team.service';
 
 // pipes
 import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
+import {ContactService} from './services/contact.service';
 
 
 @NgModule({
@@ -70,7 +71,7 @@ import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
     HttpClientModule,                    // replacement of HttpModule
     MaterialModule                       // material design components
   ],
-  providers: [ LeankitService, DataService, TeamService ],
+  providers: [ LeankitService, DataService, TeamService, ContactService ],
   bootstrap: [ AppComponent ],
   entryComponents: [ DialogComponent ]
 })
