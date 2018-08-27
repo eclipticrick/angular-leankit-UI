@@ -285,7 +285,7 @@
           <div class="col-12">
 
             <div class="flex space-between align-items-center">
-              <h4 class="information" *ngIf="(allChildCards | async)?.length">Hieronder is een overzicht van de onderliggende user stories</h4>
+              <h4 class="information" *ngIf="(allChildCards | async)?.length">Hieronder is een overzicht van de direct onderliggende user stories</h4>
               <h4 class="information" *ngIf="!(allChildCards | async)?.length">Deze user story heeft geen onderliggende user stories</h4>
               <button type="button"
                       mat-icon-button
@@ -295,11 +295,13 @@
               </button>
             </div>
 
+            <mat-divider class="with-margin" *ngIf="(childCards | async)?.length"></mat-divider>
+
           </div>
-          <div class="col-12">
+          <div class="col-12" *ngIf="childCards | async">
             <mat-card class="no-padding">
               <mat-nav-list class="no-padding">
-                <app-card *ngFor="let card of allChildCards | async" [card]="card" [extraInfo]="{ lane: data.info.lane, type: data.info.type }"></app-card>
+                <app-card *ngFor="let card of childCards | async" [card]="card" [extraInfo]="{ lane: data.info.lane, type: data.info.type }"></app-card>
               </mat-nav-list>
             </mat-card>
           </div>
