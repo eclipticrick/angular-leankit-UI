@@ -1,1 +1,19 @@
 @import '../../../scss/theme';
+
+mat-toolbar.mat-toolbar#footer {
+  @include box-shadow($angular-card-box-shadow-inset);
+  mat-toolbar-row.mat-toolbar-row {
+    height: auto;
+    margin: 24px auto 12px;
+    button {
+      width: 100%;
+      margin-bottom: 12px;
+      line-height: 64px;
+      /deep/ span.mat-button-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}

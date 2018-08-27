@@ -17,6 +17,13 @@
             matTooltip="Contacteer ons">
       <mat-icon>mail</mat-icon>
     </button>
+    <button mat-raised-button
+            class="contact"
+            (click)="dialog.showDialog('contact', { subject: 'Aanmelding review' })"
+            matTooltip="Meld je aan voor de volgende review"
+            color="accent">
+      <mat-icon>supervisor_account</mat-icon>
+    </button>
 
     <button mat-icon-button (click)="setTheme(false)">
       <mat-icon>wb_sunny</mat-icon>

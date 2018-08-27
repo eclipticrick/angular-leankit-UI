@@ -47,10 +47,15 @@ mat-toolbar#navbar {
       max-width: 168px; // for 3 menu items
       // todo: calculate somhow?
     }
-    button.mat-icon-button.contact {
-      @include box-shadow($angular-card-box-shadow);
-      background: rgba(255, 255, 255, .24);
+    button.contact {
+      min-width: 0;
+      padding: 0 6px;
       margin-right: 6px;
+      border-radius: 50%;
+      // @include box-shadow($angular-card-box-shadow, 0 0 0 40px rgba(255, 255, 255, .24) inset);
+      // @include box-shadow($angular-card-box-shadow);
+      // background: rgba(255, 255, 255, .24);
+      // margin-right: 6px;
     }
   }
 

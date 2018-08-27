@@ -1,4 +1,5 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { DialogService } from '../../../services/dialog.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +8,7 @@ import {Component, ElementRef, OnInit} from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(public element: ElementRef) { }
+  constructor(public element: ElementRef, public dialog: DialogService) { }
 
   ngOnInit() {
   }

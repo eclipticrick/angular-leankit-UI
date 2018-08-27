@@ -5,45 +5,37 @@ export const APP_CONFIG = {
   questions: {
     'epic' : {
       question: 'Wat is een EPIC?',
-      answer: 'Een samenhangend geheel van user stories wat als geheel waarde oplevert voor de business.'
+      answer: `
+        Een epic is een samenhangend geheel van user stories wat als geheel waarde oplevert voor de business.
+        <br><br>
+        Een epic is zelf ook een user story, maar heeft vaak meerdere onderliggende user stories & taken.
+      `
     },
     'story' : {
       question: 'Wat is een user story?',
-      answer: 'Goeie vraag.'
+      answer: `
+        Een user story is een korte beschrijving (story) van wat een gebruiker (user) wil.
+      `
     },
     'doing' : {
       question: 'Waar staat doing voor?',
-      answer: 'Waar op dit moment aan gewerkt word.'
+      answer: `
+        Doing is de cateorie met user stories waar op dit moment aan gewerkt word.
+      `
     },
     'backlog' : {
       question: 'Waar staat backlog voor?',
-      answer: 'Voor onzin.'
+      answer: `
+        Backlog is de cateorie met user stories die uitgevoerd moeten worden tijdens de ontwikkeling van het product.
+      `
     },
     'onderliggende user story' : {
       question: 'Wat is een onderliggende user story?',
-      answer: 'bla bla bla'
+      answer: `
+        Een onderliggende user story komt vaak voor bij een epic user story. Het kan gezien worden als een deel-taak van de epic.
+      `
     }
   },
-
-  // // specify the NOT-FOUND and NO-DATA messages for the application
-  // messages: {
-  //   notFound: {
-  //     board: 'Het bord met het id {id} is niet gevonden', // unused
-  //     card: 'De kaart met het id {id} is niet gevonden', // unused
-  //   },
-  //   emptyData: {
-  //     cards: 'Er zijn geen kaarten om weer te geven', // unused
-  //     cardTitle: 'Naamloze kaart', // unused
-  //     cardDescription: 'Er is geen omschrijving bij deze kaart', // unused
-  //     cardTags: 'Er zijn geen tags aan deze kaart toegewezen', // unused
-  //     cardChildCards: 'Deze kaart heeft geen onderliggende kaarten', // unused
-  //     cardParentCards: 'Deze kaart is niet toegewezen aan een andere kaart', // unused
-  //     cardTasks: 'Er zijn geen taken toegewezen aan deze kaart', // unused
-  //     cardComments: 'Er is geen commentaar op deze kaart', // unused
-  //     cardHistory: 'Er is geen geschiedenis om weer te geven', // unused
-  //     cardUsers: 'Er zijn geen gebruikers toegewezen aan deze kaart' // unused
-  //   }
-  // },
 
   // specify which boards and their columns of cards should be shown in the APP
   boards: {
@@ -52,7 +44,7 @@ export const APP_CONFIG = {
     '656398449': {
       displayName: 'Tjeam Exp',
       epicCardTypes: [ 656511283, 679850713 ],
-      excludedCardTypes: [ 666699707 ],                    // temp: mendix excluded    todo: remove comment
+      excludedCardTypes: [ 666699707 ],
       excludedCards: [],
       includedLanes: {
         backlog: [

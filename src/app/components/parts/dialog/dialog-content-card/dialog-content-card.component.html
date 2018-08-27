@@ -257,7 +257,10 @@
                   <mat-icon mat-list-icon>check_box</mat-icon>
                   <h4 mat-line>{{ task.title }}</h4>
                   <p mat-line>laatste activiteit: {{ task.updatedOn | beautifyDate }}</p>
-                  <button *ngIf="task.containingCardId != cardId" mat-icon-button matTooltip="Bekijk de bijbehorende user story" (click)="dialog.showDialog('card', { id: task.containingCardId, info: { lane: data.info.lane, type: data.info.type } })">
+                  <button *ngIf="task.containingCardId != cardId"
+                          mat-icon-button
+                          matTooltip="Bekijk de bijbehorende user story"
+                          (click)="dialog.showDialog('card', { id: task.containingCardId, info: { lane: data.info.lane, type: data.info.type } })">
                     <mat-icon>info</mat-icon>
                   </button>
                 </mat-list-item>
@@ -269,7 +272,10 @@
                   <mat-icon mat-list-icon>check_box_outline_blank</mat-icon>
                   <h4 mat-line>{{ task.title }}</h4>
                   <p mat-line>laatste activiteit: {{ task.updatedOn | beautifyDate }}</p>
-                  <button *ngIf="task.containingCardId != cardId" mat-icon-button matTooltip="Bekijk de bijbehorende user story" (click)="dialog.showDialog('card', { id: task.containingCardId, info: { lane: data.info.lane, type: data.info.type } })">
+                  <button *ngIf="task.containingCardId != cardId"
+                          mat-icon-button
+                          matTooltip="Bekijk de bijbehorende user story"
+                          (click)="dialog.showDialog('card', { id: task.containingCardId, info: { lane: data.info.lane, type: data.info.type } })">
                     <mat-icon>info</mat-icon>
                   </button>
                 </mat-list-item>

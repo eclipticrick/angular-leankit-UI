@@ -1,43 +1,73 @@
-<!--<div class="container-fluid">
-  <div class="row theme-bg">
-    <div class="col-1 theme-bg">
-      <h6>theme-bg</h6>
-    </div>
-    <div class="col-1 theme-card-bg">
-      <h6>theme-card-bg</h6>
-    </div>
-    <div class="col-1 theme-fg">
-      <h6>theme-fg</h6>
-    </div>
-    <div class="col-1 theme-bg-primary">
-      <h6>theme-bg-primary</h6>
-    </div>
-    <div class="col-1 theme-fg-primary">
-      <h6>theme-fg-primary</h6>
-    </div>
-    <div class="col-1 theme-bg-accent">
-      <h6>theme-bg-accent</h6>
-    </div>
-    <div class="col-1 theme-fg-accent">
-      <h6>theme-fg-accent</h6>
-    </div>
-    <div class="col-1 theme-bg-warn">
-      <h6>theme-bg-warn</h6>
-    </div>
-    <div class="col-1 theme-fg-warn">
-      <h6>theme-fg-warn</h6>
-    </div>
-  </div>
-</div>-->
 
 <mat-toolbar id="footer" color="primary">
-
   <mat-toolbar-row>
-    <span>Column</span>
-    <span class="flex-spacer"></span>
-    <span>Column</span>
-    <span class="flex-spacer"></span>
-    <span>Column</span>
-  </mat-toolbar-row>
 
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <button mat-stroked-button
+                  class="contact-button"
+                  type="button"
+                  (click)="dialog.showDialog('contact')">
+            <span></span>
+            <span>Neem contact op met een van de teams</span>
+            <mat-icon>mail</mat-icon>
+          </button>
+        </div>
+        <div class="col-12 col-md-6">
+          <button mat-stroked-button
+                  class="contact-button"
+                  type="button"
+                  (click)="dialog.showDialog('contact', { subject: 'Feedback: ' })">
+            <mat-icon>feedback</mat-icon>
+            <span>Feedback</span>
+            <span></span>
+          </button>
+        </div>
+        <div class="col-12 col-md-6">
+          <button mat-stroked-button
+                  class="contact-button"
+                  type="button"
+                  (click)="dialog.showDialog('contact', { subject: 'Request a feature: ' })">
+            <span></span>
+            <span>Request a feature</span>
+            <mat-icon>add_comment</mat-icon>
+          </button>
+        </div>
+        <div class="col-12 col-md-6">
+          <button mat-stroked-button
+                  class="contact-button"
+                  type="button"
+                  (click)="dialog.showDialog('contact', { subject: 'Aanmelding review' })">
+            <mat-icon>supervisor_account</mat-icon>
+            <span>Meld je aan voor de volgende review</span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </mat-toolbar-row>
 </mat-toolbar>
+
+<!--
+<div class="col-12 col-md-6">
+  <button mat-raised-button
+          class="contact-button"
+          color="primary"
+          type="button"
+          (click)="dialog.showDialog('contact', { team: boardId, subject: 'Betreft user story: ' + cardData.title })">
+    <mat-icon>mail</mat-icon> Neem contact op over deze user story
+  </button>
+</div>
+
+<div class="col-12 col-md-6">
+  <button mat-raised-button
+          class="contact-button"
+          color="accent"
+          type="button"
+          (click)="dialog.showDialog('contact', { team: boardId, subject: 'Aanmelding review' })">
+    <mat-icon>supervisor_account</mat-icon> Meld je aan voor de volgende review
+  </button>
+</div>
+-->
