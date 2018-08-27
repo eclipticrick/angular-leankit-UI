@@ -43,24 +43,6 @@ export class DialogContentCardComponent implements OnInit {
     this.allTasksFromCardAndAllChildCards = this.dataSvc.getAllTasksFromCardAndAllChildCards(this.cardId);
 
     this.card.then(card => this.boardId = card.board.id);
-
-    // todo:  foreach task:
-    //        this.dataSvc.getCardTaskInfo(this.cardId);
-
-    console.log('=======================' + this.cardId + '===========================');
-    this.card
-      .then(x => console.log('==> card', x))  ;
-    this.parentCards
-      .then(x => console.log('==> parentCards', x));
-    this.childCards
-      .then(x => console.log('==> childCards', x));
-    this.allChildCards
-      .then(x => console.log('==> allChildCards', x));
-    this.tasks
-      .then(x => console.log('==> tasks', x));
-    this.allTasksFromCardAndAllChildCards
-      .then(x => console.log('==> allTasksFromCardAndAllChildCards', x));
-    setTimeout(console.log, 1500, '===========================================================\n');
   }
   expandDescription() {
     this.descriptionCollapsed = false;

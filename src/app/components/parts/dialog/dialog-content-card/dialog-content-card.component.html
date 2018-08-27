@@ -99,14 +99,14 @@
         </div>
 
         <div class="row">
-          <div class="col-12 col-md-6" *ngIf="(card | async)?.createdBy">
+          <div class="col-12 col-md-6" *ngIf="(card | async)?.createdBy as createdBy">
             <span class="info">
               <span>Aangemaakt door</span>
-              <span>
+              <span class="pointer" (click)="dialog.showDialog('person', { user: createdBy })">
                 <span class="person">
-                  <img [src]="(card | async)?.createdBy?.avatar">
+                  <img [src]="createdBy.avatar">
                 </span>
-                <span>{{ (card | async)?.createdBy?.fullName }}</span>
+                <span>{{ createdBy.fullName }}</span>
               </span>
             </span>
           </div>
@@ -116,14 +116,14 @@
               <span>{{ (card | async)?.createdOn | beautifyDate }}</span>
             </span>
           </div>
-          <div class="col-12 col-md-6" *ngIf="(card | async)?.movedBy">
+          <div class="col-12 col-md-6" *ngIf="(card | async)?.movedBy as movedBy">
             <span class="info">
               <span>Als laatst verplaatst door</span>
-              <span>
+              <span class="pointer" (click)="dialog.showDialog('person', { user: movedBy })">
                 <span class="person">
-                  <img [src]="(card | async)?.movedBy?.avatar">
+                  <img [src]="movedBy.avatar">
                 </span>
-                <span>{{ (card | async)?.movedBy?.fullName }}</span>
+                <span>{{ movedBy.fullName }}</span>
               </span>
             </span>
           </div>
@@ -133,14 +133,14 @@
               <span>{{ (card | async)?.movedOn | beautifyDate }}</span>
             </span>
           </div>
-          <div class="col-12 col-md-6" *ngIf="(card | async)?.updatedBy">
+          <div class="col-12 col-md-6" *ngIf="(card | async)?.updatedBy as updatedBy">
             <span class="info">
               <span>Als laatst aangepast door</span>
-              <span>
+              <span class="pointer" (click)="dialog.showDialog('person', { user: updatedBy })">
                 <span class="person">
-                  <img [src]="(card | async)?.updatedBy?.avatar">
+                  <img [src]="updatedBy.avatar">
                 </span>
-                <span>{{ (card | async)?.updatedBy?.fullName }}</span>
+                <span>{{ updatedBy.fullName }}</span>
               </span>
             </span>
           </div>
@@ -168,7 +168,9 @@
                 Hieronder staan de gebruikers die zijn toegewezen aan deze user story
               </span>
               <span class="person-container">
-                <span *ngFor="let person of (card | async)?.assignedUsers">
+                <span *ngFor="let person of (card | async)?.assignedUsers"
+                      class="pointer"
+                      (click)="dialog.showDialog('person', { user: person })">
                   <span class="person">
                     <img [src]="person.avatar">
                   </span>
@@ -255,6 +257,9 @@
                   <mat-icon mat-list-icon>check_box</mat-icon>
                   <h4 mat-line>{{ task.title }}</h4>
                   <p mat-line>laatste activiteit: {{ task.updatedOn | beautifyDate }}</p>
+                  <button *ngIf="task.containingCardId != cardId" mat-icon-button matTooltip="Bekijk de bijbehorende user story" (click)="dialog.showDialog('card', { id: task.containingCardId, info: { lane: data.info.lane, type: data.info.type } })">
+                    <mat-icon>info</mat-icon>
+                  </button>
                 </mat-list-item>
 
                 <mat-divider *ngIf="(taskList | filterOnKeyIsValue:'isDone':true).length && (taskList | filterOnKeyIsValue:'isDone':false).length" class="with-margin"></mat-divider>
@@ -264,6 +269,9 @@
                   <mat-icon mat-list-icon>check_box_outline_blank</mat-icon>
                   <h4 mat-line>{{ task.title }}</h4>
                   <p mat-line>laatste activiteit: {{ task.updatedOn | beautifyDate }}</p>
+                  <button *ngIf="task.containingCardId != cardId" mat-icon-button matTooltip="Bekijk de bijbehorende user story" (click)="dialog.showDialog('card', { id: task.containingCardId, info: { lane: data.info.lane, type: data.info.type } })">
+                    <mat-icon>info</mat-icon>
+                  </button>
                 </mat-list-item>
 
               </mat-list>

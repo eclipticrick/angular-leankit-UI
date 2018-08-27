@@ -1,3 +1,26 @@
-<p>
-  dialog-content-person works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+
+      <div *ngIf="avatarSrc; else loading" class="person-container flex align-items-center">
+
+        <img [src]="avatarSrc">
+
+        <div class="info">
+          <h4 class="heading">
+            Volledige naam
+          </h4>
+          <h4 class="value">
+            {{ user.fullName }}
+          </h4>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

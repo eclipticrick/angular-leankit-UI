@@ -1,1 +1,19 @@
 @import '../../../../scss/theme';
+div.person-container {
+  img {
+    border-radius: 50%;
+    @include box-shadow($angular-card-box-shadow);
+    margin-right: 24px;
+  }
+  div.info {
+    h4.heading {
+      font-weight: 100;
+      font-size: 13px;
+    }
+    h4.value {
+      font-weight: 500;
+      font-size: 16px;
+    }
+  }
+
+}

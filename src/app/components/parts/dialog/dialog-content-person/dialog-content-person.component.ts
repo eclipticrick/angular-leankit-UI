@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DataService } from '../../../../services/data.service';
 
 @Component({
   selector: 'app-dialog-content-person',
@@ -7,11 +8,14 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class DialogContentPersonComponent implements OnInit {
   @Input() data: any;
+  user;
+  avatarSrc;
 
-  constructor() { }
+  constructor(private dataSvc: DataService) {}
 
   ngOnInit() {
-    // this.data.id;
+    this.user = this.data.user;
+    this.avatarSrc = this.user.avatar.replace('?s=25', '?s=150');
   }
 
 }

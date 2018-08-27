@@ -22,11 +22,6 @@ export class LeankitService {
     return this.getList('card', 'cards');
   }
 
-  getChildCardsCount(cardId: number): Promise<any> {
-    return this.get('card/' + cardId + '/connection/children')
-      .then(data => data['redactedCount']);
-  }
-
   getChildCards(cardId: number): Promise<any> {
     return this.getList('card/' + cardId + '/connection/children', 'cards');
   }
@@ -47,25 +42,20 @@ export class LeankitService {
     return this.get('card/' + cardId + '/tasks/' + taskId);
   }
 
-  getCardComments(cardId: number): Promise<any> {
-    return this.get('card/' + cardId + '/comment');
-  }
+  /////// // { message: "User lacks sufficient permissions" }
+  //      getUsers(): Promise<any> {
+  //        return this.getList('user', 'users');
+  //      }
 
-  getTemplates(): Promise<any> {
-    return this.get('template');
-  }
+  /////// // { message: "User lacks sufficient permissions" }
+  //      getUser(id: number): Promise<any> {
+  //        return this.get('user/' + id);
+  //      }
 
-  getUsers(): Promise<any> {
-    return this.getList('user', 'users');
-  }
-
-  getUser(id: number): Promise<any> {
-    return this.get('user/' + id);
-  }
-
-  getRecentActivityForUser(id: number): Promise<any> {
-    return this.get('user/' + id + '/board/recent');
-  }
+  /////// // { message: "User lacks sufficient permissions" }
+  //      getRecentActivityForUser(id: number): Promise<any> {
+  //        return this.get('user/' + id + '/board/recent');
+  //      }
 
   /**
    * To get a list from the API, multiple requests are needed.
@@ -83,8 +73,6 @@ export class LeankitService {
    * @returns {Promise<any[]>}    (returns a (promise of the) full list   WITHOUT   the metaData)
    */
   getList(path, listName): Promise<any> {
-
-    // console.log('getList', path, listName)
 
     return this.get(path)
       .then(data => data['pageMeta'])

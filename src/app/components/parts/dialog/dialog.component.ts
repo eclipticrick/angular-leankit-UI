@@ -48,6 +48,7 @@ export class DialogComponent {
 
     } else if (data.dialogType === 'person') {
       this.icon = 'info';
+      this.title = this.data.user.fullName;
 
     } else if (data.dialogType === 'contact') {
       this.title = 'Contact';
