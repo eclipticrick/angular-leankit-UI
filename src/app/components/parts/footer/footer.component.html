@@ -10,7 +10,7 @@
                   type="button"
                   (click)="dialog.showDialog('contact')">
             <span></span>
-            <span>Neem contact op met een van de teams</span>
+            <span class="cut-text">Neem contact op <span class="desktop-only">met een van de teams</span></span>
             <mat-icon>mail</mat-icon>
           </button>
         </div>
@@ -20,7 +20,7 @@
                   type="button"
                   (click)="dialog.showDialog('contact', { subject: 'Feedback: ' })">
             <mat-icon>feedback</mat-icon>
-            <span>Feedback</span>
+            <span class="cut-text">Feedback</span>
             <span></span>
           </button>
         </div>
@@ -30,7 +30,7 @@
                   type="button"
                   (click)="dialog.showDialog('contact', { subject: 'Request a feature: ' })">
             <span></span>
-            <span>Request a feature</span>
+            <span class="cut-text">Request a feature</span>
             <mat-icon>add_comment</mat-icon>
           </button>
         </div>
@@ -40,7 +40,7 @@
                   type="button"
                   (click)="dialog.showDialog('contact', { subject: 'Aanmelding review' })">
             <mat-icon>supervisor_account</mat-icon>
-            <span>Meld je aan voor de volgende review</span>
+            <span class="cut-text">Meld je aan voor de volgende review</span>
             <span></span>
           </button>
         </div>

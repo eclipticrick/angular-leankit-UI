@@ -12,26 +12,28 @@
     <span class="flex-spacer"></span>
 
     <button mat-icon-button
+            type="button"
             class="contact"
             (click)="dialog.showDialog('contact')"
             matTooltip="Contacteer ons">
       <mat-icon>mail</mat-icon>
     </button>
     <button mat-raised-button
-            class="contact"
+            type="button"
+            class="contact hide-on-smaller-than-300"
             (click)="dialog.showDialog('contact', { subject: 'Aanmelding review' })"
             matTooltip="Meld je aan voor de volgende review"
             color="accent">
       <mat-icon>supervisor_account</mat-icon>
     </button>
 
-    <button mat-icon-button (click)="setTheme(false)">
+    <button mat-icon-button type="button" (click)="setTheme(false)">
       <mat-icon>wb_sunny</mat-icon>
     </button>
     <mat-slide-toggle (change)="setTheme($event.checked)"
                       [(ngModel)]="isDarkTheme"
                       [matTooltip]="'Schakel om naar een ' + (isDarkTheme ? 'licht' : 'donker') + ' thema'"></mat-slide-toggle>
-    <button mat-icon-button (click)="setTheme(true)">
+    <button mat-icon-button type="button" (click)="setTheme(true)">
       <mat-icon>brightness_2</mat-icon>
     </button>
 

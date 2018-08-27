@@ -52,6 +52,8 @@ h1, h2, h3, h4, h4, h6, p {
 .mobile-only {
   display: none !important;
 }
+.hide-on-smaller-than-300,
+.hide-on-smaller-than-250,
 .desktop-only {
   display: initial !important;
 }
@@ -60,6 +62,16 @@ h1, h2, h3, h4, h4, h6, p {
     display: initial !important;
   }
   .desktop-only {
+    display: none !important
+  }
+}
+@media (max-width: 300px) {
+  .hide-on-smaller-than-300 {
+    display: none !important
+  }
+}
+@media (max-width: 250px) {
+  .hide-on-smaller-than-250 {
     display: none !important
   }
 }

@@ -10,7 +10,6 @@ export class FooterComponent implements OnInit {
 
   constructor(public element: ElementRef, public dialog: DialogService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

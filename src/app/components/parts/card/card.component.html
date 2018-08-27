@@ -40,7 +40,7 @@
          [src]="user.avatar"
          (click)="$event.stopPropagation(); dialog.showDialog('person', { user: user })">
   </div>
-  <button class="more" [matTooltip]="tooltipCardInfo" mat-icon-button>
+  <button type="button" class="more" [matTooltip]="tooltipCardInfo" mat-icon-button>
     <mat-icon>info</mat-icon>
   </button>
   <mat-divider></mat-divider>

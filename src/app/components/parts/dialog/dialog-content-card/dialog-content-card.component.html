@@ -191,21 +191,23 @@
 
           <div class="col-12 col-md-6">
             <button mat-raised-button
-                    class="contact-button"
+                    class="contact-button cut-text"
                     color="primary"
                     type="button"
                     (click)="dialog.showDialog('contact', { team: boardId, subject: 'Betreft user story: ' + cardData.title })">
-              <mat-icon>mail</mat-icon> Neem contact op over deze user story
+              <mat-icon>mail</mat-icon>
+              Neem contact op <span class="desktop-only">over deze user story</span>
             </button>
           </div>
 
           <div class="col-12 col-md-6">
             <button mat-raised-button
-                    class="contact-button"
+                    class="contact-button cut-text"
                     color="accent"
                     type="button"
                     (click)="dialog.showDialog('contact', { team: boardId, subject: 'Aanmelding review' })">
-              <mat-icon>supervisor_account</mat-icon> Meld je aan voor de volgende review
+              <mat-icon>supervisor_account</mat-icon>
+              Meld je aan voor de volgende review
             </button>
           </div>
 
@@ -258,6 +260,7 @@
                   <h4 mat-line>{{ task.title }}</h4>
                   <p mat-line>laatste activiteit: {{ task.updatedOn | beautifyDate }}</p>
                   <button *ngIf="task.containingCardId != cardId"
+                          type="button"
                           mat-icon-button
                           matTooltip="Bekijk de bijbehorende user story"
                           (click)="dialog.showDialog('card', { id: task.containingCardId, info: { lane: data.info.lane, type: data.info.type } })">
@@ -274,6 +277,7 @@
                   <p mat-line>laatste activiteit: {{ task.updatedOn | beautifyDate }}</p>
                   <button *ngIf="task.containingCardId != cardId"
                           mat-icon-button
+                          type="button"
                           matTooltip="Bekijk de bijbehorende user story"
                           (click)="dialog.showDialog('card', { id: task.containingCardId, info: { lane: data.info.lane, type: data.info.type } })">
                     <mat-icon>info</mat-icon>

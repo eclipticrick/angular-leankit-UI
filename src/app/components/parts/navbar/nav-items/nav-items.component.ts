@@ -4,13 +4,13 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-nav-items',
   template: `
   <div class="flex">
-    <button mat-button routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
+    <button type="button" mat-button routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">
       Dashboard
     </button>
-    <button mat-button routerLinkActive="active" routerLink="/backlog">
+    <button type="button" mat-button routerLinkActive="active" routerLink="/backlog">
       Backlog
     </button>
-    <button mat-button routerLinkActive="active" routerLink="/doing">
+    <button type="button" mat-button routerLinkActive="active" routerLink="/doing">
       Doing
     </button>
   </div>
