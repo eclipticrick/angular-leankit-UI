@@ -8,7 +8,7 @@ export const APP_CONFIG = {
       answer: 'Een samenhangend geheel van user stories wat als geheel waarde oplevert voor de business.'
     },
     'story' : {
-      question: 'Wat is een Story?',
+      question: 'Wat is een user story?',
       answer: 'Goeie vraag.'
     },
     'doing' : {
@@ -18,6 +18,10 @@ export const APP_CONFIG = {
     'backlog' : {
       question: 'Waar staat backlog voor?',
       answer: 'Voor onzin.'
+    },
+    'onderliggende user story' : {
+      question: 'Wat is een onderliggende user story?',
+      answer: 'bla bla bla'
     }
   },
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DialogComponent } from '../components/parts/dialog/dialog.component';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import {DialogPosition, DialogRole, MatDialog, MatDialogConfig} from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,7 @@ export class DialogService {
 
   private openDialog(dialogData: any) {
     const dialogConfig = new MatDialogConfig();
+    dialogConfig.position = { top: '75px' };
     if (dialogData) dialogConfig.data = dialogData;
     return this.dialog.open(DialogComponent, dialogConfig);
   }

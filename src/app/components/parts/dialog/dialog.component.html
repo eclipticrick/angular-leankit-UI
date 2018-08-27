@@ -32,7 +32,7 @@
         <mat-error *ngIf="subjectCtrl.invalid">{{ getContactFormErrorMessage(subjectCtrl) }}</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <textarea matInput placeholder="Bericht" [formControl]="messageCtrl" [(ngModel)]="contactSvc.message"></textarea>
+        <textarea matInput placeholder="Bericht" [formControl]="messageCtrl" [(ngModel)]="contactSvc.message" required></textarea>
         <mat-error *ngIf="messageCtrl.invalid">{{ getContactFormErrorMessage(messageCtrl) }}</mat-error>
       </mat-form-field>
       <!-- /contact form -->

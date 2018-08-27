@@ -16,6 +16,9 @@
           mat-icon {
             margin-right: 6px;
           }
+          span.amount {
+            margin-left: 6px;
+          }
         }
       }
 
@@ -23,95 +26,105 @@
         .mat-tab-body-content {
           padding: 24px;
 
+
+          /**
+           * FOR ALL TABS
+           */
           mat-slide-toggle.mat-slide-toggle.with-icon-next-to-it {
             max-width: calc(100% - 40px); // todo: figure out a way to fit the slider & icon without using this calc()ulation
           }
           mat-divider.with-margin {
             margin: 16px auto;
           }
+          h4.information {
+            font-weight: 100;
+            margin: 0;
+          }
 
           /**
            * TAB 1
            */
-          button.contact-button {
-            width: 100%;
-            margin-top: 12px;
-          }
-
-
-          span.info {
-            position: relative;
-            display: block;
-            margin-bottom: 12px;
-            overflow: hidden;
-
-            button.show-more {
-              position: absolute;
+          .tab-1-container {
+            button.contact-button {
               width: 100%;
-              bottom: 0;
-              display: none;
+              margin-top: 12px;
             }
-            &.collapsed {
-              max-height: 36px;
-              > button.show-more {
-                display: block;
-              }
-            }
-            > span {
+
+
+            span.info {
+              position: relative;
               display: block;
-              span.faded {
-                opacity: .7;
+              margin-bottom: 12px;
+              overflow: hidden;
+
+              button.show-more {
+                position: absolute;
+                width: 100%;
+                bottom: 0;
+                display: none;
               }
-            }
-            > span:first-child {
-              opacity: .7;
-              font-size: 13px;
-              margin-bottom: 3px;
-              user-select: none;
-            }
-            > span:last-child {
-              display: flex;
-              align-items: center;
-              &.description {
-                display: block;
-                align-items: unset;
-                > *:first-child {
-                  margin-top: 0;
+              &.collapsed {
+                max-height: 36px;
+                > button.show-more {
+                  display: block;
                 }
               }
               > span {
-                margin-right: 4px;
-                &:last-child {
-                  margin-right: 0;
-                }
-              }
-              > span.color {
-                display: inline-block;
-                margin: 1px 8px 3px 2px;
-                border-radius: 50%;
-                width: 17px;
-                height: 17px;
-                @include box-shadow($angular-card-box-shadow, 0 0 0 3px rgba(255, 255, 255, .4) inset);
-              }
-              &.person-container {
                 display: block;
-                align-items: unset;
-                > span {
-                  display: flex;
-                  align-items: center;
+                span.faded {
+                  opacity: .7;
                 }
               }
-              span.person {
-                display: inline-block;
-                margin: 1px 8px 3px 2px;
-                border-radius: 50%;
-                width: 24px;
-                height: 24px;
-                overflow: hidden;
-                @include box-shadow($angular-card-box-shadow, 0 0 0 3px rgba(255, 255, 255, .4) inset);
-                > img {
-                  user-select: none;
-                  width: 100%;
+              > span:first-child {
+                opacity: .7;
+                font-size: 13px;
+                margin-bottom: 3px;
+                user-select: none;
+              }
+              > span:last-child {
+                display: flex;
+                align-items: center;
+                &.description {
+                  display: block;
+                  align-items: unset;
+                  > *:first-child {
+                    margin-top: 0;
+                  }
+                }
+                > span {
+                  margin-right: 4px;
+                  &:last-child {
+                    margin-right: 0;
+                  }
+                }
+                > span.color {
+                  display: inline-block;
+                  margin: 1px 8px 3px 2px;
+                  border-radius: 50%;
+                  width: 17px;
+                  height: 17px;
+                  @include box-shadow($angular-card-box-shadow, 0 0 0 3px rgba(255, 255, 255, .4) inset);
+                }
+                &.person-container {
+                  display: block;
+                  align-items: unset;
+                  > span {
+                    display: flex;
+                    align-items: center;
+                  }
+                }
+                span.person {
+                  display: inline-block;
+                  margin: 1px 8px 3px 2px;
+                  border-radius: 50%;
+                  width: 24px;
+                  height: 24px;
+                  overflow: hidden;
+                  @include box-shadow($angular-card-box-shadow, 0 0 0 3px rgba(255, 255, 255, .4) inset);
+                  > img {
+                    user-select: none;
+                    width: 100%;
+                  }
                 }
               }
             }
@@ -121,26 +134,41 @@
           /**
            * TAB 2
            */
-          mat-list.mat-list {
-            h3.mat-subheader { }
-            mat-list-item.mat-list-item {
-              height: 40px;
-              mat-icon.mat-icon {
-                width: 18px;
-                height: 18px;
-                font-size: 18px;
-                padding: 0;
-                user-select: none;
-              }
-              h4.mat-line {
-                font-size: 13px;
-              }
-              p.mat-line {
-                font-size: 11px;
-                opacity: .7;
+          .tab-2-container {
+            h4.information {
+              line-height: 40px;
+            }
+            mat-list.mat-list {
+              padding-top: 0;
+              h3.mat-subheader { }
+              mat-list-item.mat-list-item {
+                height: 40px;
+                mat-icon.mat-icon {
+                  width: 18px;
+                  height: 18px;
+                  font-size: 18px;
+                  padding: 0;
+                  user-select: none;
+                }
+                h4.mat-line {
+                  font-size: 13px;
+                }
+                p.mat-line {
+                  font-size: 11px;
+                  opacity: .7;
+                }
               }
             }
           }
+
+
+          /**
+           * TAB 3
+           */
+          .tab-3-container {
+
+          }
+
 
         }
       }

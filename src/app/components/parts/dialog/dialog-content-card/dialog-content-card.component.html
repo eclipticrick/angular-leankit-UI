@@ -8,7 +8,7 @@
         <mat-icon>info</mat-icon> Details
       </ng-template>
 
-      <div class="container-fluid" *ngIf="card | async; else loading">
+      <div class="container-fluid tab-1-container" *ngIf="card | async; else loading">
 
         <div class="row">
           <div class="col-12" *ngIf="(card | async)?.title">
@@ -41,7 +41,7 @@
           </div>
           <div class="col-12 col-md-6" *ngIf="(card | async)?.board">
             <span class="info">
-              <span>Deze story maakt deel uit van het volgende bord</span>
+              <span>Deze user story maakt deel uit van het volgende bord</span>
               <span>
                 <span [matTooltip]="boardId ? config.boards[boardId].displayName : 'Loading...'">{{ (card | async)?.board?.title }}</span>
               </span>
@@ -49,13 +49,13 @@
           </div>
           <div class="col-12 col-md-6">
             <span class="info">
-              <span>Is deze story een epic?</span>
+              <span>Is deze user story een epic?</span>
               <span>{{ data.info.type === 'epic' ? 'Ja' : 'Nee' }}</span>
             </span>
           </div>
           <div class="col-12 col-md-6" *ngIf="(card | async)?.type">
             <span class="info">
-              <span>Soort story</span>
+              <span>Soort user story</span>
               <span>
                 <span class="color" [style.background-color]="(card | async)?.color"></span> <!-- todo: sanitize color value -->
                 <span>{{ (card | async)?.type?.title }}</span>
@@ -79,8 +79,8 @@
         <div class="row" *ngIf="(parentCards | async) && (parentCards | async)?.length">
           <div class="col-12">
             <span class="info">
-              <span *ngIf="(parentCards | async)?.length === 1">Deze story maakt deel uit van een andere (bovenliggende) story.</span>
-              <span *ngIf="(parentCards | async)?.length > 1">Deze story maakt deel uit van meerdere bovenliggende stories.</span>
+              <span *ngIf="(parentCards | async)?.length === 1">Deze user story maakt deel uit van een andere (bovenliggende) user story.</span>
+              <span *ngIf="(parentCards | async)?.length > 1">Deze user story maakt deel uit van meerdere bovenliggende stories.</span>
             </span>
           </div>
           <div class="col-12">
@@ -162,10 +162,10 @@
           <div class="col-12">
             <span class="info" [style.margin-bottom]="(card | async)?.assignedUsers.length ? 'auto' : '0'">
               <span *ngIf="!(card | async)?.assignedUsers.length">
-                Er zijn nog geen medewerkers toegewezen aan deze story
+                Er zijn nog geen medewerkers toegewezen aan deze user story
               </span>
               <span *ngIf="(card | async)?.assignedUsers.length">
-                Hieronder staan de gebruikers die zijn toegewezen aan deze story
+                Hieronder staan de gebruikers die zijn toegewezen aan deze user story
               </span>
               <span class="person-container">
                 <span *ngFor="let person of (card | async)?.assignedUsers">
@@ -192,8 +192,8 @@
                     class="contact-button"
                     color="primary"
                     type="button"
-                    (click)="dialog.showDialog('contact', { team: boardId, subject: 'Betreft story: ' + cardData.title })">
-              <mat-icon>mail</mat-icon> Neem contact op over deze story
+                    (click)="dialog.showDialog('contact', { team: boardId, subject: 'Betreft user story: ' + cardData.title })">
+              <mat-icon>mail</mat-icon> Neem contact op over deze user story
             </button>
           </div>
 
@@ -215,29 +215,38 @@
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon>check</mat-icon> Bijbehorende taken
+        <mat-icon>check</mat-icon> Bijbehorende taken <span class="amount" *ngIf="allTasksFromCardAndAllChildCards | async"> ({{(allTasksFromCardAndAllChildCards | async)?.length }})</span>
       </ng-template>
 
-      <div class="container-fluid">
+      <div class="container-fluid tab-2-container" *ngIf="card | async; else loading">
         <div class="row">
-          <div class="col-12">
+          <div class="col-12" [style.display]="(allChildCards | async)?.length ? 'block' : 'none'">
 
             <div class="flex space-between align-items-center">
-              <mat-slide-toggle class="with-icon-next-to-it" #taskToggle>Weergeef ook de taken van de onderliggende stories</mat-slide-toggle>
-              <button type="button" mat-icon-button matTooltip="Wat word er bedoeld met onderliggende stories?">
+              <mat-slide-toggle class="with-icon-next-to-it" #taskToggle>
+                Weergeef ook de taken van de onderliggende user stories
+              </mat-slide-toggle>
+              <button type="button"
+                      mat-icon-button
+                      matTooltip="Wat word er bedoeld met onderliggende stories?"
+                      (click)="dialog.showDialog('help', { questionType: 'onderliggende user story' })">
                 <mat-icon>help</mat-icon>
               </button>
             </div>
 
+            <mat-divider class="with-margin" *ngIf="(allChildCards | async)?.length"></mat-divider>
+
           </div>
           <div class="col-12" *ngIf="(taskToggle.checked ? (allTasksFromCardAndAllChildCards | async) : (tasks | async)) as taskList">
             <div *ngIf="taskList; else loading">
-              <span *ngIf="!taskList.length">
-                Er zijn geen taken voor deze story
-                <span *ngIf="taskToggle.checked"> en de onderliggende stories</span>
-              </span>
 
-              <mat-divider *ngIf="taskList.length" class="with-margin"></mat-divider>
+
+              <h4 class="information" *ngIf="!taskList.length">
+                Er zijn geen
+                <span *ngIf="!taskToggle.checked">direct onderliggende</span>
+                taken voor deze user story
+                <span *ngIf="taskToggle.checked"> en de onderliggende stories</span>
+              </h4>
 
               <mat-list>
 
@@ -250,7 +259,7 @@
 
                 <mat-divider *ngIf="(taskList | filterOnKeyIsValue:'isDone':true).length && (taskList | filterOnKeyIsValue:'isDone':false).length" class="with-margin"></mat-divider>
 
-                <h3 mat-subheader>Onvoltooide taken</h3>
+                <h3 *ngIf="(taskList | filterOnKeyIsValue:'isDone':false).length" mat-subheader>Onvoltooide taken</h3>
                 <mat-list-item *ngFor="let task of (taskList | filterOnKeyIsValue:'isDone':false)">
                   <mat-icon mat-list-icon>check_box_outline_blank</mat-icon>
                   <h4 mat-line>{{ task.title }}</h4>
@@ -268,9 +277,35 @@
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon>link</mat-icon> Bijbehorende stories
+        <mat-icon>link</mat-icon> Bijbehorende stories <span class="amount" *ngIf="allChildCards | async"> ({{ (allChildCards | async)?.length }})</span>
       </ng-template>
-      Content 3
+
+      <div class="container-fluid tab-3-container" *ngIf="card | async; else loading">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="flex space-between align-items-center">
+              <h4 class="information" *ngIf="(allChildCards | async)?.length">Hieronder is een overzicht van de onderliggende user stories</h4>
+              <h4 class="information" *ngIf="!(allChildCards | async)?.length">Deze user story heeft geen onderliggende user stories</h4>
+              <button type="button"
+                      mat-icon-button
+                      matTooltip="Wat word er bedoeld met onderliggende stories?"
+                      (click)="dialog.showDialog('help', { questionType: 'onderliggende user story' })">
+                <mat-icon>help</mat-icon>
+              </button>
+            </div>
+
+          </div>
+          <div class="col-12">
+            <mat-card class="no-padding">
+              <mat-nav-list class="no-padding">
+                <app-card *ngFor="let card of allChildCards | async" [card]="card" [extraInfo]="{ lane: data.info.lane, type: data.info.type }" [layout]="'row'"></app-card>
+              </mat-nav-list>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+
     </mat-tab>
 
 

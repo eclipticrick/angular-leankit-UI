@@ -17,11 +17,8 @@ export class DialogComponent {
   icon;
 
   contactForm: FormGroup;
-  // email;
   emailCtrl = new FormControl('', [ Validators.required, Validators.email ]);
-  // subject;
   subjectCtrl = new FormControl('', [ Validators.required ]);
-  // message;
   messageCtrl = new FormControl('', [ Validators.required ]);
 
   constructor(
