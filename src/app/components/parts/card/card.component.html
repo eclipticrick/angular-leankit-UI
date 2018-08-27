@@ -1,5 +1,4 @@
-<mat-list-item *ngIf="layout === 'row'"
-               (click)="dialog.showDialog('card', { id: card.id, info: extraInfo })"
+<mat-list-item (click)="dialog.showDialog('card', { id: card.id, info: extraInfo })"
                [matTooltip]="tooltipCard"
                [matTooltipShowDelay]="1000"
                [style.boxShadow]="'8px 0 0 -4px ' + (card.color ? card.color : 'rgba(0,0,0,0)') + ' inset'"> <!-- todo: sanitize color value -->

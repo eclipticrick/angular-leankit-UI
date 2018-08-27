@@ -8,7 +8,6 @@ import {DialogService} from '../../../services/dialog.service';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  @Input() layout: string;
 
   /**
    * This component expect a FULL card

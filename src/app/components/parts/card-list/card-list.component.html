@@ -31,7 +31,7 @@
     <div *ngIf="!(cards | async)?.length" class="text-center">
       Er zijn nog geen {{ type  ? type : '' }} kaarten {{ lane ? 'in de ' + lane + ' lane' : ''}}
     </div>
-    <app-card *ngFor="let card of (cards | async | slice:cardsOffset:cardsLimit)" [card]="card" [layout]="'row'" [extraInfo]="{ lane: lane, type: type }"></app-card>
+    <app-card *ngFor="let card of (cards | async | slice:cardsOffset:cardsLimit)" [card]="card" [extraInfo]="{ lane: lane, type: type }"></app-card>
   </mat-nav-list>
 
   <div class="button-container">
