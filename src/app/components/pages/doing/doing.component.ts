@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from '../../../services/data.service';
-import {TeamService} from '../../../services/team.service';
+import { DataService } from '../../../services/data.service';
+import { TeamService } from '../../../services/team.service';
+import { DialogService } from '../../../services/dialog.service';
 
 @Component({
   selector: 'app-doing',
@@ -11,7 +12,7 @@ export class DoingComponent implements OnInit {
   config = this.dataSvc.getConfig();
   board;
 
-  constructor(private dataSvc: DataService, private teamSvc: TeamService) { }
+  constructor(private dataSvc: DataService, private teamSvc: TeamService, public dialog: DialogService) { }
 
   ngOnInit() {
     this.getSelectedBoard();

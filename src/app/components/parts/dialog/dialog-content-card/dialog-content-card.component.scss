@@ -31,7 +31,7 @@
            * FOR ALL TABS
            */
           mat-slide-toggle.mat-slide-toggle.with-icon-next-to-it {
-            max-width: calc(100% - 40px); // todo: figure out a way to fit the slider & icon without using this calc()ulation
+            max-width: calc(100% - 40px);
           }
           mat-divider.with-margin {
             margin: 16px auto;

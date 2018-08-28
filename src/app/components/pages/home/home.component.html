@@ -28,11 +28,18 @@
             </mat-card>
           </div>
         </div>
-
         <div *ngIf="(boards | async)?.length; else emptyBoardList">
           <div *ngFor="let board of boards | async; let boardsLoopIndex = index">
 
-            <h1 [class]="!boardsLoopIndex ? 'fg-white': 'theme-fg'">{{ config.boards[board.id].displayName }}</h1>
+            <h1 class="flex align-items-center" [class.fg-white]="!boardsLoopIndex" [class.theme-fg]="boardsLoopIndex">
+              {{ config.boards[board.id].displayName }}
+              <button type="button"
+                      mat-icon-button
+                      [matTooltip]="'Meer informatie over' + config.boards[board.id].displayName"
+                      (click)="dialog.showDialog('team', { id: board.id })">
+                <mat-icon>help</mat-icon>
+              </button>
+            </h1>
             <app-card-list-with-container [board]="board"
                                           [type]="'epic'"
                                           [lane]="'doing'">
@@ -46,4 +53,3 @@
     </div>
   </div>
 </div>
-

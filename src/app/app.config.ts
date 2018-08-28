@@ -4,7 +4,7 @@ export const APP_CONFIG = {
   // specify the questions and answers to be shown on the homepage (and in some of the 'help' pop-ups)
   questions: {
     'epic' : {
-      question: 'Wat is een EPIC?',
+      question: 'Wat is een epic?',
       answer: `
         Een epic is een samenhangend geheel van user stories wat als geheel waarde oplevert voor de business.
         <br><br>
@@ -43,6 +43,14 @@ export const APP_CONFIG = {
     // boardId:
     '656398449': {
       displayName: 'Tjeam Exp',
+      description: `
+        Tjeam Exp houd zich bezig met Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis suscipit fermentum.
+        et volutpat velit posuere non. Nullam nec metus urna. Suspendisse et tortor quis tortor pharetra pretium vitae eget ex. Aenean
+        <br><br>
+        id vulputate enim, nec fermentum lectus. Sed tincidunt condimentum felis. In rutrum venenatis iaculis. Phasellus molestie, sapien
+        ac pharetra lobortis, enim leo pellentesque turpis, eu aliquam nulla lacus eu augue. Duis ullamcorper libero velit, eget vestibulum
+        massa finibus nec. Etiam consequat ex eget lacinia aliquam. Fusce imperdiet quis arcu sed volutpat. Proin non sodales velit.
+      `,
       epicCardTypes: [ 656511283, 679850713 ],
       excludedCardTypes: [ 666699707 ],
       excludedCards: [],
@@ -66,6 +74,14 @@ export const APP_CONFIG = {
     },
     '663196440': {
       displayName: 'Tjeam Leerplanner',
+      description: `
+        Tjeam Leerplanner is een Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis suscipit fermentum. Aliquam,
+        et volutpat velit posuere non. Nullam nec metus urna. Suspendisse et tortor quis tortor pharetra pretium vitae eget ex. Aenean
+        <br><br>
+        id vulputate enim, nec fermentum lectus. Sed tincidunt condimentum felis. In rutrum venenatis iaculis. Phasellus molestie, sapien
+        ac pharetra lobortis, enim leo pellentesque turpis, eu aliquam nulla lacus eu augue. Duis ullamcorper libero velit, eget vestibulum
+        massa finibus nec. Etiam consequat ex eget lacinia aliquam. Fusce imperdiet quis arcu sed volutpat. Proin non sodales velit.
+      `,
       epicCardTypes: [ 663292245, 678980828 ],
       excludedCardTypes: [],
       excludedCards: [],

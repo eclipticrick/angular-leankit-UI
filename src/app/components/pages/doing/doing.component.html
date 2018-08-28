@@ -10,7 +10,15 @@
 
 
         <div *ngIf="board | async as boardObj">
-          <h2 class="theme-fg text-center">{{ config.boards[boardObj.id].displayName }}</h2>
+          <h2 class="theme-fg text-center flex align-items-center justify-content-center">
+            {{ config.boards[boardObj.id].displayName }}
+            <button type="button"
+                    mat-icon-button
+                    [matTooltip]="'Meer informatie over' + config.boards[boardObj.id].displayName"
+                    (click)="dialog.showDialog('team', { id: boardObj.id })">
+              <mat-icon>help</mat-icon>
+            </button>
+          </h2>
           <app-card-list-with-container [board]="boardObj"
                                         [type]="'epic'"
                                         [lane]="'doing'"

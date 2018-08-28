@@ -30,6 +30,7 @@ import { DialogComponent } from './components/parts/dialog/dialog.component';
 import { DialogContentHelpComponent } from './components/parts/dialog/dialog-content-help/dialog-content-help.component';
 import { DialogContentCardComponent } from './components/parts/dialog/dialog-content-card/dialog-content-card.component';
 import { DialogContentPersonComponent } from './components/parts/dialog/dialog-content-person/dialog-content-person.component';
+import { DialogContentTeamComponent } from './components/parts/dialog/dialog-content-team/dialog-content-team.component';
 
 // services
 import { LeankitService } from './services/leankit.service';
@@ -40,6 +41,8 @@ import { ContactService } from './services/contact.service';
 // pipes
 import { BeautifyDatePipe } from './pipes/beautify-date.pipe';
 import { FilterOnKeyIsValuePipe } from './pipes/filter-on-key-is-value.pipe';
+import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
+import { SanitizeCssPipe } from './pipes/sanitize-css.pipe';
 
 
 @NgModule({
@@ -62,7 +65,10 @@ import { FilterOnKeyIsValuePipe } from './pipes/filter-on-key-is-value.pipe';
     DialogContentHelpComponent,
     DialogContentCardComponent,
     DialogContentPersonComponent,
-    FilterOnKeyIsValuePipe
+    FilterOnKeyIsValuePipe,
+    SanitizeHtmlPipe,
+    SanitizeCssPipe,
+    DialogContentTeamComponent
   ],
   imports: [
     BrowserModule,                       // default

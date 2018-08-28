@@ -20,7 +20,7 @@
           <div class="col-12" *ngIf="(card | async)?.description">
             <span class="info" [class.collapsed]="descriptionCollapsed" #descriptionElement>
               <span>Omschrijving</span>
-              <span class="description" [innerHTML]="(card | async)?.description"></span> <!-- todo: sanitize -->
+              <span class="description" [innerHTML]="(card | async)?.description | sanitizeHtml"></span>
               <button *ngIf="descriptionCollapsed" mat-flat-button type="button" class="show-more" (click)="expandDescription()">Weergeef omschrijving</button>
             </span>
           </div>
@@ -43,7 +43,11 @@
             <span class="info">
               <span>Deze user story maakt deel uit van het volgende bord</span>
               <span>
-                <span [matTooltip]="boardId ? config.boards[boardId].displayName : 'Loading...'">{{ (card | async)?.board?.title }}</span>
+                <span class="pointer"
+                      [matTooltip]="boardId ? 'Klik voor meer informatie over ' + config.boards[boardId].displayName : 'Loading...'"
+                      (click)="dialog.showDialog('team', { id: boardId })">
+                  {{ (card | async)?.board?.title }}
+                </span>
               </span>
             </span>
           </div>
@@ -57,7 +61,7 @@
             <span class="info">
               <span>Soort user story</span>
               <span>
-                <span class="color" [style.background-color]="(card | async)?.color"></span> <!-- todo: sanitize color value -->
+                <span class="color" [style.background-color]="(card | async)?.color | sanitizeCss"></span>
                 <span>{{ (card | async)?.type?.title }}</span>
               </span>
             </span>
@@ -255,7 +259,7 @@
               <mat-list>
 
                 <h3 *ngIf="(taskList | filterOnKeyIsValue:'isDone':true).length" mat-subheader>Voltooide taken</h3>
-                <mat-list-item *ngFor="let task of (taskList | filterOnKeyIsValue:'isDone':true)" [matTooltip]="task.title" matTooltipShowDelay="1000">
+                <mat-list-item *ngFor="let task of (taskList | filterOnKeyIsValue:'isDone':true)" [matTooltip]="task.title" [matTooltipShowDelay]="1000">
                   <mat-icon mat-list-icon>check_box</mat-icon>
                   <h4 mat-line>{{ task.title }}</h4>
                   <p mat-line>laatste activiteit: {{ task.updatedOn | beautifyDate }}</p>
@@ -271,7 +275,7 @@
                 <mat-divider *ngIf="(taskList | filterOnKeyIsValue:'isDone':true).length && (taskList | filterOnKeyIsValue:'isDone':false).length" class="with-margin"></mat-divider>
 
                 <h3 *ngIf="(taskList | filterOnKeyIsValue:'isDone':false).length" mat-subheader>Onvoltooide taken</h3>
-                <mat-list-item *ngFor="let task of (taskList | filterOnKeyIsValue:'isDone':false)" [matTooltip]="task.title" matTooltipShowDelay="1000">
+                <mat-list-item *ngFor="let task of (taskList | filterOnKeyIsValue:'isDone':false)" [matTooltip]="task.title" [matTooltipShowDelay]="1000">
                   <mat-icon mat-list-icon>check_box_outline_blank</mat-icon>
                   <h4 mat-line>{{ task.title }}</h4>
                   <p mat-line>laatste activiteit: {{ task.updatedOn | beautifyDate }}</p>

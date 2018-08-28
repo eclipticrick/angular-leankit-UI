@@ -15,10 +15,13 @@
     justify-content: space-between;
     align-items: center;
     user-select: none;
+    &.success {
+      background: forestgreen;
+    }
     span.icon-and-title {
       display: flex;
       align-items: center;
-      width: calc(100% - 24px);
+      width: calc(100% - 48px);
       mat-icon {
         margin-right: 16px;
       }
@@ -27,6 +30,18 @@
   mat-dialog-content.mat-dialog-content {
     mat-form-field {
       width: 100%;
+    }
+    div.success {
+      color: forestgreen;
+      mat-icon.mat-icon {
+        width: 84px;
+        height: 84px;
+        font-size: 84px;
+        margin-right: 16px;
+      }
+      h2 {
+        font-size: 28px;
+      }
     }
   }
   mat-dialog-actions.mat-dialog-actions {

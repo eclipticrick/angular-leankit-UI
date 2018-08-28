@@ -1,7 +1,9 @@
 
 <form [formGroup]="contactForm">
 
-  <h2 mat-dialog-title class="theme-bg-primary">
+  <h2 mat-dialog-title
+      [class.theme-bg-primary]="!formWasSubmitted"
+      [class.success]="formWasSubmitted">
   <span class="icon-and-title fg-white">
     <mat-icon *ngIf="icon" class="fg-white">{{ icon }}</mat-icon>
     <span class="cut-text">{{ title }}</span>
@@ -22,24 +24,36 @@
     <div *ngIf="data.dialogType === 'person'">
       <app-dialog-content-person [data]="data"></app-dialog-content-person>
     </div>
-      <div *ngIf="data.dialogType === 'contact'"> <!-- || data.dialogType === 'card' -->
+    <div *ngIf="data.dialogType === 'team'">
+      <app-dialog-content-team [data]="data"></app-dialog-content-team>
+    </div>
+    <div *ngIf="data.dialogType === 'contact' && !formWasSubmitted"> <!-- || data.dialogType === 'card' -->
 
       <!-- contact form -->
       <app-team-selector [multiple]="false" [placeholder]="'Selecteer welk team u wilt contacteren'"></app-team-selector>
       <mat-form-field>
-        <input matInput placeholder="Jou email (om een reactie te kunnen ontvangen)" [formControl]="emailCtrl" [(ngModel)]="contactSvc.email" required>
+        <input matInput placeholder="Jou email (om een reactie te kunnen ontvangen)" [formControl]="emailCtrl" (change)="contactSvc.email = $event.srcElement.value" required>
         <mat-error *ngIf="emailCtrl.invalid">{{ getContactFormErrorMessage(emailCtrl) }}</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Betreft" [formControl]="subjectCtrl" [(ngModel)]="contactSvc.subject" required>
+        <input matInput placeholder="Betreft" [formControl]="subjectCtrl" (change)="contactSvc.subject = $event.srcElement.value" required>
         <mat-error *ngIf="subjectCtrl.invalid">{{ getContactFormErrorMessage(subjectCtrl) }}</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <textarea matInput placeholder="Bericht" [formControl]="messageCtrl" [(ngModel)]="contactSvc.message" required></textarea>
+        <textarea matInput placeholder="Bericht" [formControl]="messageCtrl" (change)="contactSvc.message = $event.srcElement.value" required></textarea>
         <mat-error *ngIf="messageCtrl.invalid">{{ getContactFormErrorMessage(messageCtrl) }}</mat-error>
       </mat-form-field>
       <!-- /contact form -->
 
+    </div>
+    <div *ngIf="data.dialogType === 'contact' && formWasSubmitted">
+      <div class="success flex align-items-center justify-content-center">
+        <mat-icon>check</mat-icon>
+        <div>
+          <h2>Het contactformulier is verzonden!</h2>
+          <h5>Wij zullen zo spoedig mogelijk contact met u opnemen!</h5>
+        </div>
+      </div>
     </div>
   </mat-dialog-content>
 
@@ -53,7 +67,7 @@
     <!-- contact form submit button-->
     <div class="tooltip-wrapper" [matTooltip]="!contactForm.valid ? 'Het contactformulier is nog niet volledig ingevuld!' : null">
       <button mat-button
-              *ngIf="data.dialogType === 'contact'"
+              *ngIf="data.dialogType === 'contact' && !formWasSubmitted"
               type="submit"
               color="primary"
               [disabled]="!contactForm.valid"

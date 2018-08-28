@@ -3,7 +3,9 @@
     <h3 class="no-margin flex align-items-center">
       <span>
         <span *ngIf="type === 'epic'">
-          De <span class="help theme-fg-accent" [matTooltip]="'Wat is een ' + type + '?'" (click)="dialog.showDialog('help', { questionType: type })">{{ type }}</span> kaarten
+          De <span class="help theme-fg-accent"
+                   [matTooltip]="config.questions['epic']"
+                   (click)="dialog.showDialog('help', { questionType: 'epic' })">epic</span> kaarten
         </span>
         <span *ngIf="type === 'nonEpic'">De andere kaarten</span>
         <span *ngIf="type === 'all'">Alle kaarten</span>
@@ -11,13 +13,17 @@
         {{ lane ? 'in de ' : ''}}
         <span *ngIf="lane"
               class="help theme-fg-accent"
-              [matTooltip]="'Wat betekent ' + lane + '?'"
+              [matTooltip]="config.questions[lane].question"
               (click)="dialog.showDialog('help', { questionType: lane })">{{ lane }}</span>
         {{ lane ? ' lane' : ''}}
 
         van
 
-        <span class="team theme-fg-temp">{{ config.boards[board.id].displayName }}</span>
+        <span class="team help"
+              (click)="dialog.showDialog('team', { id: board.id })"
+              [matTooltip]="'Meer informatie over ' + config.boards[board.id].displayName">
+          {{ config.boards[board.id].displayName }}
+        </span>
       </span>
       <span class="flex-spacer"></span>
     </h3>

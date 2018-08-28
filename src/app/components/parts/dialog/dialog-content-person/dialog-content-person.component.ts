@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DataService } from '../../../../services/data.service';
 
 @Component({
   selector: 'app-dialog-content-person',
@@ -11,10 +10,12 @@ export class DialogContentPersonComponent implements OnInit {
   user;
   avatarSrc;
 
-  constructor(private dataSvc: DataService) {}
+  constructor() { }
 
   ngOnInit() {
     this.user = this.data.user;
+
+    // get the larger image (150x150)
     this.avatarSrc = this.user.avatar.replace('?s=25', '?s=150');
   }
 

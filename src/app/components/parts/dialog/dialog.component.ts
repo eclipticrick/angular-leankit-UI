@@ -16,10 +16,13 @@ export class DialogComponent {
   closeButtonText = 'Sluiten';
   icon;
 
+  config = this.dataSvc.getConfig();
+
   contactForm: FormGroup;
   emailCtrl = new FormControl('', [ Validators.required, Validators.email ]);
   subjectCtrl = new FormControl('', [ Validators.required ]);
   messageCtrl = new FormControl('', [ Validators.required ]);
+  formWasSubmitted;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -28,6 +31,9 @@ export class DialogComponent {
     public dialogRef: MatDialogRef<DialogComponent>,
     private formBuilder: FormBuilder,
     private team: TeamService) {
+
+    this.formWasSubmitted = false;
+
     this.contactForm = formBuilder.group({
       email: this.emailCtrl,
       subject: this.subjectCtrl,
@@ -57,6 +63,13 @@ export class DialogComponent {
       if (data.email) contactSvc.email = data.email;
       if (data.subject) contactSvc.subject = data.subject;
       if (data.message) contactSvc.message = data.message;
+
+      this.contactForm.get('email').setValue(contactSvc.email);
+      this.contactForm.get('subject').setValue(contactSvc.subject);
+      this.contactForm.get('message').setValue(contactSvc.message);
+
+    } else if (data.dialogType === 'team') {
+      this.title = this.config.boards[data.id].displayName;
     }
   }
 
@@ -68,13 +81,16 @@ export class DialogComponent {
     // todo: email message here!
 
     console.log('submitted!', this.contactForm, $event);
-    console.log('submitted!', this.contactForm.controls);
     console.log('|-- teamsBoardId:', this.team.getSelectedTeam());
     console.log('|-- email (from):', this.contactForm.controls.email.value);
     console.log('|-- subject:', this.contactForm.controls.subject.value);
     console.log('|-- message:', this.contactForm.controls.message.value);
-    alert('email messge here! (dialog.component.ts)');
-    this.dialogRef.close();
+
+    this.formWasSubmitted = true;
+    this.closeButtonText = 'Sluiten!';
+    this.contactSvc.email = '';
+    this.contactSvc.subject = '';
+    this.contactSvc.message = '';
   }
 
   getContactFormErrorMessage(formCtrl: FormControl) {

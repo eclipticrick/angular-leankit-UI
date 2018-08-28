@@ -1,7 +1,7 @@
 <mat-list-item (click)="dialog.showDialog('card', { id: card.id, info: extraInfo })"
                [matTooltip]="tooltipCard"
                [matTooltipShowDelay]="1000"
-               [style.boxShadow]="'8px 0 0 -4px ' + (card.color ? card.color : 'rgba(0,0,0,0)') + ' inset'"> <!-- todo: sanitize color value -->
+               [style.boxShadow]="'8px 0 0 -4px ' + (card.color ? card.color : 'rgba(0,0,0,0)') + ' inset' | sanitizeCss">
   <h3 matLine>{{card.title}}</h3>
   <mat-progress-bar
     *ngIf="progress !== null && progress !== undefined"

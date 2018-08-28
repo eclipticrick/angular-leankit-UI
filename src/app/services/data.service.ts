@@ -14,7 +14,6 @@ export class DataService {
   getConfig() {
     return APP_CONFIG;
   }
-
   getBoards(): Promise<any> {
     return this.leankit.getBoards()
       .then(boards => this.filterBoardsOnSpecifiedInConfig(boards));

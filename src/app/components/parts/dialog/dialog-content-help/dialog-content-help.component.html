@@ -1,2 +1,2 @@
 <h3>{{ data.questionData.question }}</h3>
-<h4 [innerHTML]="data.questionData.answer"></h4> <!-- todo: sanitize html -->
+<h4 [innerHTML]="data.questionData.answer | sanitizeHtml"></h4>

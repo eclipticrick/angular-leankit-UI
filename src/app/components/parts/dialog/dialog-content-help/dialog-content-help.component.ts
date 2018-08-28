@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dialog-content-help',
@@ -10,8 +10,6 @@ export class DialogContentHelpComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    // this.data.questionData.question;
-  }
+  ngOnInit() { }
 
 }

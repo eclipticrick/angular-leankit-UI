@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { routeAnimation } from './app.animations';
-import {NavbarComponent} from './components/parts/navbar/navbar.component';
-import {FooterComponent} from './components/parts/footer/footer.component';
+import { NavbarComponent } from './components/parts/navbar/navbar.component';
+import { FooterComponent } from './components/parts/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -27,10 +27,17 @@ export class AppComponent implements OnInit, AfterContentChecked {
   @HostBinding('class') hostClasses: string = this.theme;
 
   constructor(private overlayContainer: OverlayContainer) {
+
+    console.log(
+      '\n%c    --%c created by Wesley Veenendaal %c--    \n    --    http://www.ecliptic.nl    --    \n',
+      'background: #242424; color: #FFFF00', 'background: #242424; color: #2CFF7F', 'background: #242424; color: #FFFF00'
+    );
+
     this.onThemeChange(this.theme);
   }
 
   ngOnInit(): void {
+
     // set theme class on overlayContainer
     this.overlayContainer.getContainerElement().classList.add(this.theme);
   }

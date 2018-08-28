@@ -8,7 +8,9 @@ export class LeankitService {
   BASE_URL = 'http://185.224.88.65:1555/api/hu/io/';
   alreadyRetrieved = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+  }
 
   getBoards(): Promise<any> {
     return this.getList('board', 'boards');
