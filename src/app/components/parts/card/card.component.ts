@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../../../services/data.service';
-import {DialogService} from '../../../services/dialog.service';
+import { DialogService } from '../../../services/dialog.service';
 
 @Component({
   selector: 'app-card',

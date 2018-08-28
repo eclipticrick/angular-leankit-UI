@@ -4,14 +4,13 @@
   <h2 mat-dialog-title
       [class.theme-bg-primary]="!formWasSubmitted"
       [class.success]="formWasSubmitted">
-  <span class="icon-and-title fg-white">
-    <mat-icon *ngIf="icon" class="fg-white">{{ icon }}</mat-icon>
-    <span class="cut-text">{{ title }}</span>
-  </span>
+    <span class="icon-and-title fg-white">
+      <mat-icon *ngIf="icon" class="fg-white">{{ icon }}</mat-icon>
+      <span class="cut-text">{{ title }}</span>
+    </span>
     <button type="button" mat-icon-button (click)="close()">
       <mat-icon class="fg-white">close</mat-icon>
     </button>
-
   </h2>
 
   <mat-dialog-content>
@@ -73,7 +72,7 @@
               [disabled]="!contactForm.valid"
               (click)="onContactFormSubmit()">
         Versturen
-      </button> <!-- || data.dialogType === 'card' -->
+      </button>
     </div>
     <!-- /contact form submit button-->
 

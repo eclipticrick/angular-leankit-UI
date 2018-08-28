@@ -1,7 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from '../../../services/data.service';
-import { CardType } from '../../../enums/CardType.enum';
-import { Lane } from '../../../enums/Lane.enum';
 import { TeamService } from '../../../services/team.service';
 import { DialogService } from '../../../services/dialog.service';
 

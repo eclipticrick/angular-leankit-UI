@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {APP_CONFIG} from '../app.config';
+import { APP_CONFIG } from '../app.config';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +31,6 @@ export class TeamService {
     if (!this._selectedTeams.includes(teamIdToAdd)) {
       this._selectedTeams.push(teamIdToAdd);
     }
-  }
-  removeFromSelectedTeams(teamIdToRemove: string) {
-    this._selectedTeams.filter(teamId => teamId !== teamIdToRemove);
   }
 
   getSelectedTeam() {

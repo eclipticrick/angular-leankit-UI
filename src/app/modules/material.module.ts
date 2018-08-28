@@ -5,6 +5,7 @@ import {
   MatProgressBarModule,
   MatFormFieldModule,
   MatExpansionModule,
+  MatPaginatorModule,
   MatCheckboxModule,
   MatGridListModule,
   MatTooltipModule,
@@ -20,8 +21,7 @@ import {
   MatMenuModule,
   MatTabsModule,
   MatIconModule,
-  MatListModule,
-  MatPaginatorModule
+  MatListModule
 } from '@angular/material';
 
 const MatModules = [
@@ -53,7 +53,7 @@ const MatModules = [
   MatPaginatorModule,
   MatTooltipModule,
   MatChipsModule,
-  MatIconModule,
+  MatIconModule
 ];
 
 @NgModule({

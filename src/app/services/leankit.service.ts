@@ -8,9 +8,7 @@ export class LeankitService {
   BASE_URL = 'http://185.224.88.65:1555/api/hu/io/';
   alreadyRetrieved = [];
 
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) { }
 
   getBoards(): Promise<any> {
     return this.getList('board', 'boards');
@@ -43,21 +41,6 @@ export class LeankitService {
   getCardTask(cardId: number, taskId): Promise<any> {
     return this.get('card/' + cardId + '/tasks/' + taskId);
   }
-
-  /////// // { message: "User lacks sufficient permissions" }
-  //      getUsers(): Promise<any> {
-  //        return this.getList('user', 'users');
-  //      }
-
-  /////// // { message: "User lacks sufficient permissions" }
-  //      getUser(id: number): Promise<any> {
-  //        return this.get('user/' + id);
-  //      }
-
-  /////// // { message: "User lacks sufficient permissions" }
-  //      getRecentActivityForUser(id: number): Promise<any> {
-  //        return this.get('user/' + id + '/board/recent');
-  //      }
 
   /**
    * To get a list from the API, multiple requests are needed.
