@@ -75,7 +75,7 @@ export const APP_CONFIG = {
       }
     },
     '663196440': {
-      displayName: 'Team Leerplanner',
+      displayName: 'Team Leren',
       description: `
         Team Leerplanner is een Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis suscipit fermentum. Aliquam,
         et volutpat velit posuere non. Nullam nec metus urna. Suspendisse et tortor quis tortor pharetra pretium vitae eget ex. Aenean
