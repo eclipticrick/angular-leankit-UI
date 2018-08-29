@@ -5,13 +5,11 @@ div.header {
     div.col-header {
       margin: 12px 0 -20px;
       h1 {
-        font-size: 68px;
         margin: 6px 0;
+        font-size: 68px;
+        align-items: flex-start;
         @media #{$on-mobile} {
           font-size: 40px;
-        }
-        @media #{$on-mobile-small} {
-          font-size: 28px;
         }
       }
       mat-card {

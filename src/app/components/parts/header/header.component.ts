@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Lane } from '../../../enums/Lane.enum';
 import { DialogService } from '../../../services/dialog.service';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-header',
@@ -11,18 +12,17 @@ export class HeaderComponent implements OnInit {
   @Input() page: string;
   @Output() teamChanged: EventEmitter<any> = new EventEmitter<any>();
   title = '';
-  tooltipMessage = '';
 
-  constructor(public dialog: DialogService) {}
+  config = this.dataSvc.getConfig();
+
+  constructor(public dialog: DialogService, private dataSvc: DataService) { }
 
   ngOnInit() {
     if (this.page === Lane.doing) {
       this.title = 'Doing';
-      this.tooltipMessage = 'Wat is Doing?';
     }
     if (this.page === Lane.backlog) {
       this.title = 'Backlog';
-      this.tooltipMessage = 'Wat is een Backlog?';
     }
   }
 

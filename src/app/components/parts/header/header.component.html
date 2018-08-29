@@ -4,18 +4,27 @@
     <div class="container">
       <div class="row">
         <div class="col-12 text-center col-header">
-          <h1 class="fg-white text-left">{{ title }}</h1>
+          <h1 class="fg-white text-left flex">
+            {{ title }}
+            <button class="help"
+                    type="button"
+                    mat-icon-button
+                    [matTooltip]="config.questions[page].question"
+                    (click)="dialog.showDialog('help', { questionType: page })">
+              <mat-icon>help</mat-icon>
+            </button>
+          </h1>
           <mat-card>
             <h4>
               U bekijkt de
               <span class="help"
-                    matTooltip="Wat is een Story?"
+                    [matTooltip]="config.questions['story'].question"
                     (click)="dialog.showDialog('help', { questionType: 'story' })">
                 stories</span>
               in de
               <span class="help"
-                    [matTooltip]="tooltipMessage"
-                    (click)="dialog.showDialog('help', { questionType: title.toLowerCase() })">
+                    [matTooltip]="config.questions[page].question"
+                    (click)="dialog.showDialog('help', { questionType: page })">
                 {{ title }} lane</span>
               voor
             </h4>

@@ -299,7 +299,7 @@
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon>link</mat-icon> Bijbehorende stories <span class="amount" *ngIf="allChildCards | async"> ({{ (allChildCards | async)?.length }})</span>
+        <mat-icon>link</mat-icon> Bijbehorende stories <span class="amount" *ngIf="childCards | async"> ({{ (childCards | async)?.length }})</span>
       </ng-template>
 
       <div class="container-fluid tab-3-container" *ngIf="card | async; else loading">
@@ -307,8 +307,8 @@
           <div class="col-12">
 
             <div class="flex space-between align-items-center">
-              <h4 class="information" *ngIf="(allChildCards | async)?.length">Hieronder is een overzicht van de direct onderliggende user stories</h4>
-              <h4 class="information" *ngIf="!(allChildCards | async)?.length">Deze user story heeft geen onderliggende user stories</h4>
+              <h4 class="information" *ngIf="(childCards | async)?.length">Hieronder is een overzicht van de direct onderliggende user stories</h4>
+              <h4 class="information" *ngIf="!(childCards | async)?.length">Deze user story heeft geen onderliggende user stories</h4>
               <button type="button"
                       mat-icon-button
                       matTooltip="Wat word er bedoeld met onderliggende stories?"
@@ -320,7 +320,7 @@
             <mat-divider class="with-margin" *ngIf="(childCards | async)?.length"></mat-divider>
 
           </div>
-          <div class="col-12" *ngIf="childCards | async">
+          <div class="col-12" *ngIf="(childCards | async)?.length">
             <mat-card class="no-padding">
               <mat-nav-list class="no-padding">
                 <app-card *ngFor="let card of childCards | async" [card]="card" [extraInfo]="{ lane: data.info.lane, type: data.info.type }"></app-card>
