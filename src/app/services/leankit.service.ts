@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class LeankitService {
-  BASE_URL = 'https://server.ecliptic.nl/api/hu/io/';
+  BASE_URL = 'https://server.ecliptic.nl/hu/leankit/io/';
   alreadyRetrieved = [];
 
   constructor(private http: HttpClient) { }
