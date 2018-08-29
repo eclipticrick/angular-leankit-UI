@@ -4,7 +4,7 @@
       <span>
         <span *ngIf="type === 'epic'">
           De <span class="help theme-fg-accent"
-                   [matTooltip]="config.questions['epic']"
+                   [matTooltip]="config.questions['epic'].question"
                    (click)="dialog.showDialog('help', { questionType: 'epic' })">epic</span> kaarten
         </span>
         <span *ngIf="type === 'nonEpic'">De andere kaarten</span>
