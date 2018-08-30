@@ -60,6 +60,7 @@ export const APP_CONFIG = {
         backlog: [
           656585578,
           656585579,
+          711403039,
           656638600,
           692248681,
           656585580,
@@ -84,7 +85,7 @@ export const APP_CONFIG = {
         ac pharetra lobortis, enim leo pellentesque turpis, eu aliquam nulla lacus eu augue. Duis ullamcorper libero velit, eget vestibulum
         massa finibus nec. Etiam consequat ex eget lacinia aliquam. Fusce imperdiet quis arcu sed volutpat. Proin non sodales velit.
       `,
-      epicCardTypes: [ 663292245, 678980828 ],
+      epicCardTypes: [ 663292245 ],
       excludedCardTypes: [],
       excludedCards: [],
       includedLanes: {
@@ -99,9 +100,12 @@ export const APP_CONFIG = {
           690107622,
           663437831,
           676971659,
-          676971660
+          676971660,
+          663437825,
+          690128983,
+          690128984
         ],
-        doing: [ 663437832, 663437834, 663437835 ]
+        doing: [ 663437832, 663437834, 663437835, 667284637, 676971662, 676971663 ]
       }
     }
   }

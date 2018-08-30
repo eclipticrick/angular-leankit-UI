@@ -23,13 +23,27 @@ export class DataService {
     return this.leankit.getBoard(boardId);
   }
 
-  getCards(boardId: number, lane: Lane, type?: CardType): Promise<any> {
+  getCards(boardId: number, lane: Lane, type: CardType): Promise<any> {
     boardId = Number(boardId);
     return this.leankit.getCards()
       .then(cards => this.filterCardsOnBoard(boardId, cards))
       .then(cards => this.filterCardsOnExcluded(boardId, cards))
       .then(cards => this.filterCardsOnType(boardId, cards, type))
       .then(cards => this.filterCardsOnLane(boardId, cards, lane));
+
+      // .then(x => {
+      //   if (type === CardType.epic) {
+      //     console.log('all epics', x);
+      //   }
+      //   return x;
+      // })
+      // .then(cards => this.filterCardsOnLane2(boardId, cards, lane, type))
+      // .then(x => {
+      //   if (type === CardType.epic) {
+      //     console.log('all epics in ' + lane, x);
+      //   }
+      //   return x;
+      // });
   }
 
   getCardInfo(cardId: number): Promise<any> {
@@ -108,7 +122,7 @@ export class DataService {
     });
   }
 
-  private filterCardsOnType(boardId: number, cards: any[], type?: CardType) {
+  private filterCardsOnType(boardId: number, cards: any[], type: CardType) {
     if (type === CardType.epic) {
       return cards.filter(card => APP_CONFIG.boards[boardId].epicCardTypes.includes(Number(card.type.id)));
     } else if (type === CardType.nonEpic) {
@@ -131,4 +145,42 @@ export class DataService {
       return cards;
     }
   }
+  // private filterCardsOnLane2(boardId: number, cards: any[], lane: Lane, type: CardType) {
+
+  //   const includedLanes = APP_CONFIG.boards[boardId].includedLanes;
+  //   if (lane === Lane.backlog || lane === Lane.doing) {
+
+  //     if (type === CardType.epic) {
+  //       const promises = [];
+  //       cards.forEach(card => {
+  //         const promise = this.getChildCards(card.id)
+  //           .then(childCards => {
+  //             return childCards.filter(childCard => {
+  //               for (let i = 0; i < includedLanes[lane].length; i++) {
+  //                 if (includedLanes[lane][i] === Number(childCard.lane.id)) return true;
+  //               }
+  //               return false;
+  //             });
+  //           })
+  //           .then(filteredListOfChildCards => {
+  //             console.log('filteredListOfChildCards', filteredListOfChildCards);
+  //             return filteredListOfChildCards;
+  //           })
+  //           .then(filteredListOfChildCards => filteredListOfChildCards.length ? Promise.resolve(card) : Promise.resolve());
+  //         promises.push(promise);
+  //       });
+  //       return Promise.all(promises);
+
+  //     } else {
+  //       return cards.filter(card => {
+  //         for (let i = 0; i < includedLanes[lane].length; i++) {
+  //           if (includedLanes[lane][i] === Number(card.lane.id)) return true;
+  //         }
+  //         return false;
+  //       });
+  //     }
+  //   } else if (lane === Lane.all) {
+  //     return cards;
+  //   }
+  // }
 }

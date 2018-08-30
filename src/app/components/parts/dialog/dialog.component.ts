@@ -78,14 +78,7 @@ export class DialogComponent {
   }
 
   onContactFormSubmit($event) {
-    // todo: email message here!
-
-    console.log('submitted!', this.contactForm, $event);
-    console.log('|-- teamsBoardId:', this.team.getSelectedTeam());
-    console.log('|-- email (from):', this.contactForm.controls.email.value);
-    console.log('|-- subject:', this.contactForm.controls.subject.value);
-    console.log('|-- message:', this.contactForm.controls.message.value);
-
+    this.contactSvc.sendContactMail(this.team.getSelectedTeam(), this.contactForm.controls.email.value, this.contactForm.controls.subject.value, this.contactForm.controls.message.value);
     this.formWasSubmitted = true;
     this.closeButtonText = 'Sluiten!';
     this.contactSvc.email = '';
