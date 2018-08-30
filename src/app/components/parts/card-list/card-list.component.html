@@ -5,10 +5,24 @@
         <span *ngIf="type === 'epic'">
           De <span class="help theme-fg-accent"
                    [matTooltip]="config.questions['epic'].question"
-                   (click)="dialog.showDialog('help', { questionType: 'epic' })">epic</span> kaarten
+                   (click)="dialog.showDialog('help', { questionType: 'epic' })">epic</span>
+          <span>&nbsp;</span>
+          <span class="pointer"
+                [matTooltip]="config.questions['story'].question"
+                (click)="dialog.showDialog('help', { questionType: 'story' })">stories</span>
         </span>
-        <span *ngIf="type === 'nonEpic'">De andere kaarten</span>
-        <span *ngIf="type === 'all'">Alle kaarten</span>
+        <span *ngIf="type === 'nonEpic'">
+          De andere
+          <span class="pointer"
+                [matTooltip]="config.questions['story'].question"
+                (click)="dialog.showDialog('help', { questionType: 'story' })">stories</span>
+        </span>
+        <span *ngIf="type === 'all'">
+          Alle
+          <span class="pointer"
+                [matTooltip]="config.questions['story'].question"
+                (click)="dialog.showDialog('help', { questionType: 'story' })">stories</span>
+        </span>
 
         {{ lane ? 'in de ' : ''}}
         <span *ngIf="lane"
@@ -35,7 +49,7 @@
 
   <mat-nav-list *ngIf="cards | async; else loadingCards" class="no-padding">
     <div *ngIf="!(cards | async)?.length" class="text-center">
-      Er zijn nog geen {{ type  ? type : '' }} kaarten {{ lane ? 'in de ' + lane + ' lane' : ''}}
+      Er zijn nog geen {{ type  ? type : '' }} stories {{ lane ? 'in de ' + lane + ' lane' : ''}}
     </div>
     <app-card *ngFor="let card of (cards | async | slice:cardsOffset:cardsLimit)" [card]="card" [extraInfo]="{ lane: lane, type: type }"></app-card>
   </mat-nav-list>

@@ -29,21 +29,13 @@ export class DataService {
       .then(cards => this.filterCardsOnBoard(boardId, cards))
       .then(cards => this.filterCardsOnExcluded(boardId, cards))
       .then(cards => this.filterCardsOnType(boardId, cards, type))
-      .then(cards => this.filterCardsOnLane(boardId, cards, lane));
-
-      // .then(x => {
-      //   if (type === CardType.epic) {
-      //     console.log('all epics', x);
-      //   }
-      //   return x;
-      // })
-      // .then(cards => this.filterCardsOnLane2(boardId, cards, lane, type))
-      // .then(x => {
-      //   if (type === CardType.epic) {
-      //     console.log('all epics in ' + lane, x);
-      //   }
-      //   return x;
-      // });
+      .then(cards => {
+        if (type === CardType.epic && (lane === Lane.doing || lane === Lane.backlog)) {
+          return this.filterEpicCardsOnDoingOrBacklogLane(boardId, cards, lane);
+        } else {
+          return this.filterCardsOnLane(boardId, cards, lane);
+        }
+      });
   }
 
   getCardInfo(cardId: number): Promise<any> {
@@ -145,42 +137,38 @@ export class DataService {
       return cards;
     }
   }
-  // private filterCardsOnLane2(boardId: number, cards: any[], lane: Lane, type: CardType) {
+  private filterEpicCardsOnDoingOrBacklogLane(boardId: number, cards: any[], lane: Lane) {
+    const promises = [];
+    cards.forEach(card => {
+      const promise = this.getChildCards(card.id)
+        .then(childCards => {
+          const childCardsInDoing = this.filterCardsOnLane(boardId, childCards, Lane.doing);
 
-  //   const includedLanes = APP_CONFIG.boards[boardId].includedLanes;
-  //   if (lane === Lane.backlog || lane === Lane.doing) {
+          // if a childCard of this epic is in doing
+          if (lane === Lane.doing && childCardsInDoing.length) {
 
-  //     if (type === CardType.epic) {
-  //       const promises = [];
-  //       cards.forEach(card => {
-  //         const promise = this.getChildCards(card.id)
-  //           .then(childCards => {
-  //             return childCards.filter(childCard => {
-  //               for (let i = 0; i < includedLanes[lane].length; i++) {
-  //                 if (includedLanes[lane][i] === Number(childCard.lane.id)) return true;
-  //               }
-  //               return false;
-  //             });
-  //           })
-  //           .then(filteredListOfChildCards => {
-  //             console.log('filteredListOfChildCards', filteredListOfChildCards);
-  //             return filteredListOfChildCards;
-  //           })
-  //           .then(filteredListOfChildCards => filteredListOfChildCards.length ? Promise.resolve(card) : Promise.resolve());
-  //         promises.push(promise);
-  //       });
-  //       return Promise.all(promises);
+            // return the epic (it should also be in the doing lane)
+            return card;
 
-  //     } else {
-  //       return cards.filter(card => {
-  //         for (let i = 0; i < includedLanes[lane].length; i++) {
-  //           if (includedLanes[lane][i] === Number(card.lane.id)) return true;
-  //         }
-  //         return false;
-  //       });
-  //     }
-  //   } else if (lane === Lane.all) {
-  //     return cards;
-  //   }
-  // }
+            // if a childCard of this epic is NOT in doing
+          } else if (lane === Lane.backlog && !childCardsInDoing.length) {
+
+            // return the epic (it should be in the backlog lane)
+            return card;
+          }
+        });
+      promises.push(promise);
+    });
+    return Promise.all(promises)
+      .then(filteredCardsWithUndefinedValues => filteredCardsWithUndefinedValues.filter(value => value))
+      .then(filteredCards => {
+
+        filteredCards.concat(this.filterCardsOnLane(boardId, cards, lane));
+
+        // remove duplicates
+        return filteredCards.filter((obj, pos, arr) => {
+          return arr.map(mapObj => mapObj['id']).indexOf(obj['id']) === pos;
+        });
+      });
+  }
 }
