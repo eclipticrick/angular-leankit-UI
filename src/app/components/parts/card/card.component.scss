@@ -2,6 +2,13 @@
 
 mat-list-item /deep/ div.mat-list-item-content {
   padding: 24px;
+
+  .help-small {
+    font-size: 14px;
+    line-height: 14px;
+    width: 14px;
+    height: 14px;
+  }
   .mat-list-text {
     h3 {
       font-size: 17px;

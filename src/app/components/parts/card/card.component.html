@@ -21,6 +21,7 @@
     <span>
       <mat-icon *ngIf="(childCards | async) && (allChildCards | async) && (childCards | async)?.length !== (allChildCards | async)?.length"
                 class="help-small"
+                (click)="$event.stopPropagation(); dialog.showDialog('help', { questionType: 'meer user stories dan de onderliggende user stories' })"
                 [matTooltip]="tooltipStoriesHelp">help</mat-icon>
       </span>
     <span [matTooltip]="tooltipTasks">

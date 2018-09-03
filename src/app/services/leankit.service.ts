@@ -1,14 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { APP_CONFIG } from '../app.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LeankitService {
-  BASE_URL = 'https://server.ecliptic.nl/hu/leankit/io/';
+  BASE_URL = APP_CONFIG.nodeJsServerUrl;
   alreadyRetrieved = [];
 
   constructor(private http: HttpClient) { }
+
+
+
+  /**
+   * Temporary function for this PoC
+   *
+   * (this method is only called in data.service.ts)
+   */
+  getReviewDate(boardId: number): Promise<any> {
+    return this.get('getNextReview?team=' + boardId);
+  }
+
+
 
   getBoards(): Promise<any> {
     return this.getList('board', 'boards');

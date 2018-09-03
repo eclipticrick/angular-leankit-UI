@@ -34,7 +34,7 @@ export class CardComponent implements OnInit {
 
   lastActivity: Date;
 
-  tooltipStoriesHelp = 'I don\'t get it';
+  tooltipStoriesHelp = 'Wat word hiermee bedoeld?';
   tooltipCardInfo = 'Meer informatie over deze Epic';
   tooltipProgress = 'Loading...';
   tooltipCard = 'Loading...';

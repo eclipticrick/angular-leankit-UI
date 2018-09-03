@@ -1,6 +1,9 @@
 
 export const APP_CONFIG = {
 
+  // the URL of the backend
+  nodeJsServerUrl: 'https://server.ecliptic.nl/hu/leankit/io/',
+
   // specify the questions and answers to be shown on the homepage (and in some of the 'help' pop-ups)
   questions: {
     'epic' : {
@@ -33,6 +36,15 @@ export const APP_CONFIG = {
       question: 'Wat is een onderliggende user story?',
       answer: `
         Een onderliggende user story komt vaak voor bij een epic user story. Het kan gezien worden als een deel-taak van de epic.
+      `
+    },
+    'meer user stories dan de onderliggende user stories' : {
+      question: 'Waarom staat er een groter aantal user stories dan de onderliggende user stories?',
+      answer: `
+        Het kan voorkomen dat een van de onderliggende stories ook zelf nog een onderliggende user story heeft.
+        <br><br>
+        "stories: 18 (20)" betekent (bijvoorbeeld) dat er 18 direct onderliggende stories zijn, waarvan er een
+        nog 2 onderliggende user stories heeft.
       `
     }
   },

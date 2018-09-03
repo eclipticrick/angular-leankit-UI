@@ -24,6 +24,8 @@ export class DialogComponent {
   messageCtrl = new FormControl('', [ Validators.required ]);
   formWasSubmitted;
 
+  reviewDate;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public contactSvc: ContactService,
@@ -71,14 +73,25 @@ export class DialogComponent {
     } else if (data.dialogType === 'team') {
       this.title = this.config.boards[data.id].displayName;
     }
+
+    this.updateReviewDate();
   }
 
   close() {
     this.dialogRef.close();
   }
 
+  updateReviewDate() {
+    this.reviewDate = this.dataSvc.getReviewDate(this.team.getSelectedTeam());
+  }
+
   onContactFormSubmit($event) {
-    this.contactSvc.sendContactMail(this.team.getSelectedTeam(), this.contactForm.controls.email.value, this.contactForm.controls.subject.value, this.contactForm.controls.message.value);
+    this.contactSvc.sendContactMail(
+      this.team.getSelectedTeam(),
+      this.contactForm.controls.email.value,
+      this.contactForm.controls.subject.value,
+      this.contactForm.controls.message.value
+    );
     this.formWasSubmitted = true;
     this.closeButtonText = 'Sluiten!';
     this.contactSvc.email = '';

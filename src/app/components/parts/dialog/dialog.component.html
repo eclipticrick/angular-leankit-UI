@@ -29,7 +29,8 @@
     <div *ngIf="data.dialogType === 'contact' && !formWasSubmitted"> <!-- || data.dialogType === 'card' -->
 
       <!-- contact form -->
-      <app-team-selector [multiple]="false" [placeholder]="'Selecteer welk team u wilt contacteren'"></app-team-selector>
+      <app-team-selector (selectionChanged)="updateReviewDate()" [multiple]="false" [placeholder]="'Selecteer welk team u wilt contacteren'"></app-team-selector>
+      <h4 class="reviewDate" *ngIf="reviewDate | async">Volgende review datum: {{ (reviewDate | async) | beautifyDate }}</h4>
       <mat-form-field>
         <input matInput placeholder="Jou email (om een reactie te kunnen ontvangen)" [formControl]="emailCtrl" (change)="contactSvc.email = $event.srcElement.value" required>
         <mat-error *ngIf="emailCtrl.invalid">{{ getContactFormErrorMessage(emailCtrl) }}</mat-error>

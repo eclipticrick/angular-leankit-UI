@@ -10,9 +10,12 @@ export class DialogContentTeamComponent implements OnInit {
   @Input() data: any;
   config = this.dataSvc.getConfig();
 
+  reviewDate;
+
   constructor(private dataSvc: DataService) { }
 
   ngOnInit() {
+    this.reviewDate = this.dataSvc.getReviewDate(this.data.id);
   }
 
 }

@@ -11,6 +11,23 @@ export class DataService {
 
   constructor(private leankit: LeankitService) { }
 
+
+
+  /**
+   * Temporary function for this PoC
+   *
+   * (this method is only called in data.service.ts)
+   */
+  getReviewDate(boardId: number): Promise<any> {
+    return this.leankit.getReviewDate(boardId)
+      .then(reviewDate => {
+        console.log('reviewDate', reviewDate);
+        return reviewDate;
+      });
+  }
+
+
+
   getConfig() {
     return APP_CONFIG;
   }
