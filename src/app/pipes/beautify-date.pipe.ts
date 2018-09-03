@@ -14,6 +14,7 @@ export class BeautifyDatePipe implements PipeTransform {
     if (typeof date === 'string') date = new Date(date);
 
     const DateDiff = {
+      isInThePast: (today, dateToCheck) => dateToCheck < today,
       isSameDay: (d1, d2) => (
         d1.getFullYear() === d2.getFullYear() &&
         d1.getMonth() === d2.getMonth() &&
@@ -33,18 +34,20 @@ export class BeautifyDatePipe implements PipeTransform {
       'augustus', 'september', 'oktober',
       'november', 'december'
     ];
-
-
     const now = new Date();
+
+    if (!DateDiff.isInThePast(now, date)) {
+      return date.getDate() + ' ' + monthNames[date.getMonth()] + (date.getFullYear() > now.getFullYear() ? ' ' + date.getFullYear() : '');
+    }
 
     let dateStringPrefix;
     if (DateDiff.isSameDay(date, now)) dateStringPrefix = 'vandaag';
     else if (DateDiff.isSameDay(date, new Date(now.getDate() - 1))) dateStringPrefix = 'gisteren';
 
     let dateStringPostFix;
-    if (DateDiff.inMinutes(date, now) < 30) {
+    if (DateDiff.inMinutes(date, now) < 30 && DateDiff.isSameDay(date, now)) {
       dateStringPostFix = 'een paar minuten geleden';
-    } else if (DateDiff.inMinutes(date, now) < 60) {
+    } else if (DateDiff.inMinutes(date, now) < 60 && DateDiff.isSameDay(date, now)) {
       dateStringPostFix = 'minder dan een uur geleden';
     } else {
       let amount = -1;
